@@ -1,6 +1,5 @@
 import {
   Sheet,
-  // SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -21,7 +20,7 @@ export const MobileHeader = () => {
     <div className='block md:hidden'>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant='outline'>
+          <Button variant='outline' className='px-2 h-fit'>
             <Menu />
           </Button>
         </SheetTrigger>
@@ -31,7 +30,7 @@ export const MobileHeader = () => {
             <SheetDescription>짧은 소개</SheetDescription>
           </SheetHeader>
 
-          {/* ✅ 아코디언 메뉴 */}
+          {/* 아코디언 메뉴 */}
           <Accordion type='single' collapsible className='w-full'>
             {menuData.map((menu, index) => (
               <AccordionItem key={menu.title} value={`menu-${index}`}>
