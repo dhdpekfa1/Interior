@@ -72,4 +72,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .container {
+    @apply max-w-7xl py-8;
+  }
+  .wrapper {
+    @apply py-8 px-4;
+  }
 }
