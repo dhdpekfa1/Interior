@@ -36,3 +36,9 @@ export {
   SheetDescription,
 } from './sheet/sheet';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
+export {
+  SubTabs,
+  SubTabsList,
+  SubTabsTrigger,
+  SubTabsContent,
+} from './tabs/sub-tabs';

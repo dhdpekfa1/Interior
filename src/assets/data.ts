@@ -8,6 +8,7 @@ interface MenuItem {
   title: string;
   baseUrl: string;
   subMenu: SubMenuItem[];
+  menuTitle?: string[];
 }
 
 // TODO: 이미지 변경
@@ -54,6 +55,17 @@ export const menuData: MenuItem[] = [
         url: '/product/self',
         img: 'https://images.unsplash.com/photo-1454694220579-9d6672b1ec2a?q=80&w=2185&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
+    ],
+    menuTitle: [
+      '전체',
+      'title1',
+      'title2',
+      'title3',
+      'title4',
+      'title5',
+      'title6',
+      'title7',
+      'title8',
     ],
   },
   {

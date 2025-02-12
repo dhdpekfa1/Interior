@@ -6,8 +6,8 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from '@/components/ui';
-import { menuData } from '@/assets/data';
 import { MobileHeader } from './MobileHeader';
+import { menuData } from '@/assets/data';
 
 export const Header = () => {
   return (
