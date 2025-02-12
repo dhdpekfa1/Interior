@@ -35,3 +35,4 @@ export {
   SheetTitle,
   SheetDescription,
 } from './sheet/sheet';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
