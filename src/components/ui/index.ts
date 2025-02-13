@@ -5,7 +5,16 @@ export {
   AccordionContent,
 } from './accordion/accordion';
 export { Button, buttonVariants } from './button/button';
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from './card/card';
 export { Input } from './input/input';
+export { Label } from './label/label';
 export {
   Menubar,
   MenubarMenu,
@@ -24,6 +33,18 @@ export {
   MenubarSub,
   MenubarShortcut,
 } from './menubar/menubar';
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+} from './select/select';
 export {
   Sheet,
   SheetPortal,
