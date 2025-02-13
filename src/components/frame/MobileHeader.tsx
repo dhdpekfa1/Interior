@@ -5,6 +5,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
   Button,
   Accordion,
   AccordionContent,
@@ -24,10 +25,10 @@ export const MobileHeader = () => {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent side='left' className='w-64'>
+        <SheetContent side='left' className='w-64 bg-second'>
           <SheetHeader>
-            <SheetTitle>LOGO</SheetTitle>
-            <SheetDescription>짧은 소개</SheetDescription>
+            <SheetTitle className='text-point'>LOGO</SheetTitle>
+            <SheetDescription className='text-ef'>짧은 소개</SheetDescription>
           </SheetHeader>
 
           {/* 아코디언 메뉴 */}
@@ -35,15 +36,16 @@ export const MobileHeader = () => {
             {menuData.map((menu, index) => (
               <AccordionItem key={menu.title} value={`menu-${index}`}>
                 <AccordionTrigger>{menu.title}</AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className='flex flex-col gap-1'>
                   {menu.subMenu.map((subItem) => (
-                    <Link
-                      key={subItem.label}
-                      href={subItem.url}
-                      className='block py-2 pl-4 text-sm hover:font-bold'
-                    >
-                      {subItem.label}
-                    </Link>
+                    <SheetClose asChild key={subItem.label}>
+                      <Link
+                        href={subItem.url}
+                        className='block py-2 pl-4 text-sm hover:font-bold bg-point/90 hover:bg-point rounded-sm text-white'
+                      >
+                        {subItem.label}
+                      </Link>
+                    </SheetClose>
                   ))}
                 </AccordionContent>
               </AccordionItem>

@@ -30,7 +30,7 @@ export const DirectionsTab = () => {
             <p className='text-base md:text-lg font-bold text-point'>
               {item.label}
             </p>
-            <div className='w-full h-0.5 bg-cream' />
+            <div className='w-[85%] h-0.5 bg-cream' />
             <p className='text-base md:text-lg font-bold text-ef'>
               {item.info}
             </p>
