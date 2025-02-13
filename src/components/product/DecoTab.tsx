@@ -18,42 +18,40 @@ const decoProducts = [
     id: 1,
     name: 'MTS 4421',
     category: 'daejin',
-    image: '/images/mts_4421.png',
+    img: '/imgs/mts_4421.png',
   },
   {
     id: 2,
     name: 'MTS 4422',
     category: 'daejin',
-    image: '/images/mts_4422.png',
+    img: '/imgs/mts_4422.png',
   },
   {
     id: 3,
     name: 'MTS 4425',
     category: 'dongsin',
-    image: '/images/mts_4425.png',
+    img: '/imgs/mts_4425.png',
   },
   {
     id: 4,
     name: 'MTS 4430',
     category: 'lg-botanic',
-    image: '/images/mts_4430.png',
+    img: '/imgs/mts_4430.png',
   },
   {
     id: 5,
     name: 'MTS 4435',
     category: 'lg-econo',
-    image: '/images/mts_4435.png',
+    img: '/imgs/mts_4435.png',
   },
 ];
 
 export const DecoTab = () => {
   return (
-    <div>
-      <SampleList
-        title='데코타일'
-        categories={decoCategories}
-        products={decoProducts}
-      />
-    </div>
+    <SampleList
+      title='데코타일'
+      categories={decoCategories}
+      products={decoProducts}
+    />
   );
 };
