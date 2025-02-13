@@ -106,10 +106,10 @@ export const menuData: MenuItem[] = [
   },
   {
     title: '고객지원',
-    baseUrl: '',
+    baseUrl: '/customer',
     subMenu: [
-      { label: '공지사항', url: '' },
-      { label: '문의하기', url: '' },
+      { label: '공지사항', url: '/customer/notification' },
+      { label: '문의하기', url: '/customer/inquiry' },
     ],
   },
 ];

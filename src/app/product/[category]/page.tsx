@@ -21,7 +21,7 @@ const ProductPage = () => {
   return (
     <div className='container'>
       <UrlTabs
-        title='제품 소개'
+        title='제품소개'
         basePath='/product'
         defaultTab='deco'
         tabs={PRODUCT_TABS}
