@@ -21,6 +21,7 @@ const ConstructionPage = () => {
   return (
     <div className='container'>
       <UrlTabs
+        title='시공사례'
         basePath='/construction'
         defaultTab='deco'
         tabs={CONSTRUCTION_TABS}

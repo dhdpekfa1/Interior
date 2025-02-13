@@ -10,7 +10,7 @@ const Tabs = TabsPrimitive.Root;
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
+>(({ className, title, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
     className={cn(
@@ -18,7 +18,22 @@ const TabsList = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {/* 첫 번째에 타이틀 배치 */}
+    {title && (
+      <span
+        className={cn(
+          'px-5 -ml-2 py-2 mr-1',
+          'rounded-tl-sm rounded-bl-sm',
+          'font-extrabold text-xs md:text-sm lg:text-base',
+          'bg-second text-point'
+        )}
+      >
+        {title}
+      </span>
+    )}
+    {props.children}
+  </TabsPrimitive.List>
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
 
@@ -29,7 +44,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm px-2 py-1.5 text-xs md:text-sm lg:text-base font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-second data-[state=active]:font-bold data-[state=active]:bg-point',
+      'inline-flex items-center justify-center gap-2 rounded whitespace-nowrap px-2 py-1.5 text-xs md:text-sm lg:text-base font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-second data-[state=active]:font-bold data-[state=active]:bg-point',
       className
     )}
     {...props}

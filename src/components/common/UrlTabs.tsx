@@ -10,12 +10,18 @@ export interface TabItem {
 }
 
 interface UrlTabsProps {
+  title: string;
   basePath: string; // ex) '/about , '/product'
   defaultTab: string; // ex) 'deco', 'carpet', 'wood'
   tabs: TabItem[];
 }
 
-export const UrlTabs = ({ basePath, defaultTab, tabs }: UrlTabsProps) => {
+export const UrlTabs = ({
+  title,
+  basePath,
+  defaultTab,
+  tabs,
+}: UrlTabsProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,14 +35,13 @@ export const UrlTabs = ({ basePath, defaultTab, tabs }: UrlTabsProps) => {
 
   return (
     <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
-      <TabsList>
+      <TabsList title={title}>
         {tabs.map((tab) => (
           <TabsTrigger key={tab.value} value={tab.value}>
             {tab.label}
           </TabsTrigger>
         ))}
       </TabsList>
-
       {tabs.map((tab) => (
         <TabsContent key={tab.value} value={tab.value}>
           {tab.component}

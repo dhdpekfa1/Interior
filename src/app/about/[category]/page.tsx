@@ -9,7 +9,12 @@ const ABOUT_TABS = [
 const AboutUsPage = () => {
   return (
     <div className='container'>
-      <UrlTabs basePath='/about' defaultTab='us' tabs={ABOUT_TABS} />
+      <UrlTabs
+        title='회사소개'
+        basePath='/about'
+        defaultTab='us'
+        tabs={ABOUT_TABS}
+      />
     </div>
   );
 };
