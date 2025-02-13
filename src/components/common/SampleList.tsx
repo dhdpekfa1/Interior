@@ -55,8 +55,12 @@ export const SampleList = ({
       {/* 제품 리스트 */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
         {filteredProducts.map((product) => (
-          <div key={product.id}>
-            <div className='border border-dd p-1 text-center'>
+          // TODO: 클릭 시 상세 페이지로 이동
+          <div
+            key={product.id}
+            className='group transition-transform duration-300 hover:scale-105'
+          >
+            <div className='border border-dd/50 p-1 text-center'>
               <div className='relative w-full aspect-square overflow-hidden'>
                 <Image
                   // src={product.img} // TOD: 이미지 적용
@@ -64,9 +68,7 @@ export const SampleList = ({
                     'https://images.unsplash.com/photo-1739361133037-77be66a4ea6a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                   }
                   alt={product.name}
-                  className='object-fill scale-[4]'
-                  width={200}
-                  height={200}
+                  fill
                 />
               </div>
             </div>
