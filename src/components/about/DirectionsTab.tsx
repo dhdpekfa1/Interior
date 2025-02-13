@@ -1,19 +1,29 @@
 import { SubTitle } from '@/components/common';
 
 export const DirectionsTab = () => {
-  // TODO: 클릭 시 바로가기 추가(주소 -> 길찾기, 전화번호 -> 전화)
   const contact = [
-    { label: '주소', info: '인천시 서초구 5번길 114호' },
-    { label: '전화번호', info: '032-101-2020' },
-    { label: '팩스', info: '032-101-2020' },
+    {
+      label: '주소',
+      info: '서울시 서초구 쨔란 5번길',
+      link: `https://www.google.com/maps/search/?q=서울 특별시 서초구 쨔란 5번길`, // Google Maps 길찾기
+    },
+    {
+      label: '전화번호',
+      info: '032-101-2020',
+      link: 'tel:0321012020', // 전화 앱 열기
+    },
+    {
+      label: '팩스',
+      info: '032-101-2020',
+    },
   ];
+
   return (
     <div className='wrapper'>
       <SubTitle title='찾아오기' />
       <div
         className='bg-cream'
         style={{
-          // 지도 크기
           width: '100%',
           height: 'calc(50vh)',
         }}
@@ -31,9 +41,20 @@ export const DirectionsTab = () => {
               {item.label}
             </p>
             <div className='w-[85%] h-0.5 bg-cream' />
-            <p className='text-base md:text-lg font-bold text-ef'>
-              {item.info}
-            </p>
+            {item.link ? (
+              <a
+                href={item.link}
+                target={item.label === '주소' ? '_blank' : '_self'} // 주소는 새 창, 전화는 현재 창에서 실행
+                rel='noopener noreferrer'
+                className='text-base md:text-lg font-bold text-ef hover:underline'
+              >
+                {item.info}
+              </a>
+            ) : (
+              <p className='text-base md:text-lg font-bold text-ef'>
+                {item.info}
+              </p>
+            )}
           </div>
         ))}
       </div>
