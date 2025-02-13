@@ -3,7 +3,7 @@
 import { useRouter, usePathname } from 'next/navigation';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui';
 
-interface TabItem {
+export interface TabItem {
   label: string;
   value: string;
   component: React.ReactNode;

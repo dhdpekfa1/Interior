@@ -1,2 +1,3 @@
+export { SampleList } from './SampleList';
 export { SubTitle } from './SubTitle';
-export { UrlTabs } from './UrlTabs';
+export { UrlTabs, type TabItem } from './UrlTabs';
