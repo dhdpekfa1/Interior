@@ -20,9 +20,7 @@ const ErrorPage = ({ error, reset }: { error: Error; reset: () => void }) => {
           ERR
           <AlertTriangle />R
         </span>
-        <span className='text-ef flex items-center'>
-          PAGE <AlertTriangle />
-        </span>
+        <span className='text-ef flex items-center'>PAGE</span>
       </h1>
 
       {/* 안내 문구 */}
