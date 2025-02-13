@@ -49,7 +49,7 @@ export const SampleList = ({
           ))}
         </SubTabsList>
       </SubTabs>
-      <div>
+      <div className='flex items-center justify-end mt-5 md:mt-7 mb-4'>
         <SearchBar onSubmit={handleSearch} />
       </div>
       {/* 제품 리스트 */}

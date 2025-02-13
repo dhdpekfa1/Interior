@@ -34,8 +34,8 @@ export const SearchBar = ({
 
   return (
     <div className={cn('p-0')}>
-      <form onSubmit={handleSubmit} className={cn('flex-1 flex gap-3')}>
-        <div className={cn('relative w-full md:w-[300px]')}>
+      <form onSubmit={handleSubmit} className={cn('flex-1 flex gap-2')}>
+        <div className={cn('relative w-full md:w-[260px]')}>
           <Input
             type='text'
             placeholder='검색어를 입력해주세요'
@@ -43,7 +43,7 @@ export const SearchBar = ({
               'border border-dd/50 rounded-md pr-8 text-xs md:text-sm',
               'placeholder:text-[#c9c9cb] opacity-90',
               'hover:opacity-100 hover:border-cream',
-              'px-8',
+              'px-8 h-fit',
               'text-two bg-ef'
             )}
             value={search}
@@ -60,12 +60,12 @@ export const SearchBar = ({
         <Button
           type='submit'
           className={cn(
-            'shrink-0 rounded-md bg-point/60 text-second text-center hover:bg-point/90 transition-colors border border-cream/50 '
+            'shrink-0 rounded-md bg-point/60 text-second text-center hover:bg-point/90 transition-colors border border-cream/50',
+            'h-fit'
           )}
         >
-          <span
-            className={cn('md:px-1', 'text-wiz-white/80 text-xs md:text-sm')}
-          >
+          <span className={cn('text-xs text-second md:text-sm font-semibold')}>
+            {' '}
             검색
           </span>
         </Button>
