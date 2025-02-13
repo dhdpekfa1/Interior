@@ -58,9 +58,9 @@ export const InquiryTab = () => {
     <div className='wrapper'>
       <SubTitle title='문의하기' />
       <div className='flex items-center justify-center'>
-        <Card className='w-[95%] sm:w-[80%] md:w-2/3 lg:w-[60%]'>
+        <Card className='w-[95%] sm:w-[80%] md:w-2/3 lg:w-[60%] bg-ef'>
           <CardHeader>
-            <CardTitle className='text-lg sm:text-xl md:text-2xl'>
+            <CardTitle className='text-lg sm:text-xl md:text-2xl text-point'>
               문의하기
             </CardTitle>
             <CardDescription className='text-xs sm:text-sm'>
@@ -109,7 +109,7 @@ export const InquiryTab = () => {
                     {...register('email')}
                     value={watch('email')?.split('@')[0] || ''}
                     onChange={handleEmailChange}
-                    placeholder='이메일 입력'
+                    placeholder='이메일을 입력해주세요.'
                     className={inputStyle}
                   />
                   @
@@ -181,7 +181,7 @@ export const InquiryTab = () => {
 
               <Button
                 type='submit'
-                className='bg-second/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-blue hover:text-three'
+                className='bg-point/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-point'
                 disabled={loading || success}
               >
                 {loading ? '전송 중...' : '문의하기'}
