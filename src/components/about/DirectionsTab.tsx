@@ -35,23 +35,23 @@ export const DirectionsTab = () => {
         {contact.map((item) => (
           <div
             key={item.label}
-            className='flex flex-col items-center gap-3 bg-second/80 rounded-sm p-3 w-full'
+            className='flex flex-col items-center gap-3 bg-point rounded-sm p-3 w-full'
           >
-            <p className='text-base sm:text-sm md:text-lg font-bold text-point'>
+            <p className='text-base sm:text-sm md:text-lg font-bold text-ef'>
               {item.label}
             </p>
-            <div className='w-[85%] h-0.5 bg-cream' />
+            <div className='w-[85%] h-0.5 bg-dd/50' />
             {item.link ? (
               <a
                 href={item.link}
-                target={item.label === '주소' ? '_blank' : '_self'} // 주소는 새 창, 전화는 현재 창에서 실행
+                target={item.label === '주소' ? '_blank' : '_self'}
                 rel='noopener noreferrer'
-                className='text-base md:text-lg font-bold text-ef hover:underline'
+                className='text-base md:text-lg font-bold text-dd hover:underline'
               >
                 {item.info}
               </a>
             ) : (
-              <p className='text-base md:text-lg font-bold text-ef'>
+              <p className='text-base md:text-lg font-bold text-dd'>
                 {item.info}
               </p>
             )}
