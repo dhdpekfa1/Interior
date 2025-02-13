@@ -13,19 +13,13 @@ export const categoryList = [
 ];
 
 export const inquirySchema = z.object({
-  category: z.enum(
-    categoryList.map((item) => item.value) as [string, ...string[]],
-    {
-      message: '문의 유형을 선택해주세요.',
-    }
-  ),
-
+  category: z.string().min(1, { message: '문의 유형을 선택해주세요.' }),
   email: z.string().email({ message: '올바른 이메일 주소를 입력하세요.' }),
+  emailDomain: z.string().optional(), // 도메인 선택 필드 추가
   phone: z
     .string()
     .max(13)
     .regex(/^010-\d{4}-\d{4}$/, { message: '전화번호 형식: 010-1234-5678' }),
-
   message: z
     .string()
     .min(10, { message: '문의 내용은 최소 10자 이상 입력해주세요.' }),

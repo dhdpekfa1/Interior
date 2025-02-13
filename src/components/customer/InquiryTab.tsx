@@ -18,26 +18,28 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Input,
 } from '@/components/ui';
 import { inquirySchema, categoryList } from '@/schema/inquiry';
 
 type InquiryForm = z.infer<typeof inquirySchema>;
 
+const emailDomains = [
+  'naver.com',
+  'gmail.com',
+  'daum.net',
+  'nate.com',
+  'yahoo.com',
+  'kakao.com',
+  '직접 입력',
+];
+
 export const InquiryTab = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [email, setEmail] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-
-  const emailDomains = [
-    'naver.com',
-    'gmail.com',
-    'daum.net',
-    'nate.com',
-    'yahoo.com',
-    'kakao.com',
-  ];
+  const [customEmail, setCustomEmail] = useState(''); // 직접 입력한 이메일
+  const [emailId, setEmailId] = useState('');
 
   const {
     register,
@@ -45,32 +47,34 @@ export const InquiryTab = () => {
     formState: { errors },
     setValue,
     reset,
+    watch,
   } = useForm<InquiryForm>({
     resolver: zodResolver(inquirySchema),
   });
 
+  // 선택된 도메인 값 추적
+  const selectedDomain = watch('emailDomain') || '';
+
   // 이메일 입력 핸들러
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    setEmail(input);
-
-    if (input.includes('@')) {
-      const [localPart, domainPart] = input.split('@');
-      setSuggestions(
-        emailDomains
-          .filter((domain) => domain.startsWith(domainPart)) // 입력값과 일치하는 도메인만 필터링
-          .map((domain) => `${localPart}@${domain}`)
-      );
-    } else {
-      setSuggestions([]);
-    }
+    setEmailId(e.target.value);
+    setValue(
+      'email',
+      `${e.target.value}${
+        selectedDomain !== '직접 입력' ? '@' + selectedDomain : ''
+      }`
+    );
   };
 
-  // 이메일 자동완성 선택 핸들러
-  const handleSuggestionClick = (suggestion: string) => {
-    setEmail(suggestion);
-    setSuggestions([]);
-    setValue('email', suggestion);
+  // 이메일 도메인 선택 핸들러
+  const handleDomainChange = (value: string) => {
+    setValue('emailDomain', value);
+
+    if (value === '직접 입력') {
+      setCustomEmail('');
+    } else {
+      setValue('email', `${emailId}@${value}`);
+    }
   };
 
   // 전화번호 입력 핸들러
@@ -113,6 +117,7 @@ export const InquiryTab = () => {
       if (res.ok) {
         setSuccess(true);
         reset(); // 입력 필드 초기화
+        setEmailId('');
       } else {
         setError('이메일 전송에 실패했습니다. 다시 시도해주세요.');
       }
@@ -126,6 +131,7 @@ export const InquiryTab = () => {
 
   const inputStyle =
     'w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base';
+  const errorStyle = 'text-[10px] sm:text-xs md:text-sm text-red-500';
 
   return (
     <div className='wrapper'>
@@ -156,7 +162,7 @@ export const InquiryTab = () => {
                   </SelectTrigger>
                   <SelectContent
                     position='popper'
-                    className='bg-point/90 text-ef'
+                    className='bg-point/90 text-ef z-10'
                   >
                     {categoryList.map((item) => (
                       <SelectItem key={item.value} value={item.value}>
@@ -165,38 +171,56 @@ export const InquiryTab = () => {
                     ))}
                   </SelectContent>
                 </Select>
-                {errors.category && <p>{errors.category.message}</p>}
+                {errors.category && (
+                  <p className={errorStyle}>{errors.category.message}</p>
+                )}
               </div>
 
               {/* 이메일 */}
-              <div className='relative'>
-                <Label htmlFor='email'>email</Label>
-                <input
-                  id='email'
-                  type='email'
-                  {...register('email')}
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder='이메일 주소를 입력해주세요.'
-                  className={inputStyle}
-                />
-                {suggestions.length > 0 && (
-                  <ul className='absolute left-0 w-full bg-white border border-gray-300 rounded mt-1 shadow-md'>
-                    {suggestions.map((suggestion, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleSuggestionClick(suggestion)}
-                        className='p-2 hover:bg-gray-100 cursor-pointer'
-                      >
-                        {suggestion}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div className='flex flex-col gap-2'>
+                <Label htmlFor='email'>이메일</Label>
+                <div className='flex gap-2 items-center'>
+                  <Input
+                    id='email'
+                    type='text'
+                    value={emailId}
+                    onChange={handleEmailChange}
+                    placeholder='이메일 입력'
+                    className={inputStyle}
+                  />
+                  @
+                  {selectedDomain === '직접 입력' && (
+                    <Input
+                      type='text'
+                      value={customEmail}
+                      onChange={(e) => {
+                        setCustomEmail(e.target.value);
+                        setValue('email', `${emailId}@${e.target.value}`);
+                      }}
+                      placeholder='직접 입력'
+                      className={inputStyle}
+                    />
+                  )}
+                  {errors.email && (
+                    <p className={errorStyle}>{errors.email.message}</p>
+                  )}
+                  <Select onValueChange={handleDomainChange}>
+                    <SelectTrigger id='emailDomain'>
+                      <SelectValue placeholder='선택' />
+                    </SelectTrigger>
+                    <SelectContent
+                      position='popper'
+                      className='bg-point/90 text-ef z-10'
+                    >
+                      {emailDomains.map((domain) => (
+                        <SelectItem key={domain} value={domain}>
+                          {domain}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              {errors.email && (
-                <p className='text-red-500'>{errors.email.message}</p>
-              )}
 
               {/* 연락처 */}
               <div className='relative'>
@@ -209,10 +233,10 @@ export const InquiryTab = () => {
                   className={inputStyle}
                   onChange={handlePhoneChange}
                 />
+                {errors.phone && (
+                  <p className={errorStyle}>{errors.phone.message}</p>
+                )}
               </div>
-              {errors.phone && (
-                <p className='text-red-500'>{errors.phone.message}</p>
-              )}
 
               {/* 문의 내용 */}
               <div className='flex flex-col gap-2'>
@@ -223,11 +247,11 @@ export const InquiryTab = () => {
                   placeholder='문의 내용을 입력하세요...'
                   className='border p-2 rounded h-32 sm:h-40 text-three text-sm sm:text-base'
                 />
+                {errors.message && (
+                  <p className={errorStyle}>{errors.message.message}</p>
+                )}
               </div>
-              {errors.message && (
-                <p className='text-red-500'>{errors.message.message}</p>
-              )}
-              {/* 제출 버튼 */}
+
               <Button
                 type='submit'
                 className='bg-second/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-blue hover:text-three'
@@ -235,13 +259,16 @@ export const InquiryTab = () => {
               >
                 {loading ? '전송 중...' : '문의하기'}
               </Button>
-
               {success && (
-                <p className='text-point text-center'>
+                <p className='text-point text-center text-xs sm:text-sm md:text-base'>
                   문의가 정상적으로 전송되었습니다!
                 </p>
               )}
-              {error && <p className='text-red-600'>{error}</p>}
+              {error && (
+                <p className={`${errorStyle} text-point text-center`}>
+                  {error}
+                </p>
+              )}
             </form>
           </CardContent>
         </Card>

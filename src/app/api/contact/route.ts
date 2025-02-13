@@ -16,11 +16,11 @@ export async function POST(req: Request) {
       text: `📌 문의 유형: ${categoryLabel}\n 📧 이메일: ${email}\n📞 연락처: ${phone}\n\n📝 문의 내용:\n${message}`,
     });
 
-    console.log('📩 이메일 전송 응답:', res);
+    console.log('📩 이메일 전송 ==> ', res);
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('❌ 문의 메일 전송 실패:', error);
+    console.error('❌ 문의 메일 전송 실패 ==> ', error);
 
     return NextResponse.json(
       { error: '메일 전송 실패', details: error },
