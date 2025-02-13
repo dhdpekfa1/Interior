@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export type InquiryFormType = z.infer<typeof inquirySchema>;
+
 export const categoryList = [
   { value: 'estimate', label: '견적 문의' },
   { value: 'schedule', label: '시공 일정 문의' },
@@ -10,6 +12,16 @@ export const categoryList = [
   { value: 'progress', label: '시공 진행 상황 문의' },
   { value: 'issue', label: '문제 발생 및 클레임' },
   { value: 'etc', label: '기타 문의' },
+];
+
+export const emailDomains = [
+  'naver.com',
+  'gmail.com',
+  'daum.net',
+  'nate.com',
+  'yahoo.com',
+  'kakao.com',
+  '직접 입력',
 ];
 
 export const inquirySchema = z.object({
