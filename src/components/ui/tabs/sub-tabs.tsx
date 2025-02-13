@@ -14,7 +14,7 @@ const SubTabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'flex flex-wrap gap-2 items-center justify-center rounded-tl-md rounded-br-md p-1  bg-second/80 text-white text-xs md:text-sm lg:text-base font-medium',
+      'flex flex-wrap gap-2 items-center justify-center rounded-tl-md rounded-br-md p-1  bg-ef text-point font-semibold text-xs md:text-sm lg:text-base',
       className
     )}
     {...props}
