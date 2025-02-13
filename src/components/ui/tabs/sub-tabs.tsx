@@ -14,7 +14,7 @@ const SubTabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'flex flex-wrap gap-2 items-center justify-center rounded-tl-md rounded-br-md p-1  bg-ef text-point font-semibold text-xs md:text-sm lg:text-base',
+      'flex flex-wrap gap-2 items-center justify-center rounded-md p-1  bg-ef text-point font-semibold text-xs md:text-sm lg:text-base',
       className
     )}
     {...props}
@@ -29,7 +29,7 @@ const SubTabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-tl-sm rounded-br-sm p-1 px-2 py-1.5 text-xs md:text-sm lg:text-base font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-dd data-[state=active]:font-bold data-[state=active]:bg-point data-[state=active]:border-b-2 data-[state=active]:border-dd',
+      'inline-flex items-center justify-center rounded whitespace-nowrap px-1 py-1 sm:px-2 sm:py-1.5 text-xs md:text-sm lg:text-base font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-blue data-[state=active]:font-bold data-[state=active]:bg-point ',
       className
     )}
     {...props}
