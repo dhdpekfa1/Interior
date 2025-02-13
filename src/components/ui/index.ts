@@ -5,6 +5,7 @@ export {
   AccordionContent,
 } from './accordion/accordion';
 export { Button, buttonVariants } from './button/button';
+export { Input } from './input/input';
 export {
   Menubar,
   MenubarMenu,

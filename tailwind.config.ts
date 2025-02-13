@@ -60,6 +60,9 @@ const config: Config = {
         cream: '#EAE0C8',
         ef: '#EFEFEF',
         dd: '#DDD',
+        two: '#222',
+        three: '#333',
+        four: '#444',
       },
       borderRadius: {
         lg: 'var(--radius)',

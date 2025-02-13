@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { SubTabs, SubTabsList, SubTabsTrigger } from '@/components/ui';
 import Image from 'next/image';
-import { SubTitle } from './SubTitle';
+import { SubTabs, SubTabsList, SubTabsTrigger } from '@/components/ui';
+import { SubTitle, SearchBar } from '@/components/common';
 
 interface Product {
   id: number;
@@ -31,6 +31,11 @@ export const SampleList = ({
       ? products
       : products.filter((product) => product.category === selectedTab);
 
+  // 검색 핸들러
+  const handleSearch = (query: string) => {
+    console.log('검색어:', query);
+  };
+
   return (
     <div className='wrapper'>
       <SubTitle title={title} />
@@ -44,7 +49,9 @@ export const SampleList = ({
           ))}
         </SubTabsList>
       </SubTabs>
-
+      <div>
+        <SearchBar onSubmit={handleSearch} />
+      </div>
       {/* 제품 리스트 */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
         {filteredProducts.map((product) => (
