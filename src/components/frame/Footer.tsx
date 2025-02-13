@@ -38,12 +38,6 @@ export const Footer = () => {
           ))}
         </div>
       </div>
-
-      {/* <div className='text-ef/70 text-[10px] sm:text-sm md:text-base'>
-        {footerData.map((data) => (
-          <p key={data.label}>{data.content}</p>
-        ))}
-      </div> */}
     </footer>
   );
 };
