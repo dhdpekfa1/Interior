@@ -3,7 +3,7 @@ import { SubTitle } from '@/components/common';
 export const DirectionsTab = () => {
   // TODO: 클릭 시 바로가기 추가(주소 -> 길찾기, 전화번호 -> 전화)
   const contact = [
-    { label: '주소', info: '인천광역시 남동구 3890' },
+    { label: '주소', info: '서울특별시 서초구 쨔란 5번길 2 1014호0' },
     { label: '전화번호', info: '032-101-2020' },
     { label: '팩스', info: '032-101-2020' },
   ];

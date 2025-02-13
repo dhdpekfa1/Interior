@@ -14,7 +14,7 @@ const footerData = [
   },
   {
     label: '연락처',
-    content: '핸드폰: 010-1010-2020 | 이메일: test@naver.com',
+    content: '핸드폰: 010-2020-3030 | 이메일: test@naver.com',
   },
   {
     label: '계좌번호',
