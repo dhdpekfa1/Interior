@@ -4,7 +4,7 @@ export {
   AccordionTrigger,
   AccordionContent,
 } from './accordion/accordion';
-export { Button, buttonVariants } from './button/button';
+export { Button, buttonVariants, type ButtonProps } from './button/button';
 export {
   Card,
   CardHeader,
@@ -33,6 +33,15 @@ export {
   MenubarSub,
   MenubarShortcut,
 } from './menubar/menubar';
+export {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from './pagination/pagination';
 export {
   Select,
   SelectGroup,
