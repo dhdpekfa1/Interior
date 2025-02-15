@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "MTS 4421",
+    "brand": "현대 L&C",
+    "thickness": "3.0mm",
+    "width": "450mm",
+    "length": "450mm",
+    "category": "현대데코타일마스터",
+    "img": "https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 2,
+    "name": "MTS 4422",
+    "brand": "현대 L&C",
+    "thickness": "3.0mm",
+    "width": "450mm",
+    "length": "450mm",
+    "category": "현대데코타일마스터",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 3,
+    "name": "MTS 4423",
+    "brand": "LG하우시스",
+    "thickness": "2.5mm",
+    "width": "500mm",
+    "length": "500mm",
+    "category": "LG데코타일",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 4,
+    "name": "MTS 4424",
+    "brand": "대진",
+    "thickness": "3.0mm",
+    "width": "400mm",
+    "length": "400mm",
+    "category": "대진데코타일",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 5,
+    "name": "MTS 4425",
+    "brand": "동신",
+    "thickness": "2.8mm",
+    "width": "450mm",
+    "length": "450mm",
+    "category": "동신데코타일",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 6,
+    "name": "MTS 4426",
+    "brand": "녹수",
+    "thickness": "3.5mm",
+    "width": "500mm",
+    "length": "500mm",
+    "category": "녹수데코타일",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 7,
+    "name": "MTS 4427",
+    "brand": "LG하우시스",
+    "thickness": "2.5mm",
+    "width": "500mm",
+    "length": "500mm",
+    "category": "LG데코타일보타닉",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 8,
+    "name": "MTS 4428",
+    "brand": "현대 L&C",
+    "thickness": "3.0mm",
+    "width": "450mm",
+    "length": "450mm",
+    "category": "현대데코타일클래식",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 9,
+    "name": "MTS 4429",
+    "brand": "재영",
+    "thickness": "3.0mm",
+    "width": "400mm",
+    "length": "400mm",
+    "category": "재영데코타일",
+    "img": "https://via.placeholder.com/450"
+  },
+  {
+    "id": 10,
+    "name": "MTS 4430",
+    "brand": "수원",
+    "thickness": "2.5mm",
+    "width": "500mm",
+    "length": "500mm",
+    "category": "수원 스크린 골프장",
+    "img": "https://via.placeholder.com/450"
+  }
+]

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { menuData } from '@/assets/data';
+import { menuData } from '@/assets/navMenuData';
 import { Button } from '@/components/ui';
 
 export const FirstSlide = () => {

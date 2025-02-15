@@ -66,10 +66,20 @@ export {
   SheetTitle,
   SheetDescription,
 } from './sheet/sheet';
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
 export {
   SubTabs,
   SubTabsList,
   SubTabsTrigger,
   SubTabsContent,
 } from './tabs/sub-tabs';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from './table/table';
