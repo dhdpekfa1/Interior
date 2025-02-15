@@ -24,13 +24,13 @@ export const SampleList = ({
   categories,
   products,
 }: ProductTabsProps) => {
-  const [selectedTab, setSelectedTab] = useState('all');
+  const [selectedTab, setSelectedTab] = useState('전체');
   const router = useRouter();
   const pathname = usePathname();
 
   // 선택된 카테고리에 따라 필터링
   const filteredProducts =
-    selectedTab === 'all'
+    selectedTab === '전체'
       ? products
       : products.filter((product) => product.category === selectedTab);
 
@@ -43,7 +43,14 @@ export const SampleList = ({
     <div className='wrapper'>
       <SubTitle title={title} />
       {/* 카테고리 탭 */}
-      <SubTabs defaultValue='all' onValueChange={setSelectedTab}>
+      <SubTabs
+        defaultValue='all'
+        onValueChange={(value) => {
+          const selectedLabel =
+            categories.find((c) => c.value === value)?.label || '전체';
+          setSelectedTab(selectedLabel);
+        }}
+      >
         <SubTabsList>
           {categories.map((category) => (
             <SubTabsTrigger key={category.value} value={category.value}>

@@ -1,24 +1,6 @@
 import Image from 'next/image';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui';
-
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  thickness: string;
-  width: string;
-  length: string;
-  category: string;
-  img: string;
-}
-
-interface Construction {
-  id: number;
-  location: string;
-  product: string;
-  category: string;
-  images: string[];
-}
+import { Product, Construction } from '@/types/sample';
 
 interface SampleDetailProps {
   data: Product | Construction;
