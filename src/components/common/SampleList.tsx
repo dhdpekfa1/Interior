@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { SubTabs, SubTabsList, SubTabsTrigger } from '@/components/ui';
 import { SubTitle, SearchBar } from '@/components/common';
@@ -24,6 +25,8 @@ export const SampleList = ({
   products,
 }: ProductTabsProps) => {
   const [selectedTab, setSelectedTab] = useState('all');
+  const router = useRouter();
+  const pathname = usePathname();
 
   // 선택된 카테고리에 따라 필터링
   const filteredProducts =
@@ -55,8 +58,8 @@ export const SampleList = ({
       {/* 제품 리스트 */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
         {filteredProducts.map((product) => (
-          // TODO: 클릭 시 상세 페이지로 이동
           <div
+            onClick={() => router.push(`${pathname}/${product.id}`)}
             key={product.id}
             className='group transition-transform duration-300 hover:scale-105'
           >
