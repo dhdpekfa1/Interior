@@ -19,7 +19,7 @@ export default function HomePage() {
           direction='vertical'
           slidesPerView={1}
           spaceBetween={0}
-          mousewheel={true}
+          mousewheel={{ forceToAxis: true }}
           speed={900}
           modules={[Mousewheel]}
           className='w-full h-full'
