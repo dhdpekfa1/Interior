@@ -1,6 +1,6 @@
-export { Pagination, type PaginationProps } from './Pagination';
-export { PaginationList } from './PaginationList';
-export { PaginationSelect } from './PaginationSelect';
+export { Pagination, type PaginationProps } from './pagination/Pagination';
+export { PaginationList } from './pagination/PaginationList';
+export { PaginationSelect } from './pagination/PaginationSelect';
 
 export { SampleList } from './SampleList';
 export { SearchBar } from './SearchBar';
