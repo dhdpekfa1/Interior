@@ -26,7 +26,7 @@ const TabsList = React.forwardRef<
           'px-1 md:px-2 lg:px-5 -ml-2 py-4 sm:py-5 mr-1',
           'flex justify-center items-center w-full h-full px-1',
           'rounded-tl-sm rounded-bl-sm',
-          'font-extrabold text-xs md:text-sm lg:text-base',
+          'font-extrabold text-sm md:text-lg lg:text-xl',
           'bg-second text-point'
         )}
       >
