@@ -86,7 +86,10 @@ export const InquiryTab = () => {
                   <SelectTrigger className='text-xs sm:text-sm md:text-base'>
                     <SelectValue placeholder='선택하기' />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent
+                    position='popper'
+                    className='bg-point/90 text-ef z-10 text-xs sm:text-sm md:text-base'
+                  >
                     {categoryList.map((item) => (
                       <SelectItem key={item.value} value={item.value}>
                         {item.label}

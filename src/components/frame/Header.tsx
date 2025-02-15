@@ -24,7 +24,7 @@ export const Header = () => {
               <MenubarTrigger>
                 <span className='font-bold'>{menu.title}</span>
               </MenubarTrigger>
-              <MenubarContent className='bg-second p-2'>
+              <MenubarContent className='bg-second/80 p-2'>
                 {menu.subMenu.map((subItem) => (
                   <Link key={subItem.label} href={subItem.url || ''}>
                     <MenubarItem className='text-white hover:bg-gray-100 transition'>

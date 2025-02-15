@@ -66,7 +66,7 @@ export const SampleDetail = ({ data }: SampleDetailProps) => {
           {constructionDetails.map((item, index) => (
             <TableRow
               key={index}
-              className='font-medium text-ef hover:bg-opacity-0'
+              className='font-medium text-ef hover:bg-opacity-0 text-sm md:text-base'
             >
               <TableCell className='bg-ef/20'>{item.label}</TableCell>
               <TableCell className='bg-ef/40'>{item.value}</TableCell>
