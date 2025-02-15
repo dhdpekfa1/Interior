@@ -6,24 +6,24 @@ import Image from 'next/image';
 import { SubTabs, SubTabsList, SubTabsTrigger } from '@/components/ui';
 import { SubTitle, SearchBar } from '@/components/common';
 
-interface Product {
+interface Data {
   id: number;
   name: string;
   category: string;
-  img: string;
+  img?: string;
 }
 
-interface ProductTabsProps {
+interface SampleListProps {
   title: string;
   categories: { label: string; value: string }[];
-  products: Product[];
+  dataList: Data[];
 }
 
 export const SampleList = ({
   title,
   categories,
-  products,
-}: ProductTabsProps) => {
+  dataList,
+}: SampleListProps) => {
   const [selectedTab, setSelectedTab] = useState('전체');
   const router = useRouter();
   const pathname = usePathname();
@@ -31,8 +31,8 @@ export const SampleList = ({
   // 선택된 카테고리에 따라 필터링
   const filteredProducts =
     selectedTab === '전체'
-      ? products
-      : products.filter((product) => product.category === selectedTab);
+      ? dataList
+      : dataList.filter((data) => data.category === selectedTab);
 
   // 검색 핸들러
   const handleSearch = (query: string) => {
@@ -72,14 +72,7 @@ export const SampleList = ({
           >
             <div className='border border-dd/50 p-1 text-center'>
               <div className='relative w-full aspect-square overflow-hidden'>
-                <Image
-                  // src={product.img} // TOD: 이미지 적용
-                  src={
-                    'https://images.unsplash.com/photo-1739361133037-77be66a4ea6a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                  }
-                  alt={product.name}
-                  fill
-                />
+                <Image src={product.img || ''} alt={product.name} fill />
               </div>
             </div>
             <p className='mt-2 text-center text-dd text-sm sm:text-base font-bold'>
