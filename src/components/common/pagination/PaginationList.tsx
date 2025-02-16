@@ -29,9 +29,7 @@ const PaginationList = ({
         <PaginationItem>
           <PaginationPrevious
             onClick={() => onChange(currentPage - 1)}
-            className={
-              currentPage === 1 ? 'pointer-events-none opacity-50' : ''
-            }
+            className={currentPage === 1 ? 'pointer-events-none' : ''}
           />
         </PaginationItem>
 
@@ -58,8 +56,8 @@ const PaginationList = ({
                 className={cn(
                   'transition-colors duration-200',
                   currentPage === page
-                    ? 'bg-wiz-red hover:bg-wiz-red/90'
-                    : 'hover:bg-white/10'
+                    ? 'bg-ef/20 hover:bg-second/70'
+                    : 'hover:bg-second/40'
                 )}
               >
                 {page}

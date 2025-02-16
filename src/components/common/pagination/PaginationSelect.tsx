@@ -20,10 +20,10 @@ const PaginationSelect = ({
       value={currentPage.toString()}
       onValueChange={(value) => onChange(Number(value))}
     >
-      <SelectTrigger className='w-full'>
+      <SelectTrigger className='w-full bg-point text-ef'>
         <SelectValue placeholder={`${currentPage} 페이지`} />
       </SelectTrigger>
-      <SelectContent className='bg-wiz-black text-wiz-white'>
+      <SelectContent className='bg-point text-ef'>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <SelectItem key={page} value={page.toString()}>
             {page} 페이지
