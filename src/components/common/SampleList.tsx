@@ -98,7 +98,7 @@ export const SampleList = ({
         ))}
       </div>
 
-      {/* 페이지네이션 추가 */}
+      {/* 페이지네이션 */}
       {totalItems > ITEMS_PER_PAGE && (
         <div className='mt-6'>
           <Pagination
