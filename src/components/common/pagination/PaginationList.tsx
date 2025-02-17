@@ -29,7 +29,9 @@ const PaginationList = ({
         <PaginationItem>
           <PaginationPrevious
             onClick={() => onChange(currentPage - 1)}
-            className={currentPage === 1 ? 'pointer-events-none' : ''}
+            className={
+              currentPage === 1 ? 'pointer-events-none  opacity-50' : ''
+            }
           />
         </PaginationItem>
 
