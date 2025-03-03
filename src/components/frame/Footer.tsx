@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+// TODO: 데이터 받으면 수정
 const leftFooterData = [
   { label: '회사명', content: '데코밸리(주)' },
   { label: '대표이사', content: '송영관' },
@@ -12,7 +13,7 @@ const rightFooterData = [
   { label: 'TEL', content: '031-334-6771~2' },
   { label: 'FAX', content: '031-334-6773' },
   { label: '사업자 번호', content: '142-81-12527' },
-  { label: 'blog', content: 'blog.naver.com/decovalley' },
+  { label: '계좌번호', content: '000-000000-000' },
 ];
 export const Footer = () => {
   return (
