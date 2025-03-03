@@ -19,10 +19,10 @@ export const DesktopMenubar = () => {
             <MenubarTrigger>
               <span className='font-bold'>{menu.title}</span>
             </MenubarTrigger>
-            <MenubarContent className='bg-second/80 p-2'>
+            <MenubarContent className='bg-point p-2 border-second/30'>
               {menu.subMenu.map((subItem) => (
                 <Link key={subItem.label} href={subItem.url || ''}>
-                  <MenubarItem className='text-white hover:bg-gray-100 transition'>
+                  <MenubarItem className='text-white hover:bg-gray-100 transition focus:bg-second/70 focus:text-ef focus:font-semibold'>
                     {subItem.label}
                   </MenubarItem>
                 </Link>
