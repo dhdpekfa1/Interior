@@ -15,19 +15,19 @@ import {
 
 const slides = [
   {
-    img: 'https://images.unsplash.com/photo-1740676176364-03eb7bdb2bb4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Comfortable interior',
-    desc: '데코밸리는 사람을 편안하게 만드는 공간을 제공합니다.',
+    img: 'https://images.unsplash.com/photo-1504253163759-c23fccaebb55?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '편안함이 머무는 공간',
+    desc: '사람을 편안하게 하는, 안락한 인테리어를 완성합니다.',
   },
   {
     img: 'https://images.unsplash.com/photo-1735615479428-1e0e932daf62?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: '당신의 삶에 품격을 더하다',
+    title: '삶에 품격을 더하다',
     desc: '당신만의 감성을 담아내는 공간을 함께 만들어갑니다.',
   },
   {
     img: 'https://images.unsplash.com/photo-1740676176364-03eb7bdb2bb4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: '디자인과 기능, 그 이상의 가치',
-    desc: '작은 디테일까지 섬세하게, 신뢰를 바탕으로 시공합니다.',
+    desc: '섬세한 디테일과 신뢰를 바탕으로 공간을 완성합니다.',
   },
 ];
 
@@ -66,8 +66,8 @@ export const FirstSlide = () => {
                 <Image
                   src={slide.img}
                   alt={slide.title}
-                  width={100}
-                  height={100}
+                  width={300}
+                  height={200}
                   className='w-full h-full object-cover object-center'
                 />
                 <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 backdrop-brightness-75'>
