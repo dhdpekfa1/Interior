@@ -133,7 +133,7 @@ export const InquiryForm = () => {
 
       {/* 연락처 */}
       <div className='relative'>
-        <Label htmlFor='tel'>휴대폰 번호</Label>
+        <Label htmlFor='tel'>전화번호</Label>
         <Input
           id='tel'
           type='tel'
@@ -181,7 +181,7 @@ export const InquiryForm = () => {
               if (checked === true) {
                 setValue('agree', true);
               } else {
-                setValue('agree', false as never); // 타입 맞춤
+                setValue('agree', false as never);
               }
             }}
           />
