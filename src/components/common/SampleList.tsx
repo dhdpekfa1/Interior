@@ -86,37 +86,34 @@ export const SampleList = ({
                 isSelected ? 'border border-white/80' : ''
               }`}
             >
-              <div>
-                <div onClick={() => handleSelectProduct(product)}>
-                  <div className='relative w-full aspect-square overflow-hidden'>
-                    <Image
-                      src={product.img || ''}
-                      alt={product.name}
-                      fill
-                      className='hover:scale-110 duration-300'
-                    />
-                  </div>
-                  <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
-                    {product.name}
-                  </p>
+              <div onClick={() => handleSelectProduct(product)}>
+                <div className='relative w-full aspect-square overflow-hidden'>
+                  <Image
+                    src={product.img || ''}
+                    alt={product.name}
+                    fill
+                    className='hover:scale-110 duration-300'
+                  />
                 </div>
-
-                {/* 선택된 상품: 카운터 표시 */}
-                {isSelected && (
-                  <div className='mt-2 flex justify-center pb-2'>
-                    <ProductCounter
-                      id={product.id.toString()}
-                      count={
-                        selectedProducts.find(
-                          (item) => item.id === product.id.toString()
-                        )?.count || 1
-                      }
-                      showRemoveButton={false}
-                      // className='bg-point text-white/80'
-                    />
-                  </div>
-                )}
+                <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
+                  {product.name}
+                </p>
               </div>
+
+              {/* 선택된 상품: 카운터 표시 */}
+              {isSelected && (
+                <div className='mt-2 flex justify-center pb-2'>
+                  <ProductCounter
+                    id={product.id.toString()}
+                    count={
+                      selectedProducts.find(
+                        (item) => item.id === product.id.toString()
+                      )?.count || 1
+                    }
+                    showRemoveButton={false}
+                  />
+                </div>
+              )}
             </div>
           );
         })}

@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { Minus, Plus, X } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button, Input } from '@/components/ui';
 import { useProductStore } from '@/store/useProductStore';
 
 interface ProductCounterProps {
@@ -23,11 +23,18 @@ export const ProductCounter = ({
     updateCount(id, newCount);
   };
 
+  const handleInputChange = (value: string) => {
+    const number = parseInt(value, 10);
+    if (!value) return; // 빈 값 입력 방지
+    if (number < 1) return; // 1보다 작은 값 입력 방지
+    updateCount(id, number);
+  };
+
   return (
     <div className='flex items-center gap-2'>
       <div
         className={cn(
-          'flex items-center gap-1 border rounded-sm',
+          'flex items-center justify-center gap-1 border rounded-sm',
           !showRemoveButton ? 'bg-point text-white/80 ' : ''
         )}
       >
@@ -41,7 +48,18 @@ export const ProductCounter = ({
         >
           <Minus width={12} height={12} />
         </Button>
-        <p className='text-center w-4'>{count}</p>
+
+        <Input
+          type='number'
+          value={count}
+          onChange={(e) => handleInputChange(e.target.value)}
+          min={1}
+          className={cn(
+            'appearance-none text-center w-8 md:w-10 text-xs sm:text-sm md:text-base p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0',
+            showRemoveButton ? 'bg-white' : 'bg-point'
+          )}
+        />
+
         <Button
           type='button'
           size='icon'
