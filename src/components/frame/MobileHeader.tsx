@@ -13,7 +13,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui';
 import { Menu } from 'lucide-react';
-import { menuData } from '@/assets/data';
+import { menuData } from '@/assets/navMenuData';
 import Link from 'next/link';
 
 export const MobileHeader = () => {

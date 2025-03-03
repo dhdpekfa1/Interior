@@ -13,6 +13,27 @@ export {
   CardDescription,
   CardContent,
 } from './card/card';
+export {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './carousel/carousel';
+export { Checkbox } from './checkbox/checkbox';
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './dialog/dialog';
 export { Input } from './input/input';
 export { Label } from './label/label';
 export {
@@ -42,6 +63,7 @@ export {
   PaginationNext,
   PaginationPrevious,
 } from './pagination/pagination';
+export { ScrollArea, ScrollBar } from './scrollArea/scroll-area';
 export {
   Select,
   SelectGroup,
@@ -54,6 +76,7 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from './select/select';
+export { Separator } from './separator/separator';
 export {
   Sheet,
   SheetPortal,
@@ -66,10 +89,20 @@ export {
   SheetTitle,
   SheetDescription,
 } from './sheet/sheet';
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
 export {
   SubTabs,
   SubTabsList,
   SubTabsTrigger,
   SubTabsContent,
 } from './tabs/sub-tabs';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs/tabs';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from './table/table';

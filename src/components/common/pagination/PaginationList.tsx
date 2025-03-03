@@ -30,7 +30,9 @@ const PaginationList = ({
           <PaginationPrevious
             onClick={() => onChange(currentPage - 1)}
             className={
-              currentPage === 1 ? 'pointer-events-none opacity-50' : ''
+              currentPage === 1
+                ? 'pointer-events-none  opacity-50'
+                : 'hover:bg-ef/20 hover:text-ef cursor-pointer'
             }
           />
         </PaginationItem>
@@ -58,8 +60,8 @@ const PaginationList = ({
                 className={cn(
                   'transition-colors duration-200',
                   currentPage === page
-                    ? 'bg-wiz-red hover:bg-wiz-red/90'
-                    : 'hover:bg-white/10'
+                    ? 'bg-ef/30 hover:bg-ef/30 hover:text-ef cursor-pointer'
+                    : 'hover:bg-ef/20 hover:text-ef cursor-pointer'
                 )}
               >
                 {page}
@@ -89,7 +91,9 @@ const PaginationList = ({
           <PaginationNext
             onClick={() => onChange(currentPage + 1)}
             className={
-              currentPage === totalPages ? 'pointer-events-none opacity-50' : ''
+              currentPage === totalPages
+                ? 'pointer-events-none opacity-50'
+                : 'hover:bg-ef/20 hover:text-ef cursor-pointer'
             }
           />
         </PaginationItem>

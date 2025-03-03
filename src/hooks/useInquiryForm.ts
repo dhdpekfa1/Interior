@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { UseFormSetValue, UseFormWatch, UseFormReset } from 'react-hook-form';
 import { InquiryFormType, categoryList } from '@/schema/inquirySchema';
+import { useProductStore } from '@/store/useProductStore';
 
 export const useInquiryForm = (
   setValue: UseFormSetValue<InquiryFormType>,
@@ -10,6 +11,7 @@ export const useInquiryForm = (
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const { selectedProducts, reset: resetProducts } = useProductStore();
 
   // 선택된 이메일 도메인 추적
   const selectedDomain = watch('emailDomain') || '';
@@ -61,12 +63,17 @@ export const useInquiryForm = (
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, categoryLabel }),
+        body: JSON.stringify({
+          ...formData,
+          categoryLabel,
+          products: selectedProducts,
+        }),
       });
 
       if (res.ok) {
         setSuccess(true);
-        reset();
+        reset(); // 폼 초기화
+        resetProducts(); // 선택 제품 초기화
       } else {
         setError('이메일 전송에 실패했습니다. 다시 시도해주세요.');
       }

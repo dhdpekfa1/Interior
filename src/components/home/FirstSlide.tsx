@@ -1,38 +1,105 @@
-import Link from 'next/link';
-import { menuData } from '@/assets/data';
-import { Button } from '@/components/ui';
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Autoplay from 'embla-carousel-autoplay';
+import {
+  Card,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselApi,
+} from '@/components/ui';
+
+const slides = [
+  {
+    img: 'https://images.unsplash.com/photo-1740676176364-03eb7bdb2bb4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Comfortable interior',
+    desc: '데코밸리는 사람을 편안하게 만드는 공간을 제공합니다.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1735615479428-1e0e932daf62?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '당신의 삶에 품격을 더하다',
+    desc: '당신만의 감성을 담아내는 공간을 함께 만들어갑니다.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1740676176364-03eb7bdb2bb4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '디자인과 기능, 그 이상의 가치',
+    desc: '작은 디테일까지 섬세하게, 신뢰를 바탕으로 시공합니다.',
+  },
+];
 
 export const FirstSlide = () => {
-  const data = menuData.find((data) => data.title === '제품소개');
+  const [current, setCurrent] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 
-  if (!data || !data.subMenu) {
-    return <div>데이터가 없습니다.</div>;
-  }
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const onSelect = () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    };
+
+    carouselApi.on('select', onSelect);
+
+    setCurrent(carouselApi.selectedScrollSnap());
+
+    return () => {
+      carouselApi.off('select', onSelect);
+    };
+  }, [carouselApi]);
 
   return (
-    <div className='w-full h-screen flex flex-col md:flex-row'>
-      {data.subMenu.map((item) => (
-        <div
-          key={item.label}
-          className='group relative duration-500 ease-in-out w-full h-[20%] max-md:hover:h-[40%] md:w-[20%] md:h-full md:hover:w-[40%] flex items-center justify-center'
-        >
-          <div
-            className='absolute inset-0 bg-cover bg-center transition-all duration-500'
-            style={{ backgroundImage: `url(${item.img})` }}
+    <div className='relative w-full'>
+      <Carousel
+        setApi={setCarouselApi}
+        opts={{ loop: true }}
+        plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
+        className='relative'
+      >
+        <CarouselContent className='h-80 md:h-[40rem] lg:h-[85vh]'>
+          {slides.map((slide, index) => (
+            <CarouselItem key={index}>
+              <Card className='w-full h-full border-none relative'>
+                <Image
+                  src={slide.img}
+                  alt={slide.title}
+                  width={100}
+                  height={100}
+                  className='w-full h-full object-cover object-center'
+                />
+                <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 backdrop-brightness-75'>
+                  <h3 className='text-2xl lg:text-4xl font-bold'>
+                    {slide.title}
+                  </h3>
+                  <p className='mt-3 text-sm md:text-lg font-medium drop-shadow'>
+                    {slide.desc}
+                  </p>
+                </div>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+
+        {/* 버튼 */}
+        <CarouselPrevious className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-point/50 text-white/70 hover:bg-point hover:text-second' />
+        <CarouselNext className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-point/50 text-white/70 hover:bg-point hover:text-second' />
+      </Carousel>
+
+      {/* 인디케이터 */}
+      <div className='absolute left-8 bottom-8 flex items-center gap-2 z-20'>
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => carouselApi?.scrollTo(index)}
+            className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${
+              current === index ? 'h-2 w-2 md:w-3 bg-white' : 'bg-white/50'
+            } transition-all`}
           />
-          <Link
-            href={item.url}
-            className='relative z-10 flex flex-col items-center justify-center text-white duration-300'
-          >
-            <h2 className='text-lg md:text-2xl font-bold group-hover:text-xl md:group-hover:text-3xl'>
-              {item.label}
-            </h2>
-            <Button className='mt-2 inline-block h-fit px-3 py-1 bg-second hover:bg-blue rounded-lg text-white text-xs md:text-sm'>
-              제품 보기
-            </Button>
-          </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,82 +2,141 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { SubTabs, SubTabsList, SubTabsTrigger } from '@/components/ui';
-import { SubTitle, SearchBar } from '@/components/common';
+import { SubTitle, Pagination } from '@/components/common';
+import { useProductStore } from '@/store/useProductStore';
+import { InquiryDialog, ProductCounter } from '../product';
 
-interface Product {
+interface Data {
   id: number;
   name: string;
-  category: string;
-  img: string;
+  img?: string;
 }
 
-interface ProductTabsProps {
+interface SampleListProps {
   title: string;
-  categories: { label: string; value: string }[];
-  products: Product[];
+  imgUrl: string;
+  content: string;
+  dataList: Data[];
 }
+
+const ITEMS_PER_PAGE = 30; // 페이지당 아이템 수
 
 export const SampleList = ({
   title,
-  categories,
-  products,
-}: ProductTabsProps) => {
-  const [selectedTab, setSelectedTab] = useState('all');
+  imgUrl,
+  dataList,
+  content,
+}: SampleListProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { addProduct, removeProduct, selectedProducts } = useProductStore();
 
-  // 선택된 카테고리에 따라 필터링
-  const filteredProducts =
-    selectedTab === 'all'
-      ? products
-      : products.filter((product) => product.category === selectedTab);
+  const handleSelectProduct = (product: Data) => {
+    const isSelected = selectedProducts.some(
+      (item) => item.id === product.id.toString()
+    );
 
-  // 검색 핸들러
-  const handleSearch = (query: string) => {
-    console.log('검색어:', query);
+    if (isSelected) {
+      removeProduct(product.id.toString());
+    } else {
+      addProduct({
+        id: product.id.toString(),
+        name: product.name,
+        count: 1,
+      });
+    }
   };
+
+  // 페이지네이션 적용
+  const totalItems = dataList.length;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProducts = dataList.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
 
   return (
     <div className='wrapper'>
       <SubTitle title={title} />
-      {/* 카테고리 탭 */}
-      <SubTabs defaultValue='all' onValueChange={setSelectedTab}>
-        <SubTabsList>
-          {categories.map((category) => (
-            <SubTabsTrigger key={category.value} value={category.value}>
-              {category.label}
-            </SubTabsTrigger>
-          ))}
-        </SubTabsList>
-      </SubTabs>
-      <div className='flex items-center justify-end mt-5 md:mt-7 mb-4'>
-        <SearchBar onSubmit={handleSearch} />
+
+      {/* 제품 설명 */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 items-center lg:items-end mb-10'>
+        <Image
+          src={imgUrl}
+          alt={`${title} 소개`}
+          width={200}
+          height={300}
+          className='w-full h-full'
+        />
+        <p className='text-xs sm:text-sm md:text-base lg:text-xl text-white break-keep lg:pb-8'>
+          {content}
+        </p>
       </div>
+
       {/* 제품 리스트 */}
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
-        {filteredProducts.map((product) => (
-          // TODO: 클릭 시 상세 페이지로 이동
-          <div
-            key={product.id}
-            className='group transition-transform duration-300 hover:scale-105'
-          >
-            <div className='border border-dd/50 p-1 text-center'>
-              <div className='relative w-full aspect-square overflow-hidden'>
-                <Image
-                  // src={product.img} // TOD: 이미지 적용
-                  src={
-                    'https://images.unsplash.com/photo-1739361133037-77be66a4ea6a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                  }
-                  alt={product.name}
-                  fill
-                />
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4'>
+        {paginatedProducts.map((product) => {
+          const isSelected = selectedProducts.some(
+            (item) => item.id === product.id.toString()
+          );
+
+          return (
+            <div
+              key={product.id}
+              className={`group transition-transform duration-300 ${
+                isSelected ? 'border border-white/80' : ''
+              }`}
+            >
+              <div onClick={() => handleSelectProduct(product)}>
+                <div className='relative w-full aspect-square overflow-hidden'>
+                  <Image
+                    src={product.img || ''}
+                    alt={product.name}
+                    fill
+                    sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
+                    className='duration-300 hover:scale-125 object-cover'
+                  />
+                </div>
+                <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
+                  {product.name}
+                </p>
               </div>
+
+              {/* 선택된 상품: 카운터 표시 */}
+              {isSelected && (
+                <div className='mt-2 flex justify-center pb-2'>
+                  <ProductCounter
+                    id={product.id.toString()}
+                    count={
+                      selectedProducts.find(
+                        (item) => item.id === product.id.toString()
+                      )?.count || 1
+                    }
+                    showRemoveButton={false}
+                  />
+                </div>
+              )}
             </div>
-            <p className='mt-2 text-center text-dd text-sm sm:text-base font-bold'>
-              {product.name}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      {/* 문의하기 버튼 */}
+      <div className='mt-10 flex justify-center'>
+        <InquiryDialog />
+      </div>
+
+      {/* 페이지네이션 */}
+      {totalItems > ITEMS_PER_PAGE && (
+        <div className='mt-6'>
+          <Pagination
+            currentPage={currentPage}
+            total={totalItems}
+            limit={ITEMS_PER_PAGE}
+            showPages={5}
+            onChange={(page) => setCurrentPage(page)}
+          />
+        </div>
+      )}
     </div>
   );
 };

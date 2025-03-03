@@ -1,57 +1,23 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
-
-const decoCategories = [
-  { label: '전체', value: 'all' },
-  { label: '대진데코타일', value: 'daejin' },
-  { label: '동신데코타일', value: 'dongsin' },
-  { label: '녹수데코타일', value: 'noksu' },
-  { label: 'LG데코타일에코노', value: 'lg-econo' },
-  { label: 'LG데코타일보타닉', value: 'lg-botanic' },
-  { label: '현대 데코타일클래식', value: 'hyundai-classic' },
-  { label: '현대데코타일마스터', value: 'hyundai-master' },
-  { label: '재영데코타일', value: 'jaeyoung' },
-];
-
-const decoProducts = [
-  {
-    id: 1,
-    name: 'MTS 4421',
-    category: 'daejin',
-    img: '/imgs/mts_4421.png',
-  },
-  {
-    id: 2,
-    name: 'MTS 4422',
-    category: 'daejin',
-    img: '/imgs/mts_4422.png',
-  },
-  {
-    id: 3,
-    name: 'MTS 4425',
-    category: 'dongsin',
-    img: '/imgs/mts_4425.png',
-  },
-  {
-    id: 4,
-    name: 'MTS 4430',
-    category: 'lg-botanic',
-    img: '/imgs/mts_4430.png',
-  },
-  {
-    id: 5,
-    name: 'MTS 4435',
-    category: 'lg-econo',
-    img: '/imgs/mts_4435.png',
-  },
-];
+import ProductData from '@/assets/mock/mockProduct.json';
 
 export const DecoTab = () => {
+  // 형식 변환
+  const decoProducts = ProductData.map((item) => ({
+    id: item.id,
+    name: item.name,
+    category: item.category,
+    img: item.img,
+  }));
+
   return (
     <SampleList
       title='데코타일'
-      categories={decoCategories}
-      products={decoProducts}
+      imgUrl='https://images.unsplash.com/photo-1529854140025-25995121f16f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29udGVudHxlbnwwfHwwfHx8MA%3D%3D'
+      content='폴리프로필렌은 분자구성이 안정적이며, 연소 및 분해시 유해가스의 발생이 없고, 강도 및 식품안정성이 우수하여 식품 포장재료로도 널리 사용 되는 소재 입니다.
+또한 PVC등 타 표면소재를 가공할 때 필요로 하는 가소제(Phthalate)를 전혀 사용하지 않아 환경호르몬과 새집 증후군의 원인물질인휘발성 유기화합물(VOCs)의 발생을 사전에 차단하고 있습니다.'
+      dataList={decoProducts}
     />
   );
 };

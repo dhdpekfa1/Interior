@@ -16,7 +16,7 @@ export const Pagination = (props: PaginationProps) => {
       <div className={cn('lg:hidden', props.className)}>
         <PaginationSelect {...props} />
       </div>
-      <div className={cn('hidden lg:block', props.className)}>
+      <div className={cn('hidden lg:block text-ef', props.className)}>
         <PaginationList {...props} />
       </div>
     </>

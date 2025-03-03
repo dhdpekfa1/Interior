@@ -1,12 +1,12 @@
 import { cn } from '@/lib/utils';
-import { Phone, Contact } from 'lucide-react';
+import { Phone, Mail } from 'lucide-react';
 
+// TODO: 정보 변경
 export const QuickInquiry = () => {
   return (
     <div
       className={cn(
         'fixed bottom-8 right-8 rounded-md z-50',
-        // 'flex flex-col gap-1 sm:gap-2',
         ' text-[10px] sm:text-xs md:text-sm',
         'bg-dd'
       )}
@@ -17,19 +17,19 @@ export const QuickInquiry = () => {
         className='flex gap-2 bg-blue rounded-t-md p-1 text-four'
       >
         <span className='flex gap-2 items-center'>
-          <Contact className='h-auto w-3 sm:w-4' /> 빠른 견적 문의
+          <Phone className='h-auto w-3 sm:w-4' /> 빠른 견적 문의
         </span>
-        <span>032-101-2020</span>
+        <span>031-334-6771</span>
       </a>
-      {/* 핸드폰 */}
+      {/* 이메일 */}
       <a
-        href='tel:01020203030'
+        href='mailto:decovalley@naver.com'
         className='flex gap-2 bg-[#567C8D] rounded-b-md p-1 text-cream'
       >
         <span className='flex gap-2 items-center'>
-          <Phone className='h-auto w-3 sm:w-4' /> 빠른 견적 문의
+          <Mail className='h-auto w-3 sm:w-4' /> 빠른 견적 문의
         </span>
-        <span className=''>010-2020-3030</span>
+        <span className=''>decovalley@naver.com</span>
       </a>
     </div>
   );
