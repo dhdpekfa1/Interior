@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
   ScrollArea,
 } from '@/components/ui';
 import { Button } from '@/components/ui';
@@ -34,6 +35,9 @@ export const InquiryDialog = () => {
               문의하기
             </DialogTitle>
           </div>
+          <DialogDescription>
+            제품 수량을 확인 후 문의 내용을 작성해주세요.
+          </DialogDescription>
         </DialogHeader>
 
         <ScrollArea className='max-h-[80vh] overflow-auto'>

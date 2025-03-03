@@ -34,7 +34,7 @@ export const SecondSlide = () => {
             <h2 className='text-lg md:text-xl font-bold text-white'>
               {item.label}
             </h2>
-            <Button className='mt-2 px-3 py-1 border bg-point/80 border-second/70 rounded-lg text-white text-xs md:text-sm transition-all duration-300 group-hover:bg-second/80 mb-6'>
+            <Button className='mt-2 px-3 py-1 border bg-point/80 border-second/30 rounded-lg text-white text-xs md:text-sm transition-all duration-300 group-hover:bg-second/80 mb-6'>
               제품 보기
             </Button>
           </div>

@@ -92,6 +92,7 @@ export const SampleList = ({
                     src={product.img || ''}
                     alt={product.name}
                     fill
+                    sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
                     className='duration-300 hover:scale-125 object-cover'
                   />
                 </div>
