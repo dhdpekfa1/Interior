@@ -34,9 +34,6 @@ export default function HomePage() {
           ))}
         </Swiper>
       </section>
-      <div className='absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-lg'>
-        {slides.length}개 슬라이드 중 {slides[0]}번째
-      </div>
     </div>
   );
 }

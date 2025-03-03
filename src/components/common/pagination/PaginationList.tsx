@@ -60,7 +60,7 @@ const PaginationList = ({
                 className={cn(
                   'transition-colors duration-200',
                   currentPage === page
-                    ? 'bg-ef/30 hover:bg-second/70 hover:text-ef cursor-pointer'
+                    ? 'bg-ef/30 hover:bg-ef/30 hover:text-ef cursor-pointer'
                     : 'hover:bg-ef/20 hover:text-ef cursor-pointer'
                 )}
               >
