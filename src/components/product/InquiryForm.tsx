@@ -66,7 +66,8 @@ export const InquiryForm = () => {
           </SelectTrigger>
           <SelectContent
             position='popper'
-            className='bg-point/90 text-ef z-10 text-xs sm:text-sm md:text-base'
+            side='bottom'
+            className='bg-point/90 text-ef z-50 text-xs sm:text-sm md:text-base'
           >
             {categoryList.map((item) => (
               <SelectItem key={item.value} value={item.value}>
@@ -114,7 +115,8 @@ export const InquiryForm = () => {
               </SelectTrigger>
               <SelectContent
                 position='popper'
-                className='bg-point/90 text-ef z-10 text-xs sm:text-sm md:text-base'
+                side='bottom'
+                className='bg-point/90 text-ef z-50 text-xs sm:text-sm md:text-base'
               >
                 {emailDomains.map((domain) => (
                   <SelectItem key={domain} value={domain}>
@@ -162,6 +164,7 @@ export const InquiryForm = () => {
         <textarea
           readOnly
           className='w-full mt-2 p-2 border rounded bg-white text-[10px] sm:text-xs md:text-sm h-28 resize-none'
+          // TODO: 회사명 변경
           value={`개인정보 수집, 이용 동의서
 1. 개인정보 수집, 이용 기관명 : 데코밸리(주)
 2. 개인정보 수집, 이용 범위와 사용목적
