@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Phone, Mail } from 'lucide-react';
 
+// TODO: 정보 변경
 export const QuickInquiry = () => {
   return (
     <div
@@ -22,7 +23,7 @@ export const QuickInquiry = () => {
       </a>
       {/* 이메일 */}
       <a
-        href='tel:01020203030'
+        href='mailto:decovalley@naver.com'
         className='flex gap-2 bg-[#567C8D] rounded-b-md p-1 text-cream'
       >
         <span className='flex gap-2 items-center'>

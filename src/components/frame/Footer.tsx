@@ -27,15 +27,32 @@ export const Footer = () => {
         {leftFooterData.map((item) => (
           <div key={item.label} className='flex gap-2 text-sm md:text-base'>
             <span className='text-white/70 w-20'>{item.label}</span>
-            <span>{item.content}</span>
+            {item.label === '주소' ? (
+              <a
+                href='https://map.naver.com/p/search/경기도%20평택시%20청북읍%20드림산단7로%2036'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {item.content}
+              </a>
+            ) : item.label === 'E-mail' ? (
+              <a href={`mailto:${item.content}`}>{item.content}</a>
+            ) : (
+              <span>{item.content}</span>
+            )}
           </div>
         ))}
       </div>
+
       <div className='flex flex-col gap-2 mt-6 md:mt-0'>
         {rightFooterData.map((item) => (
           <div key={item.label} className='flex gap-2 text-sm md:text-base'>
             <span className='text-white/70 w-24'>{item.label}</span>
-            <span>{item.content}</span>
+            {item.label === 'TEL' ? (
+              <a href='tel:0313346771'>{item.content}</a>
+            ) : (
+              <span>{item.content}</span>
+            )}
           </div>
         ))}
       </div>
