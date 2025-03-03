@@ -1,13 +1,8 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
 import ProductData from '@/assets/mock/mockProduct.json';
-import categories from '@/assets/categories.json';
 
 export const DecoTab = () => {
-  // TODO: 카테고리 사용 안할 경우 관련 코드 전부 제거
-  // deco 탭 카테고리
-  const decoCategories = categories.deco;
-
   // 형식 변환
   const decoProducts = ProductData.map((item) => ({
     id: item.id,
@@ -23,8 +18,6 @@ export const DecoTab = () => {
       content='폴리프로필렌은 분자구성이 안정적이며, 연소 및 분해시 유해가스의 발생이 없고, 강도 및 식품안정성이 우수하여 식품 포장재료로도 널리 사용 되는 소재 입니다.
 또한 PVC등 타 표면소재를 가공할 때 필요로 하는 가소제(Phthalate)를 전혀 사용하지 않아 환경호르몬과 새집 증후군의 원인물질인휘발성 유기화합물(VOCs)의 발생을 사전에 차단하고 있습니다.'
       dataList={decoProducts}
-      // 사용 안할 경우 prop도 제거
-      categories={decoCategories}
     />
   );
 };

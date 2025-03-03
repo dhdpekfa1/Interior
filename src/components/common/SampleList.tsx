@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 
 interface Data {
   id: number;
   name: string;
-  category: string;
   img?: string;
 }
 
@@ -16,7 +14,6 @@ interface SampleListProps {
   title: string;
   imgUrl: string;
   content: string;
-  categories: { label: string; value: string }[];
   dataList: Data[];
 }
 
@@ -24,14 +21,11 @@ const ITEMS_PER_PAGE = 20; // 페이지당 아이템 수
 
 export const SampleList = ({
   title,
-  // categories,
   imgUrl,
   dataList,
   content,
 }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const router = useRouter();
-  const pathname = usePathname();
 
   // 페이지네이션 적용: 현재 페이지의 데이터만 보여줌
   const totalItems = dataList.length;
@@ -63,7 +57,7 @@ export const SampleList = ({
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4'>
         {paginatedProducts.map((product) => (
           <div
-            onClick={() => router.push(`${pathname}/${product.id}`)}
+            onClick={() => console.log('TODO: 장바구니 추가')}
             key={product.id}
             className='group transition-transform duration-300'
           >
