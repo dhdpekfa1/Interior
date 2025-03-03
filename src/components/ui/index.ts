@@ -13,6 +13,14 @@ export {
   CardDescription,
   CardContent,
 } from './card/card';
+export {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './carousel/carousel';
 export { Input } from './input/input';
 export { Label } from './label/label';
 export {

@@ -11,7 +11,7 @@ export const SecondSlide = () => {
   }
 
   return (
-    <div className='w-full h-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 px-4 py-10'>
+    <div className='w-full h-full grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-4 px-4 py-10'>
       {data.subMenu.map((item) => (
         <Link
           href={item.url}
