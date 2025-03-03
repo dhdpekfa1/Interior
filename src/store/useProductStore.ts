@@ -17,9 +17,20 @@ interface ProductStore {
 export const useProductStore = create<ProductStore>((set) => ({
   selectedProducts: [],
   addProduct: (product) =>
-    set((state) => ({
-      selectedProducts: [...state.selectedProducts, product],
-    })),
+    set((state) => {
+      const exist = state.selectedProducts.find((p) => p.id === product.id);
+      if (exist) {
+        return {
+          selectedProducts: state.selectedProducts.map((p) =>
+            p.id === product.id ? { ...p, count: p.count + 1 } : p
+          ),
+        };
+      } else {
+        return {
+          selectedProducts: [...state.selectedProducts, product],
+        };
+      }
+    }),
   updateCount: (id, count) =>
     set((state) => ({
       selectedProducts: state.selectedProducts.map((p) =>

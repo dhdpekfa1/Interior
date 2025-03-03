@@ -35,4 +35,7 @@ export const inquirySchema = z.object({
   message: z
     .string()
     .min(10, { message: '문의 내용은 최소 10자 이상 입력해주세요.' }),
+  agree: z.boolean().refine((value) => value === true, {
+    message: '개인정보 수집 및 이용목적에 동의해주세요.',
+  }),
 });

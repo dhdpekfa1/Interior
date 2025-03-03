@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
+import { useProductStore } from '@/store/useProductStore';
+import { InquiryDialog } from '../product';
 
 interface Data {
   id: number;
@@ -26,8 +28,17 @@ export const SampleList = ({
   content,
 }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const { addProduct, selectedProducts } = useProductStore();
 
-  // 페이지네이션 적용: 현재 페이지의 데이터만 보여줌
+  const handleSelectProduct = (product: Data) => {
+    addProduct({
+      id: product.id.toString(),
+      name: product.name,
+      count: 1,
+    });
+  };
+
+  // 페이지네이션 적용
   const totalItems = dataList.length;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProducts = dataList.slice(
@@ -55,27 +66,40 @@ export const SampleList = ({
 
       {/* 제품 리스트 */}
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4'>
-        {paginatedProducts.map((product) => (
-          <div
-            onClick={() => console.log('TODO: 장바구니 추가')}
-            key={product.id}
-            className='group transition-transform duration-300'
-          >
-            <div>
-              <div className='relative w-full aspect-square overflow-hidden'>
-                <Image
-                  src={product.img || ''}
-                  alt={product.name}
-                  fill
-                  className='hover:scale-110 duration-300'
-                />
+        {paginatedProducts.map((product) => {
+          const isSelected = selectedProducts.some(
+            (item) => item.id === product.id.toString()
+          );
+
+          return (
+            <div
+              onClick={() => handleSelectProduct(product)}
+              key={product.id}
+              className={`group transition-transform duration-300 ${
+                isSelected ? 'border-2 border-point' : ''
+              }`}
+            >
+              <div>
+                <div className='relative w-full aspect-square overflow-hidden'>
+                  <Image
+                    src={product.img || ''}
+                    alt={product.name}
+                    fill
+                    className='hover:scale-110 duration-300'
+                  />
+                </div>
+                <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
+                  {product.name}
+                </p>
               </div>
-              <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
-                {product.name}
-              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
+      </div>
+
+      {/* 문의하기 버튼 */}
+      <div className='mt-10 flex justify-center'>
+        <InquiryDialog />
       </div>
 
       {/* 페이지네이션 */}

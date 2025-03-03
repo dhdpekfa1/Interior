@@ -21,6 +21,19 @@ export {
   CarouselPrevious,
   CarouselNext,
 } from './carousel/carousel';
+export { Checkbox } from './checkbox/checkbox';
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './dialog/dialog';
 export { Input } from './input/input';
 export { Label } from './label/label';
 export {
@@ -50,6 +63,7 @@ export {
   PaginationNext,
   PaginationPrevious,
 } from './pagination/pagination';
+export { ScrollArea, ScrollBar } from './scrollArea/scroll-area';
 export {
   Select,
   SelectGroup,
@@ -62,6 +76,7 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from './select/select';
+export { Separator } from './separator/separator';
 export {
   Sheet,
   SheetPortal,
