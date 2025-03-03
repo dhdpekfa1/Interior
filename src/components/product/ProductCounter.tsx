@@ -8,15 +8,17 @@ import { useProductStore } from '@/store/useProductStore';
 interface ProductCounterProps {
   id: string;
   count: number;
+  onRemove?: (id: string) => void;
   showRemoveButton?: boolean;
 }
 
 export const ProductCounter = ({
   id,
   count,
+  onRemove,
   showRemoveButton = true,
 }: ProductCounterProps) => {
-  const { updateCount, removeProduct } = useProductStore();
+  const { updateCount } = useProductStore();
 
   const handleCountChange = (newCount: number) => {
     if (newCount < 1) return;
@@ -76,7 +78,7 @@ export const ProductCounter = ({
         <Button
           type='button'
           size='icon'
-          onClick={() => removeProduct(id)}
+          onClick={() => onRemove?.(id)}
           className='h-5 w-5 md:h-6 md:w-6 p-0 bg-point/50 hover:bg-point'
         >
           <X width={12} height={12} />
