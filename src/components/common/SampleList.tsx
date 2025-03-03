@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
-import { InquiryDialog } from '../product';
+import { InquiryDialog, ProductCounter } from '../product';
 
 interface Data {
   id: number;
@@ -19,7 +19,7 @@ interface SampleListProps {
   dataList: Data[];
 }
 
-const ITEMS_PER_PAGE = 20; // 페이지당 아이템 수
+const ITEMS_PER_PAGE = 30; // 페이지당 아이템 수
 
 export const SampleList = ({
   title,
@@ -28,14 +28,22 @@ export const SampleList = ({
   content,
 }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { addProduct, selectedProducts } = useProductStore();
+  const { addProduct, removeProduct, selectedProducts } = useProductStore();
 
   const handleSelectProduct = (product: Data) => {
-    addProduct({
-      id: product.id.toString(),
-      name: product.name,
-      count: 1,
-    });
+    const isSelected = selectedProducts.some(
+      (item) => item.id === product.id.toString()
+    );
+
+    if (isSelected) {
+      removeProduct(product.id.toString());
+    } else {
+      addProduct({
+        id: product.id.toString(),
+        name: product.name,
+        count: 1,
+      });
+    }
   };
 
   // 페이지네이션 적용
@@ -73,24 +81,41 @@ export const SampleList = ({
 
           return (
             <div
-              onClick={() => handleSelectProduct(product)}
               key={product.id}
               className={`group transition-transform duration-300 ${
-                isSelected ? 'border-2 border-point' : ''
+                isSelected ? 'border border-white/80' : ''
               }`}
             >
               <div>
-                <div className='relative w-full aspect-square overflow-hidden'>
-                  <Image
-                    src={product.img || ''}
-                    alt={product.name}
-                    fill
-                    className='hover:scale-110 duration-300'
-                  />
+                <div onClick={() => handleSelectProduct(product)}>
+                  <div className='relative w-full aspect-square overflow-hidden'>
+                    <Image
+                      src={product.img || ''}
+                      alt={product.name}
+                      fill
+                      className='hover:scale-110 duration-300'
+                    />
+                  </div>
+                  <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
+                    {product.name}
+                  </p>
                 </div>
-                <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
-                  {product.name}
-                </p>
+
+                {/* 선택된 상품: 카운터 표시 */}
+                {isSelected && (
+                  <div className='mt-2 flex justify-center pb-2'>
+                    <ProductCounter
+                      id={product.id.toString()}
+                      count={
+                        selectedProducts.find(
+                          (item) => item.id === product.id.toString()
+                        )?.count || 1
+                      }
+                      showRemoveButton={false}
+                      // className='bg-point text-white/80'
+                    />
+                  </div>
+                )}
               </div>
             </div>
           );
