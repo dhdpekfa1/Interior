@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckedState } from '@radix-ui/react-checkbox';
 import {
   Button,
   Label,
@@ -175,27 +176,22 @@ export const InquiryForm = () => {
           <Checkbox
             id='agree'
             {...register('agree')}
-            checked={watch('agree')}
-            onCheckedChange={(checked) => setValue('agree', checked === true)}
+            checked={watch('agree') === true}
+            onCheckedChange={(checked: CheckedState) => {
+              if (checked === true) {
+                setValue('agree', true);
+              } else {
+                setValue('agree', false as never); // 타입 맞춤
+              }
+            }}
           />
+
           <label htmlFor='agree' className='text-xs sm:text-sm'>
             개인정보의 수집 및 이용목적에 동의합니다.
           </label>
         </div>
-        {errors.agree && (
-          <p className='text-[10px] sm:text-xs md:text-sm text-red-500'>
-            {errors.agree.message}
-          </p>
-        )}
+        {errors.agree && <p className={errorStyle}>{errors.agree.message}</p>}
       </div>
-
-      <Button
-        type='submit'
-        className='bg-point/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-point'
-        disabled={loading || success}
-      >
-        {loading ? '전송 중...' : '문의하기'}
-      </Button>
 
       {success && (
         <p className='text-point text-center text-xs sm:text-sm md:text-base'>
@@ -205,6 +201,13 @@ export const InquiryForm = () => {
       {error && (
         <p className={`${errorStyle} text-point text-center`}>{error}</p>
       )}
+      <Button
+        type='submit'
+        className='bg-point/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-point'
+        disabled={loading || success}
+      >
+        {loading ? '전송 중...' : '문의하기'}
+      </Button>
     </form>
   );
 };

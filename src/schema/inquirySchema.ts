@@ -27,7 +27,7 @@ export const emailDomains = [
 export const inquirySchema = z.object({
   category: z.string().min(1, { message: '문의 유형을 선택해주세요.' }),
   email: z.string().email({ message: '올바른 이메일 주소를 입력하세요.' }),
-  emailDomain: z.string().optional(), // 도메인 선택 필드 추가
+  emailDomain: z.string().optional(),
   phone: z
     .string()
     .max(13)
@@ -35,7 +35,7 @@ export const inquirySchema = z.object({
   message: z
     .string()
     .min(10, { message: '문의 내용은 최소 10자 이상 입력해주세요.' }),
-  agree: z.boolean().refine((value) => value === true, {
-    message: '개인정보 수집 및 이용목적에 동의해주세요.',
+  agree: z.literal(true, {
+    errorMap: () => ({ message: '개인정보 수집 및 이용목적에 동의해주세요.' }),
   }),
 });
