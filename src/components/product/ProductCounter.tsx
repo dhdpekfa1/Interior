@@ -55,7 +55,7 @@ export const ProductCounter = ({
           onChange={(e) => handleInputChange(e.target.value)}
           min={1}
           className={cn(
-            'appearance-none text-center w-8 md:w-10 text-xs sm:text-sm md:text-base p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0',
+            'appearance-none text-center w-8 h-fit md:w-10 text-xs sm:text-sm md:text-base p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0',
             showRemoveButton ? 'bg-white' : 'bg-point'
           )}
         />

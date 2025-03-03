@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogTrigger,
   ScrollArea,
-  Separator,
 } from '@/components/ui';
 import { Button } from '@/components/ui';
 import { useProductStore } from '@/store/useProductStore';
@@ -39,7 +38,7 @@ export const InquiryDialog = () => {
 
         <ScrollArea className='max-h-[80vh] overflow-auto'>
           {/* 선택된 상품 목록 */}
-          <ScrollArea className='max-h-40 overflow-auto border rounded-md p-2 bg-white mb-4'>
+          <ScrollArea className='max-h-40 overflow-auto border rounded-md px-2 bg-white mb-4'>
             {selectedProducts.map((product) => (
               <div
                 key={product.id}
@@ -51,8 +50,6 @@ export const InquiryDialog = () => {
               </div>
             ))}
           </ScrollArea>
-
-          <Separator />
 
           {/* 문의하기 폼 */}
           <InquiryForm />
