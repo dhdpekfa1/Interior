@@ -73,7 +73,7 @@ export const SampleList = ({
       </div>
 
       {/* 제품 리스트 */}
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4'>
         {paginatedProducts.map((product) => {
           const isSelected = selectedProducts.some(
             (item) => item.id === product.id.toString()
@@ -92,7 +92,7 @@ export const SampleList = ({
                     src={product.img || ''}
                     alt={product.name}
                     fill
-                    className='hover:scale-110 duration-300'
+                    className='duration-300 hover:scale-125 object-cover'
                   />
                 </div>
                 <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
