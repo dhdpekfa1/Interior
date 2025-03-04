@@ -6,7 +6,13 @@ import { useState } from 'react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
 
-export const DesktopHeader = () => {
+export const DesktopHeader = ({
+  isHome,
+  isScrolled,
+}: {
+  isHome: boolean;
+  isScrolled: boolean;
+}) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -17,7 +23,13 @@ export const DesktopHeader = () => {
         'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full transition-all duration-300',
         isHover
           ? 'h-[350px] bg-white text-point shadow-lg'
-          : 'h-[80px] bg-point text-white'
+          : `h-[80px] ${
+              isHome
+                ? isScrolled
+                  ? 'bg-white text-point shadow'
+                  : 'bg-transparent text-white'
+                : 'bg-point text-white'
+            }`
       )}
     >
       {/* 헤더 상단 */}

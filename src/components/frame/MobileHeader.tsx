@@ -8,7 +8,6 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetClose,
-  Button,
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -16,10 +15,26 @@ import {
 } from '@/components/ui';
 import { Menu } from 'lucide-react';
 import { menuData } from '@/assets/navMenuData';
+import { cn } from '@/lib/utils';
 
-export const MobileHeader = () => {
+export const MobileHeader = ({
+  isHome,
+  isScrolled,
+}: {
+  isHome: boolean;
+  isScrolled: boolean;
+}) => {
   return (
-    <div className='md:hidden fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 bg-point text-center px-10 py-4 z-30'>
+    <div
+      className={cn(
+        'md:hidden fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 text-center px-10 py-4 z-30 transition-all duration-300',
+        isHome
+          ? isScrolled
+            ? 'bg-white text-point shadow'
+            : 'bg-transparent text-white'
+          : 'bg-point text-white'
+      )}
+    >
       <Link href='/'>
         <Image src='/assets/logo.png' alt='logo' width={80} height={50} />
       </Link>
@@ -27,9 +42,14 @@ export const MobileHeader = () => {
       <div className=''>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant='outline' className='px-2 h-fit bg-background'>
-              <Menu className='text-point' />
-            </Button>
+            <Menu
+              className={cn(
+                'cursor-pointer',
+                isHome
+                  ? 'text-two hover:text-point'
+                  : 'text-ef hover:text-white'
+              )}
+            />
           </SheetTrigger>
           <SheetContent side='left' className='w-64 bg-white'>
             <SheetHeader>
