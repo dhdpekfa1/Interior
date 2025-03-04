@@ -15,21 +15,21 @@ export const DesktopHeader = ({
 }) => {
   const [isHover, setIsHover] = useState(false);
 
+  const getHeaderClass = () => {
+    if (isHover) return 'h-[350px] bg-white text-point shadow-lg';
+    if (isHome) {
+      if (isScrolled) return 'h-[80px] bg-white text-point shadow';
+      return 'h-[80px] bg-transparent text-white';
+    }
+    return 'h-[80px] bg-point text-white';
+  };
   return (
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full transition-all duration-300',
-        isHover
-          ? 'h-[350px] bg-white text-point shadow-lg'
-          : `h-[80px] ${
-              isHome
-                ? isScrolled
-                  ? 'bg-white text-point shadow'
-                  : 'bg-transparent text-white'
-                : 'bg-point text-white'
-            }`
+        getHeaderClass()
       )}
     >
       {/* 헤더 상단 */}
