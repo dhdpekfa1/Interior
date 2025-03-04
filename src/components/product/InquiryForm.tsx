@@ -45,9 +45,9 @@ export const InquiryForm = () => {
     onSubmit,
   } = useInquiryForm(setValue, watch, reset);
 
-  const inputStyle =
-    'w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base';
-  const errorStyle = 'text-[10px] sm:text-xs md:text-sm text-red-500';
+  // const inputStyle =
+  //   'w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base';
+  // const'error-style'= 'text-[10px] sm:text-xs md:text-sm text-red-500';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
@@ -78,7 +78,7 @@ export const InquiryForm = () => {
           </SelectContent>
         </Select>
         {errors.category && (
-          <p className={errorStyle}>{errors.category.message}</p>
+          <p className='error-style'>{errors.category.message}</p>
         )}
       </div>
 
@@ -93,7 +93,7 @@ export const InquiryForm = () => {
             value={watch('email')?.split('@')[0] || ''}
             onChange={handleEmailChange}
             placeholder='이메일을 입력해주세요.'
-            className={inputStyle}
+            className='input-style'
           />
           @
           {selectedDomain === '직접 입력' ? (
@@ -107,7 +107,7 @@ export const InquiryForm = () => {
                 )
               }
               placeholder='직접 입력'
-              className={inputStyle}
+              className='input-style'
             />
           ) : (
             <Select onValueChange={handleDomainChange}>
@@ -128,7 +128,7 @@ export const InquiryForm = () => {
             </Select>
           )}
         </div>
-        {errors.email && <p className={errorStyle}>{errors.email.message}</p>}
+        {errors.email && <p className='error-style'>{errors.email.message}</p>}
       </div>
 
       {/* 연락처 */}
@@ -139,10 +139,10 @@ export const InquiryForm = () => {
           type='tel'
           {...register('phone')}
           placeholder='전화번호를 입력해주세요.'
-          className={inputStyle}
+          className='input-style'
           onChange={handlePhoneChange}
         />
-        {errors.phone && <p className={errorStyle}>{errors.phone.message}</p>}
+        {errors.phone && <p className='error-style'>{errors.phone.message}</p>}
       </div>
 
       {/* 문의 내용 */}
@@ -155,7 +155,7 @@ export const InquiryForm = () => {
           className='border p-2 rounded h-32 sm:h-40 text-three text-xs sm:text-sm md:text-base'
         />
         {errors.message && (
-          <p className={errorStyle}>{errors.message.message}</p>
+          <p className='error-style'>{errors.message.message}</p>
         )}
       </div>
 
@@ -190,7 +190,7 @@ export const InquiryForm = () => {
             개인정보의 수집 및 이용목적에 동의합니다.
           </label>
         </div>
-        {errors.agree && <p className={errorStyle}>{errors.agree.message}</p>}
+        {errors.agree && <p className='error-style'>{errors.agree.message}</p>}
       </div>
 
       {success && (
@@ -199,7 +199,7 @@ export const InquiryForm = () => {
         </p>
       )}
       {error && (
-        <p className={`${errorStyle} text-point text-center`}>{error}</p>
+        <p className={`$'error-style' text-point text-center`}>{error}</p>
       )}
       <Button
         type='submit'
