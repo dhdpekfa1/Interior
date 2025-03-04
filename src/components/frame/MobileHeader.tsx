@@ -1,8 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 import {
   Sheet,
   SheetContent,
@@ -18,7 +19,6 @@ import {
 } from '@/components/ui';
 import { AlignRight } from 'lucide-react';
 import { menuData } from '@/assets/navMenuData';
-import { cn } from '@/lib/utils';
 
 export const MobileHeader = ({
   isHome,

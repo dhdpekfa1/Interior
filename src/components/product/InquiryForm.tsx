@@ -45,10 +45,6 @@ export const InquiryForm = () => {
     onSubmit,
   } = useInquiryForm(setValue, watch, reset);
 
-  // const inputStyle =
-  //   'w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base';
-  // const'error-style'= 'text-[10px] sm:text-xs md:text-sm text-red-500';
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
       {/* 유형 선택 */}
@@ -152,7 +148,7 @@ export const InquiryForm = () => {
           id='content'
           {...register('message')}
           placeholder='문의 내용을 입력하세요...'
-          className='border p-2 rounded h-32 sm:h-40 text-three text-xs sm:text-sm md:text-base'
+          className='border p-2 h-32 sm:h-40 text-three text-xs sm:text-sm md:text-base'
         />
         {errors.message && (
           <p className='error-style'>{errors.message.message}</p>
@@ -164,7 +160,7 @@ export const InquiryForm = () => {
         <Label htmlFor='tel'>개인정보의 수집 및 이용목적</Label>
         <textarea
           readOnly
-          className='w-full mt-2 p-2 border rounded bg-white text-[10px] sm:text-xs md:text-sm h-28 resize-none'
+          className='w-full mt-2 p-2 border bg-white text-[10px] sm:text-xs md:text-sm h-28 resize-none'
           // TODO: 회사명 변경
           value={`개인정보 수집, 이용 동의서
 1. 개인정보 수집, 이용 기관명 : 데코밸리(주)
@@ -203,7 +199,7 @@ export const InquiryForm = () => {
       )}
       <Button
         type='submit'
-        className='bg-point/90 text-ef p-2 rounded text-sm sm:text-base hover:bg-point'
+        className='bg-point/90 text-ef p-2 text-sm sm:text-base hover:bg-point'
         disabled={loading || success}
       >
         {loading ? '전송 중...' : '문의하기'}

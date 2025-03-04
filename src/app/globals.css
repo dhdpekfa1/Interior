@@ -114,3 +114,19 @@ input[type='number'] {
 .error-style {
   @apply text-[10px] sm:text-xs md:text-sm text-red-500;
 }
+
+@layer utilities {
+  @keyframes slow-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+  }
+
+  .slow-bounce {
+    animation: slow-bounce 2s infinite;
+  }
+}
