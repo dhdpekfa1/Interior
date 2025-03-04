@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
-import { InquiryDialog, ProductCounter } from '../product';
+import { InquiryDialog, ProductCounter } from '@/components/product';
+import { Check } from 'lucide-react';
 
 interface Data {
   id: number;
@@ -82,8 +83,10 @@ export const SampleList = ({
           return (
             <div
               key={product.id}
-              className={`group transition-transform duration-300 ${
-                isSelected ? 'border border-white/80' : ''
+              className={`group transition-transform duration-300 cursor-pointer ${
+                isSelected
+                  ? 'border-point bg-second/10 shadow-md'
+                  : 'border-gray-200 bg-white'
               }`}
             >
               <div onClick={() => handleSelectProduct(product)}>
@@ -95,6 +98,12 @@ export const SampleList = ({
                     sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
                     className='duration-300 hover:scale-125 object-cover'
                   />
+                  {isSelected && (
+                    <Check
+                      className='absolute top-2 right-2 text-point bg-white'
+                      size={24}
+                    />
+                  )}
                 </div>
                 <p className='mt-2 text-center text-two text-xs sm:text-sm md:text-base'>
                   {product.name}
@@ -111,7 +120,6 @@ export const SampleList = ({
                         (item) => item.id === product.id.toString()
                       )?.count || 1
                     }
-                    showRemoveButton={false}
                   />
                 </div>
               )}
@@ -121,6 +129,7 @@ export const SampleList = ({
       </div>
 
       {/* 문의하기 버튼 */}
+
       <div className='mt-10 flex justify-center'>
         <InquiryDialog />
       </div>
