@@ -1,17 +1,11 @@
-import Link from 'next/link';
 import { MobileHeader } from './MobileHeader';
-import { DesktopMenubar } from './DesktopHeader';
+import { DesktopHeader } from './DesktopHeader';
 
 export const Header = () => {
   return (
-    <div className='fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 bg-point text-center px-10 py-4 z-30'>
-      <Link href={'/'}>
-        <h1 className='text-second text-lg md:text-2xl font-bold'>Logo</h1>
-        {/* <Image src='/assets/logo.png' alt='logo' width={80} height={60} /> */}
-      </Link>
-
+    <div>
       {/* PC Header */}
-      <DesktopMenubar />
+      <DesktopHeader />
       {/* Mobile Header */}
       <MobileHeader />
     </div>

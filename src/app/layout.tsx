@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang='ko'>
       <body className={`${notoSans.variable} antialiased`}>
         <Header />
-        <div className='pt-14'>{children}</div>
+        <div>{children}</div>
         {/* <QuickInquiry /> TODO: 빠른 문의 적용 필요?*/}
         <Footer />
       </body>
