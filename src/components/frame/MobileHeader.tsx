@@ -21,16 +21,13 @@ export const MobileHeader = () => {
     <div className='block md:hidden'>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            variant='outline'
-            className='px-2 h-fit bg-second/85 border-second/30 hover:bg-second'
-          >
+          <Button variant='outline' className='px-2 h-fit bg-background'>
             <Menu className='text-point' />
           </Button>
         </SheetTrigger>
-        <SheetContent side='left' className='w-64 bg-point'>
+        <SheetContent side='left' className='w-64 bg-white'>
           <SheetHeader>
-            <SheetTitle className='text-second'>LOGO</SheetTitle>
+            <SheetTitle className='text-point'>LOGO</SheetTitle>
             <SheetDescription className='text-gray-400'>
               짧은 소개
             </SheetDescription>
@@ -40,7 +37,7 @@ export const MobileHeader = () => {
           <Accordion type='single' collapsible className='w-full'>
             {menuData.map((menu, index) => (
               <AccordionItem key={menu.title} value={`menu-${index}`}>
-                <AccordionTrigger className='text-ef'>
+                <AccordionTrigger className='text-two hover:text-two'>
                   {menu.title}
                 </AccordionTrigger>
                 <AccordionContent className='flex flex-col gap-1'>
@@ -48,7 +45,7 @@ export const MobileHeader = () => {
                     <SheetClose asChild key={subItem.label}>
                       <Link
                         href={subItem.url}
-                        className='block py-2 pl-4 text-sm hover:font-bold bg-second/60 hover:bg-second/70 rounded-sm text-ef'
+                        className='block py-2 pl-4 text-sm hover:font-bold hover:bg-second/70 text-two'
                       >
                         {subItem.label}
                       </Link>
