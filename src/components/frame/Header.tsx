@@ -2,7 +2,6 @@
 import { usePathname } from 'next/navigation';
 import { useInView } from 'react-intersection-observer';
 import { MobileHeader, DesktopHeader } from './';
-import {} from './DesktopHeader';
 import { cn } from '@/lib/utils';
 
 export const Header = () => {

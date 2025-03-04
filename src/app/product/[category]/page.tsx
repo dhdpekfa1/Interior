@@ -19,7 +19,7 @@ const ProductPage = () => {
   return (
     <div className='container'>
       <UrlTabs
-        title='제품소개'
+        title='Product'
         basePath='/product'
         defaultTab='deco'
         tabs={PRODUCT_TABS}
