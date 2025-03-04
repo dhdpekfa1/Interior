@@ -111,16 +111,6 @@ input[type='number'] {
   @apply w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base;
 }
 
-/* 에러 텍스트 스타일 */
 .error-style {
   @apply text-[10px] sm:text-xs md:text-sm text-red-500;
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
