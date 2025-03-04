@@ -67,7 +67,7 @@ export const SampleList = ({
           height={300}
           className='w-full h-full'
         />
-        <p className='text-xs sm:text-sm md:text-base lg:text-xl text-white break-keep lg:pb-8'>
+        <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep lg:pb-8'>
           {content}
         </p>
       </div>
@@ -96,7 +96,7 @@ export const SampleList = ({
                     className='duration-300 hover:scale-125 object-cover'
                   />
                 </div>
-                <p className='mt-2 text-center text-dd text-xs sm:text-sm md:text-base'>
+                <p className='mt-2 text-center text-two text-xs sm:text-sm md:text-base'>
                   {product.name}
                 </p>
               </div>

@@ -50,12 +50,12 @@ export const SecondSlide = () => {
                 <Button
                   variant='outline'
                   className={cn(
-                    'mt-2 px-3 py-1 border bg-white/80 border-two/80 text-two text-xs md:text-sm transition-all duration-300 mb-6',
-                    'group-hover:border-second/70 group-hover:text-second'
+                    'mt-2 px-3 py-1 border bg-white/80 border-two/50 text-two/50 text-xs md:text-sm transition-all duration-300 mb-6',
+                    'group-hover:border-point group-hover:text-point hover:bg-white/80'
                   )}
                 >
                   제품 보기
-                  <MoveRight className='ml-1 transition-[padding] duration-300 text-two group-hover:text-second group-hover:pl-1' />
+                  <MoveRight className='ml-1 transition-[padding] duration-300 text-two/50 group-hover:text-point group-hover:pl-1' />
                 </Button>
               </div>
             </Link>
