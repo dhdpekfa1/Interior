@@ -9,7 +9,7 @@ import { Button } from '@/components/ui';
 import { MoveRight } from 'lucide-react';
 
 export const SecondSlide = () => {
-  const data = menuData.find((data) => data.title === '제품소개');
+  const data = menuData.find((data) => data.title === 'Product');
 
   if (!data || !data.subMenu) {
     return <div>데이터가 없습니다.</div>;
