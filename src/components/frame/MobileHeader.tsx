@@ -16,7 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui';
-import { Menu } from 'lucide-react';
+import { AlignRight } from 'lucide-react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
 
@@ -67,7 +67,7 @@ export const MobileHeader = ({
       <div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Menu
+            <AlignRight
               className={cn(
                 'cursor-pointer',
                 isHome

@@ -39,7 +39,7 @@ export const InquiryDialog = () => {
       <DialogTrigger asChild>
         <Button
           disabled={selectedProducts.length === 0}
-          className='px-6 py-3 rounded-lg bg-point text-white hover:bg-point/80 disabled:bg-gray-400'
+          className='px-6 py-3 bg-point text-white hover:bg-point/80 disabled:bg-gray-400'
         >
           문의하기
         </Button>
@@ -59,7 +59,7 @@ export const InquiryDialog = () => {
 
         <ScrollArea className='max-h-[80vh] overflow-auto'>
           {/* 선택된 상품 목록 */}
-          <ScrollArea className='max-h-40 overflow-auto border rounded-md px-2 bg-white mb-4'>
+          <ScrollArea className='max-h-40 overflow-auto border px-2 bg-white mb-4'>
             {selectedProducts.map((product) => (
               <div
                 key={product.id}
