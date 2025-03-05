@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 // TODO: 데이터 받으면 수정
 const leftFooterData = [
-  { label: '회사명', content: '데코밸리(주)' },
+  { label: '회사명', content: 'YD-Industry' },
   { label: '대표이사', content: '송영관' },
   { label: '주소', content: '경기도 평택시 청북읍 드림산단7로 36' },
   { label: 'E-mail', content: 'decovalley@naver.com' },
@@ -32,13 +32,16 @@ export const Footer = () => {
                 href='https://map.naver.com/p/search/경기도%20평택시%20청북읍%20드림산단7로%2036'
                 target='_blank'
                 rel='noopener noreferrer'
+                className='font-bold'
               >
                 {item.content}
               </a>
             ) : item.label === 'E-mail' ? (
-              <a href={`mailto:${item.content}`}>{item.content}</a>
+              <a href={`mailto:${item.content}`} className='font-bold'>
+                {item.content}
+              </a>
             ) : (
-              <span>{item.content}</span>
+              <span className='font-bold'>{item.content}</span>
             )}
           </div>
         ))}
@@ -49,9 +52,11 @@ export const Footer = () => {
           <div key={item.label} className='flex gap-2 text-sm md:text-base'>
             <span className='text-white/70 w-24'>{item.label}</span>
             {item.label === 'TEL' ? (
-              <a href='tel:0313346771'>{item.content}</a>
+              <a href='tel:0313346771' className='font-bold'>
+                {item.content}
+              </a>
             ) : (
-              <span>{item.content}</span>
+              <span className='font-bold'>{item.content}</span>
             )}
           </div>
         ))}
