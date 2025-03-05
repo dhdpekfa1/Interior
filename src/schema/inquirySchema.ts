@@ -32,9 +32,7 @@ export const inquirySchema = z.object({
     .string()
     .max(13)
     .regex(/^010-\d{4}-\d{4}$/, { message: '전화번호 형식: 010-1234-5678' }),
-  message: z
-    .string()
-    .min(10, { message: '문의 내용은 최소 10자 이상 입력해주세요.' }),
+  message: z.string().min(2, { message: '문의 내용을 입력해주세요.' }),
   agree: z.literal(true, {
     errorMap: () => ({ message: '개인정보 수집 및 이용목적에 동의해주세요.' }),
   }),

@@ -46,7 +46,7 @@ export const InquiryForm = () => {
   } = useInquiryForm(setValue, watch, reset);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
       {/* 유형 선택 */}
       <div className='flex flex-col space-y-1.5 w-1/2 lg:w-1/3'>
         <Label htmlFor='category'>문의 유형</Label>
