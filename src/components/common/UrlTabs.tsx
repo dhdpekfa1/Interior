@@ -36,7 +36,7 @@ export const UrlTabs = ({
   return (
     <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
       <TabsList className='w-full flex bg-ef'>
-        <div className='flex items-center px-4 py-2 bg-black mr-1 text-white font-bold'>
+        <div className='flex items-center px-4 py-1 sm:py-2 bg-black mr-1 text-white font-bold'>
           {title}
         </div>
 
