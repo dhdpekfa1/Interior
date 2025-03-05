@@ -59,7 +59,7 @@ export const InquiryDialog = () => {
               {/* 툴팁 문구 */}
               <MailQuestion className='w-20 h-20' />
               {selectedProducts.length === 0 && (
-                <div className='absolute bottom-full mb-2 w-max px-3 py-1 text-[10px] md:text-xs text-white bg-two/90 rounded-md opacity-0 group-hover:opacity-100 transition-opacity'>
+                <div className='absolute bottom-full mb-2 w-max px-3 py-1 text-[10px] md:text-xs text-white bg-two/90 opacity-0 group-hover:opacity-100 transition-opacity'>
                   제품을 선택 후 문의하세요!
                 </div>
               )}
@@ -67,7 +67,7 @@ export const InquiryDialog = () => {
           </div>
         </DialogTrigger>
 
-        <DialogContent className='max-w-3xl bg-ef overflow-scroll'>
+        <DialogContent className='max-w-3xl bg-white overflow-scroll rounded-none'>
           <DialogHeader>
             <div className='flex justify-between items-center'>
               <DialogTitle className='text-point text-lg sm:text-xl md:text-2xl'>
