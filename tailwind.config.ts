@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {
-        wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8', // 👈 추가
+        wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -48,16 +48,15 @@ const config: Config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         chart: {
-          1: 'hsl(var(--chart-1))',
-          2: 'hsl(var(--chart-2))',
-          3: 'hsl(var(--chart-3))',
-          4: 'hsl(var(--chart-4))',
-          5: 'hsl(var(--chart-5))',
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))',
         },
-        // point: '#2F4156',
-        // second: '#567C8D',
-        point: '#2C3E50',
-        second: '#D4AF37',
+        point: '#3C4D59',
+        // point: '#2C3E50',
+        second: '#C8D9E6',
         blue: '#C8D9E6',
         cream: '#EAE0C8',
         ef: '#EFEFEF',
@@ -65,6 +64,16 @@ const config: Config = {
         two: '#222',
         three: '#333',
         four: '#444',
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -73,12 +82,20 @@ const config: Config = {
       },
       keyframes: {
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
       },
       animation: {

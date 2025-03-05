@@ -89,6 +89,34 @@ export {
   SheetTitle,
   SheetDescription,
 } from './sheet/sheet';
+
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
+} from './sidebar/sidebar';
+export { Skeleton } from './skeleton/skeleton';
 export {
   SubTabs,
   SubTabsList,
@@ -106,3 +134,9 @@ export {
   TableCell,
   TableCaption,
 } from './table/table';
+export {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from './tooltip/tooltip';

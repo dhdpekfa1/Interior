@@ -27,8 +27,6 @@ export async function POST(req: Request) {
     };
 
     await transporter.sendMail(mailOptions);
-
-    console.log('✅ 이메일 전송 완료');
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('❌ 이메일 전송 실패:', error);

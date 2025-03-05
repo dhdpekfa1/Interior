@@ -1,18 +1,22 @@
-import Link from 'next/link';
-import { MobileHeader } from './MobileHeader';
-import { DesktopMenubar } from './DesktopHeader';
+'use client';
+import { usePathname } from 'next/navigation';
+import { useInView } from 'react-intersection-observer';
+import { MobileHeader, DesktopHeader } from './';
+import { cn } from '@/lib/utils';
 
 export const Header = () => {
-  return (
-    <div className='fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 bg-point text-center px-10 py-4 z-30'>
-      <Link href={'/'}>
-        <h1 className='text-second text-lg md:text-2xl font-bold'>LOGO</h1>
-      </Link>
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
-      {/* PC Header */}
-      <DesktopMenubar />
-      {/* Mobile Header */}
-      <MobileHeader />
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  return (
+    <div className={cn(!isHome && 'mb-14 md:mb-20')}>
+      {isHome && <div ref={ref} />}
+      <DesktopHeader isHome={isHome} isScrolled={!inView} />
+      <MobileHeader isHome={isHome} isScrolled={!inView} />
     </div>
   );
 };

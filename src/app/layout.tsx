@@ -1,16 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/frame';
+import { TopButton } from '@/components/common';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const notoSans = Noto_Sans_KR({
+  variable: '--font-noto-sans',
   subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'], // 원하는 굵기
 });
 
 export const metadata: Metadata = {
@@ -25,11 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${notoSans.variable} antialiased`}>
         <Header />
-        <div className='pt-14'>{children}</div>
+        <div>{children}</div>
+        <TopButton />
         {/* <QuickInquiry /> TODO: 빠른 문의 적용 필요?*/}
         <Footer />
       </body>

@@ -10,7 +10,7 @@ const AboutUsPage = () => {
   return (
     <div className='container'>
       <UrlTabs
-        title='회사소개'
+        title='Company'
         basePath='/about'
         defaultTab='us'
         tabs={ABOUT_TABS}

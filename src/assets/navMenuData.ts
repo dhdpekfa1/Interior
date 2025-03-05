@@ -14,16 +14,21 @@ interface MenuItem {
 // TODO: 이미지 변경
 export const menuData: MenuItem[] = [
   {
-    title: '회사소개',
-    baseUrl: '/about',
+    title: 'Home',
+    baseUrl: '/',
+    subMenu: [],
+  },
+  {
+    title: 'Company',
+    baseUrl: '/about/us',
     subMenu: [
       { label: '회사소개', url: '/about/us' },
-      { label: '찾아오시는 길', url: '/about/directions' },
+      { label: '오시는 길', url: '/about/directions' },
     ],
   },
   {
-    title: '제품소개',
-    baseUrl: '/product',
+    title: 'Product',
+    baseUrl: '/product/deco',
     subMenu: [
       {
         label: '데코타일',
@@ -50,11 +55,6 @@ export const menuData: MenuItem[] = [
         url: '/product/deluxe',
         img: 'https://images.unsplash.com/photo-1580398562556-d33329a0f29b?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
-      // {
-      //   label: '수평몰탈',
-      //   url: '/product/self',
-      //   img: 'https://images.unsplash.com/photo-1454694220579-9d6672b1ec2a?q=80&w=2185&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      // },
     ],
     menuTitle: [
       '전체',
@@ -109,7 +109,7 @@ export const menuData: MenuItem[] = [
   //   baseUrl: '/customer',
   //   subMenu: [
   //     { label: '공지사항', url: '/customer/notification' },
-  //     { label: '문의하기', url: '/customer/inquiry' },
+  //     { label: '문의접수', url: '/customer/inquiry' },
   //   ],
   // },
 ];

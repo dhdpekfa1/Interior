@@ -36,6 +36,14 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -62,6 +70,14 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 /* Chrome, Safari, Edge */
@@ -81,12 +97,36 @@ input[type='number'] {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground bg-gray-800;
+    @apply bg-background text-foreground;
   }
   .container {
     @apply mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 min-h-screen;
   }
   .wrapper {
     @apply py-4 px-1;
+  }
+}
+
+.input-style {
+  @apply w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base;
+}
+
+.error-style {
+  @apply text-[10px] sm:text-xs md:text-sm text-red-500;
+}
+
+@layer utilities {
+  @keyframes slow-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+  }
+
+  .slow-bounce {
+    animation: slow-bounce 2s infinite;
   }
 }
