@@ -85,13 +85,13 @@ export const FirstSlide = () => {
 
         {/* 버튼 */}
         <CarouselPrevious
-          className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-two/90 text-white/70 
-               hover:bg-two hover:text-white
+          className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-two/60 text-white/70 
+               hover:bg-two/70 hover:text-white
                opacity-0 group-hover:opacity-100 transition-opacity duration-300'
         />
         <CarouselNext
-          className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-two/90 text-white/70 
-               hover:bg-two hover:text-white
+          className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-two/60 text-white/70 
+               hover:bg-two/70 hover:text-white
                opacity-0 group-hover:opacity-100 transition-opacity duration-300'
         />
       </Carousel>

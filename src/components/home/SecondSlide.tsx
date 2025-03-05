@@ -56,19 +56,23 @@ export const SecondSlide = () => {
               </div>
 
               {/* 텍스트 + 버튼 */}
-              <div className='text-center'>
+              <div className='flex flex-col items-center gap-2'>
                 <h2 className='text-lg md:text-xl font-bold text-two'>
                   {item.label}
                 </h2>
+                <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
+                  {item.description}
+                </span>
                 <Button
                   variant='outline'
                   className={cn(
+                    'group flex items-center justify-center',
                     'mt-2 px-3 py-1 border bg-white/80 border-two/50 text-two/50 text-xs md:text-sm transition-all duration-300 mb-6',
                     'group-hover:border-point group-hover:text-point hover:bg-white/80'
                   )}
                 >
                   제품 보기
-                  <MoveRight className='ml-1 transition-[padding] duration-300 text-two/50 group-hover:text-point group-hover:pl-1' />
+                  <MoveRight className='ml-1 text-base text-two/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-point' />
                 </Button>
               </div>
             </Link>
