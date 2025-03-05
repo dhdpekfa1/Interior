@@ -37,7 +37,7 @@ export const InquiryDialog = () => {
   };
 
   return (
-    <div className='fixed bottom-6 right-10 md:bottom-32 md:right-12'>
+    <div className='fixed bottom-32 md:bottom-auto md:top-1/2 right-6 md:right-10 md:-translate-y-1/2'>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
@@ -59,8 +59,8 @@ export const InquiryDialog = () => {
               {/* 툴팁 문구 */}
               <MailQuestion className='w-20 h-20' />
               {selectedProducts.length === 0 && (
-                <div className='absolute bottom-full mb-2 w-max px-3 py-1 text-[10px] md:text-xs text-white bg-two/90 opacity-0 group-hover:opacity-100 transition-opacity'>
-                  제품을 선택 후 문의하세요!
+                <div className='absolute bottom-full mb-2 w-max px-2 py-1 text-[10px] md:text-xs text-white bg-two/90 opacity-0 group-hover:opacity-100 transition-opacity'>
+                  제품을 선택 후 문의하세요
                 </div>
               )}
             </Button>

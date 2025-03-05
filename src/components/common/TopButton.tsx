@@ -20,7 +20,7 @@ export const TopButton = () => {
       <Button
         onClick={scrollToTop}
         className={cn(
-          'fixed bottom-6 right-6 md:bottom-10 md:right-10 p-3 md:p-4 text-white shadow-lg flex items-center gap-1',
+          'fixed bottom-6 right-6 md:bottom-10 p-3 md:p-4 text-white shadow-lg flex items-center gap-1',
           'bg-two hover:bg-point group',
           'transition-all duration-500',
           inView
