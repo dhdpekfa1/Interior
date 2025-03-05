@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryDialog, ProductCounter } from '@/components/product';
-import { Check } from 'lucide-react';
+import { Check, Asterisk } from 'lucide-react';
 
 interface Data {
   id: number;
@@ -20,7 +20,7 @@ interface SampleListProps {
   dataList: Data[];
 }
 
-const ITEMS_PER_PAGE = 30; // 페이지당 아이템 수
+const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
 
 export const SampleList = ({
   title,
@@ -71,6 +71,13 @@ export const SampleList = ({
         <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep lg:pb-8'>
           {content}
         </p>
+      </div>
+
+      <div className='flex item-center justify-center text-[10px] sm:xs md:text-sm text-two/70'>
+        <Asterisk className='h-auto w-2 md:w-3' />
+        <span>
+          원하시는 제품을 선택한 후, 문의하기 버튼을 통해 상담을 진행해 주세요.
+        </span>
       </div>
 
       {/* 제품 리스트 */}
@@ -127,6 +134,7 @@ export const SampleList = ({
                         (item) => item.id === product.id.toString()
                       )?.count || 1
                     }
+                    showRemoveButton={false}
                   />
                 </div>
               )}
