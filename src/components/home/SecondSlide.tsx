@@ -9,16 +9,29 @@ import { Button } from '@/components/ui';
 import { MoveRight } from 'lucide-react';
 
 export const SecondSlide = () => {
-  const data = menuData.find((data) => data.title === 'Product');
+  const data = menuData.find((data) => data.title === '제품소개');
 
   if (!data || !data.subMenu) {
-    return <div>데이터가 없습니다.</div>;
+    return (
+      <div className='w-full flex flex-wrap justify-center gap-8 px-4 py-10'>
+        {[...Array(5)].map((_, index) => (
+          <div
+            key={index}
+            className='w-[90%] md:w-[30%] flex flex-col items-center gap-4 animate-pulse'
+          >
+            <div className='w-full h-[30rem] md:h-[380px] bg-gray-200 rounded-md' />
+            <div className='w-1/2 h-5 bg-gray-200 rounded-md mt-4' />
+            <div className='w-24 h-8 bg-gray-200 rounded-md mt-2' />
+          </div>
+        ))}
+      </div>
+    );
   }
 
   return (
     <div className='w-full flex flex-wrap justify-center gap-8 px-4 py-10'>
       {data.subMenu.map((item, index) => (
-        <InView key={item.label} threshold={0.2} triggerOnce>
+        <InView key={item.label} threshold={0.2}>
           {({ ref, inView }) => (
             <Link
               href={item.url}

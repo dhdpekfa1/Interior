@@ -76,7 +76,6 @@ export const MobileHeader = ({
     >
       <Link href='/'>
         <h2 className='font-bold text-xl sm:text-2xl italic'>YD-INDUSTRY</h2>
-        {/* <Image src='/assets/logo.png' alt='logo' width={80} height={50} /> */}
       </Link>
 
       <div>
@@ -88,7 +87,7 @@ export const MobileHeader = ({
             <SheetHeader>
               <SheetTitle className='text-point italic'>YD-INDUSTRY</SheetTitle>
               <SheetDescription className='text-gray-400'>
-                짧은 소개
+                신뢰로 미래를 설계하다.
               </SheetDescription>
             </SheetHeader>
 

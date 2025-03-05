@@ -14,12 +14,7 @@ interface MenuItem {
 // TODO: 이미지 변경
 export const menuData: MenuItem[] = [
   {
-    title: 'Home',
-    baseUrl: '/',
-    subMenu: [],
-  },
-  {
-    title: 'Company',
+    title: '회사소개',
     baseUrl: '/about/us',
     subMenu: [
       { label: '회사소개', url: '/about/us' },
@@ -27,7 +22,7 @@ export const menuData: MenuItem[] = [
     ],
   },
   {
-    title: 'Product',
+    title: '제품소개',
     baseUrl: '/product/deco',
     subMenu: [
       {
@@ -104,12 +99,12 @@ export const menuData: MenuItem[] = [
   //     },
   //   ],
   // },
-  // {
-  //   title: '고객지원',
-  //   baseUrl: '/customer',
-  //   subMenu: [
-  //     { label: '공지사항', url: '/customer/notification' },
-  //     { label: '문의접수', url: '/customer/inquiry' },
-  //   ],
-  // },
+  {
+    title: '고객지원',
+    baseUrl: '/customer',
+    subMenu: [
+      // { label: '공지사항', url: '/customer/notification' },
+      { label: '문의접수', url: '/customer/inquiry' },
+    ],
+  },
 ];
