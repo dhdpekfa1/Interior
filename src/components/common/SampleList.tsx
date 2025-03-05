@@ -91,13 +91,20 @@ export const SampleList = ({
             >
               <div onClick={() => handleSelectProduct(product)}>
                 <div className='relative w-full aspect-square overflow-hidden'>
-                  <Image
-                    src={product.img || ''}
-                    alt={product.name}
-                    fill
-                    sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
-                    className='duration-300 hover:scale-125 object-cover'
-                  />
+                  {product.img ? (
+                    <Image
+                      src={product.img}
+                      alt={product.name}
+                      fill
+                      sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
+                      className='duration-300 hover:scale-125 object-cover'
+                    />
+                  ) : (
+                    <div className='w-full h-full flex items-center justify-center bg-gray-300 animate-pulse'>
+                      <p className='text-xs md:text-sm'>이미지 준비중</p>
+                    </div>
+                  )}
+
                   {isSelected && (
                     <Check
                       className='absolute top-2 right-2 text-point bg-white'
