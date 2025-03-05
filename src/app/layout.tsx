@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import './globals.css';
 import { Footer, Header } from '@/components/frame';
+import { TopButton } from '@/components/common';
 
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${notoSans.variable} antialiased`}>
         <Header />
         <div>{children}</div>
+        <TopButton />
         {/* <QuickInquiry /> TODO: 빠른 문의 적용 필요?*/}
         <Footer />
       </body>

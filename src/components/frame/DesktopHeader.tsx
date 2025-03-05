@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { useState } from 'react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
@@ -36,7 +36,8 @@ export const DesktopHeader = ({
       <div className='w-full max-w-7xl flex items-center justify-between px-10 h-[80px]'>
         {/* 로고 */}
         <Link href='/'>
-          <Image src='/assets/logo.png' alt='logo' width={80} height={50} />
+          <h2 className='font-bold text-2xl italic'>LOGO</h2>
+          {/* <Image src='/assets/logo.png' alt='logo' width={80} height={50} /> */}
         </Link>
 
         {/* 메뉴 */}
