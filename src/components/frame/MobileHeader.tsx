@@ -44,20 +44,34 @@ export const MobileHeader = ({
     return () => mediaQuery.removeEventListener('change', handleResize);
   }, []);
 
-  const getHeaderClass = () => {
-    if (isHome) {
-      return isScrolled
-        ? 'bg-white text-point shadow'
-        : 'bg-transparent text-white';
+  const getStyle = (type: 'header' | 'icon') => {
+    switch (type) {
+      case 'header':
+        if (isHome) {
+          return isScrolled
+            ? 'bg-white text-point shadow'
+            : 'bg-transparent text-white';
+        } else {
+          return 'bg-point text-white';
+        }
+
+      case 'icon':
+        if (isHome) {
+          return isScrolled ? 'text-two hover:text-point' : 'text-white';
+        } else {
+          return 'text-ef hover:text-white';
+        }
+
+      default:
+        return '';
     }
-    return 'bg-point text-white';
   };
 
   return (
     <div
       className={cn(
         'md:hidden fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 text-center px-10 py-4 z-30 transition-all duration-300',
-        getHeaderClass()
+        getStyle('header')
       )}
     >
       <Link href='/'>
@@ -68,14 +82,7 @@ export const MobileHeader = ({
       <div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <AlignRight
-              className={cn(
-                'cursor-pointer',
-                isHome
-                  ? 'text-two hover:text-point'
-                  : 'text-ef hover:text-white'
-              )}
-            />
+            <AlignRight className={cn('cursor-pointer', getStyle('icon'))} />
           </SheetTrigger>
           <SheetContent side='left' className='w-64 bg-white'>
             <SheetHeader>
