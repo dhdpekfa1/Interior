@@ -128,8 +128,7 @@ export const SampleList = ({
         })}
       </div>
 
-      {/* 문의하기 버튼 */}
-
+      {/* 문의접수 버튼 */}
       <div className='mt-10 flex justify-center'>
         <InquiryDialog />
       </div>

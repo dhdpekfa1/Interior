@@ -71,7 +71,7 @@ export const InquiryDialog = () => {
           <DialogHeader>
             <div className='flex justify-between items-center'>
               <DialogTitle className='text-point text-lg sm:text-xl md:text-2xl'>
-                문의하기
+                문의접수
               </DialogTitle>
             </div>
             <DialogDescription>

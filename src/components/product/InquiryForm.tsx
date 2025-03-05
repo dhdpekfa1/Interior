@@ -202,7 +202,7 @@ export const InquiryForm = () => {
         className='bg-point/90 text-ef p-2 text-sm sm:text-base hover:bg-point'
         disabled={loading || success}
       >
-        {loading ? '전송 중...' : '문의하기'}
+        {loading ? '전송 중...' : '접수하기'}
       </Button>
     </form>
   );
