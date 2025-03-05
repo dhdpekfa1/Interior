@@ -1,4 +1,5 @@
 import { SubTitle } from '@/components/common';
+import { Button } from '../ui';
 
 export const DirectionsTab = () => {
   // TODO: 데이터 받으면 수정
@@ -21,7 +22,7 @@ export const DirectionsTab = () => {
 
   return (
     <div className='wrapper'>
-      <SubTitle title='찾아오기' />
+      <SubTitle title='오시는 길' />
       <div
         className='bg-cream'
         style={{
@@ -32,13 +33,22 @@ export const DirectionsTab = () => {
         지도
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-3 items-center justify-center gap-4 md:mx-1 my-6'>
+      <div className='w-full flex items-end justify-end my-6'>
+        <Button
+          variant='ghost'
+          className='border border-point hover:bg-point hover:text-white'
+          // onClick={() => console.log('TODO: 바로가기 연동')}
+        >
+          바로가기
+        </Button>
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-3 items-center justify-center gap-4'>
         {contact.map((item) => (
           <div
             key={item.label}
-            className='flex flex-col items-center gap-3 bg-point rounded-sm p-3 w-full h-full'
+            className='flex flex-col items-center gap-3 bg-point p-3 w-full h-full'
           >
-            <p className='text-base sm:text-sm md:text-lg font-bold text-ef'>
+            <p className='text-base sm:text-sm md:text-lg font-bold text-white'>
               {item.label}
             </p>
             <div className='w-[85%] h-0.5 bg-dd/50' />
@@ -47,12 +57,12 @@ export const DirectionsTab = () => {
                 href={item.link}
                 target={item.label === '주소' ? '_blank' : '_self'}
                 rel='noopener noreferrer'
-                className='text-base md:text-lg font-bold text-dd hover:underline'
+                className='text-base md:text-lg font-bold text-white hover:underline text-center break-keep'
               >
                 {item.info}
               </a>
             ) : (
-              <p className='text-base md:text-lg font-bold text-dd break-keep'>
+              <p className='text-base md:text-lg font-bold text-white break-keep'>
                 {item.info}
               </p>
             )}
