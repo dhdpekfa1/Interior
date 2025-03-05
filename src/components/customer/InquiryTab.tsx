@@ -15,7 +15,7 @@ export const InquiryTab = () => {
     <div className='wrapper'>
       <SubTitle title='문의접수' />
       <div className='flex items-center justify-center'>
-        <Card className='w-[95%] sm:w-[80%] md:w-2/3 lg:w-[60%] bg-white'>
+        <Card className='w-full bg-white'>
           <CardHeader>
             <CardTitle className='text-lg sm:text-xl md:text-2xl text-point'>
               문의접수
