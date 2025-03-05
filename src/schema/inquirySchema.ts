@@ -25,13 +25,18 @@ export const emailDomains = [
 ];
 
 export const inquirySchema = z.object({
-  category: z.string().min(1, { message: '문의 유형을 선택해주세요.' }),
+  category: z
+    .string()
+    .min(1, { message: '문의 유형을 선택해주세요.' })
+    .optional(),
   email: z.string().email({ message: '올바른 이메일 주소를 입력하세요.' }),
   emailDomain: z.string().optional(),
   phone: z
     .string()
     .max(13)
-    .regex(/^010-\d{4}-\d{4}$/, { message: '전화번호 형식: 010-1234-5678' }),
+    .regex(/^010-\d{4}-\d{4}$/, {
+      message: '전화번호를 입력해주세요. (숫자만 입력해주세요)',
+    }),
   message: z.string().min(2, { message: '문의 내용을 입력해주세요.' }),
   agree: z.literal(true, {
     errorMap: () => ({ message: '개인정보 수집 및 이용목적에 동의해주세요.' }),

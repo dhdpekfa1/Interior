@@ -49,11 +49,10 @@ export const InquiryForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
       {/* 유형 선택 */}
       <div className='flex flex-col space-y-1.5 w-1/2 lg:w-1/3'>
-        <Label htmlFor='category'>문의 유형</Label>
+        <Label htmlFor='category'>
+          문의 유형 <span className='text-three/50'>[선택]</span>
+        </Label>
         <Select
-          {...register('category', {
-            required: '문의 유형을 선택해주세요.',
-          })}
           onValueChange={(value) =>
             setValue('category', value, { shouldValidate: true })
           }
@@ -73,9 +72,6 @@ export const InquiryForm = () => {
             ))}
           </SelectContent>
         </Select>
-        {errors.category && (
-          <p className='error-style'>{errors.category.message}</p>
-        )}
       </div>
 
       {/* 이메일 */}
@@ -161,12 +157,11 @@ export const InquiryForm = () => {
         <textarea
           readOnly
           className='w-full mt-2 p-2 border bg-white text-[10px] sm:text-xs md:text-sm h-28 resize-none'
-          // TODO: 회사명 변경
           value={`개인정보 수집, 이용 동의서
-1. 개인정보 수집, 이용 기관명 : 데코밸리(주)
+1. 개인정보 수집, 이용 기관명 : 와이디인더스트리
 2. 개인정보 수집, 이용 범위와 사용목적
  - 수집, 이용 범위 : 이름, 핸드폰번호, 이메일, 회사명
- - 사용목적 : 고객 문의 답변 및 데코밸리 상품안내`}
+ - 사용목적 : 고객 문의 답변 및 와이디인더스트리 상품안내`}
         />
         <div className='flex items-center gap-2 mt-2'>
           <Checkbox
