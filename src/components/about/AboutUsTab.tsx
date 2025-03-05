@@ -7,7 +7,7 @@ export const AboutUsTab = () => {
       <SubTitle title='회사 소개' />
       <div className='grid gap-4 md:gap-6 lg:gap-8 w-full grid-cols-1 md:grid-cols-2'>
         <div className='bg-cream h-[320px] md:h-[400px]'>사진</div>
-        <div className='h-[320px] md:h-[400px] text-sm md:text-base flex flex-col gap-1 md:gap-2 leading-relaxed'>
+        <div className='h-[320px] md:h-[400px] text-sm md:text-base flex flex-col md:gap-2 leading-relaxed'>
           <p>안녕하세요.</p>
           <p>저희 YD-Industry는</p>
           <p>수많은 현장에서 쌓아온 경험과 노하우를 바탕으로,</p>
