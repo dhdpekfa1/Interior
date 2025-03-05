@@ -18,7 +18,7 @@ export const DesktopHeader = ({
   const getHeaderClass = () => {
     if (isHover) return 'h-[350px] bg-white text-point shadow-lg';
     if (isHome) {
-      if (isScrolled) return 'h-[80px] bg-white text-point shadow';
+      if (isScrolled) return 'h-[80px] bg-white text-point shadow-md';
       return 'h-[80px] bg-transparent text-white';
     }
     return 'h-[80px] bg-point text-white';

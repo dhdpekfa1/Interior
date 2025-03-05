@@ -67,7 +67,7 @@ export const InquiryDialog = () => {
           </div>
         </DialogTrigger>
 
-        <DialogContent className='max-w-3xl bg-white overflow-scroll rounded-none'>
+        <DialogContent className='w-full md:w-[80%] max-w-3xl bg-white overflow-scroll rounded-none'>
           <DialogHeader>
             <div className='flex justify-between items-center'>
               <DialogTitle className='text-point text-lg sm:text-xl md:text-2xl'>

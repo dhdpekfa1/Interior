@@ -32,7 +32,7 @@ export const SecondSlide = () => {
               )}
             >
               {/* 이미지 */}
-              <div className='flex items-center justify-center w-full h-[180px] md:h-[380px] overflow-hidden'>
+              <div className='flex items-center justify-center w-full h-[30rem] md:h-[380px] overflow-hidden'>
                 <Image
                   src={item.img!}
                   alt={item.label}

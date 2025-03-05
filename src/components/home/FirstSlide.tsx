@@ -59,7 +59,7 @@ export const FirstSlide = () => {
         plugins={[Autoplay({ delay: 4000, stopOnInteraction: false })]}
         className='relative group'
       >
-        <CarouselContent className='h-80 md:h-[40rem] lg:h-[85vh]'>
+        <CarouselContent className='h-80 md:h-[40rem] lg:h-screen'>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
               <Card className='w-full h-full border-none relative'>
