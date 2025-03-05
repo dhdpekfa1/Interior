@@ -35,13 +35,24 @@ export const UrlTabs = ({
 
   return (
     <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
-      <TabsList title={title}>
-        {tabs.map((tab) => (
-          <TabsTrigger key={tab.value} value={tab.value}>
-            {tab.label}
-          </TabsTrigger>
-        ))}
+      <TabsList className='w-full flex bg-ef'>
+        <div className='flex items-center px-4 py-2 bg-black mr-1 text-white font-bold'>
+          {title}
+        </div>
+
+        <div className='flex flex-1'>
+          {tabs.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className='flex-1 hover:bg-point/20'
+            >
+              {tab.label}
+            </TabsTrigger>
+          ))}
+        </div>
       </TabsList>
+
       {tabs.map((tab) => (
         <TabsContent key={tab.value} value={tab.value}>
           {tab.component}
