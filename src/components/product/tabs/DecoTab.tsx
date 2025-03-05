@@ -9,6 +9,7 @@ export const DecoTab = () => {
     name: item.name,
     category: item.category,
     img: item.img,
+    tags: item.tags,
   }));
 
   return (

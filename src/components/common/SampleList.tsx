@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryDialog, ProductCounter } from '@/components/product';
@@ -11,6 +12,7 @@ interface Data {
   id: number;
   name: string;
   img?: string;
+  tags: string[];
 }
 
 interface SampleListProps {
@@ -90,13 +92,12 @@ export const SampleList = ({
           return (
             <div
               key={product.id}
-              className={`group transition-transform duration-300 cursor-pointer ${
-                isSelected
-                  ? 'border-point bg-second/10 shadow-md'
-                  : 'border-gray-200 bg-white'
-              }`}
+              className='group transition-transform duration-300 cursor-pointer border-point bg-white shadow-md'
             >
-              <div onClick={() => handleSelectProduct(product)}>
+              <div
+                onClick={() => handleSelectProduct(product)}
+                className='flex flex-col gap-4'
+              >
                 <div className='relative w-full aspect-square overflow-hidden'>
                   {product.img ? (
                     <Image
@@ -112,32 +113,52 @@ export const SampleList = ({
                     </div>
                   )}
 
-                  {isSelected && (
-                    <Check
-                      className='absolute top-2 right-2 text-point bg-white'
-                      size={24}
-                    />
-                  )}
+                  <Check
+                    className={cn(
+                      'absolute top-2 right-2 text-point bg-white',
+                      'transition-all duration-300',
+                      isSelected
+                        ? 'opacity-100 visible scale-100'
+                        : 'opacity-0 invisible scale-95'
+                    )}
+                    size={24}
+                  />
                 </div>
                 <p className='mt-2 text-center text-two text-xs sm:text-sm md:text-base'>
                   {product.name}
                 </p>
-              </div>
 
-              {/* 선택된 상품: 카운터 표시 */}
-              {isSelected && (
-                <div className='mt-2 flex justify-center pb-2'>
-                  <ProductCounter
-                    id={product.id.toString()}
-                    count={
-                      selectedProducts.find(
-                        (item) => item.id === product.id.toString()
-                      )?.count || 1
-                    }
-                    showRemoveButton={false}
-                  />
+                {/* 태그 */}
+                <div className='flex items-center justify-around'>
+                  {product.tags.map((tag, index) => (
+                    <p
+                      key={tag + index}
+                      className='text-two/60 text-xs sm:text-sm'
+                    >
+                      {tag}
+                    </p>
+                  ))}
                 </div>
-              )}
+              </div>
+              {/* 선택된 상품: 카운터 표시 */}
+              <div
+                className={cn(
+                  'flex justify-center pb-2 transition-all duration-300',
+                  isSelected
+                    ? 'opacity-100 visible scale-100 mt-5'
+                    : 'opacity-0 invisible scale-95'
+                )}
+              >
+                <ProductCounter
+                  id={product.id.toString()}
+                  count={
+                    selectedProducts.find(
+                      (item) => item.id === product.id.toString()
+                    )?.count || 1
+                  }
+                  showRemoveButton={false}
+                />
+              </div>
             </div>
           );
         })}
