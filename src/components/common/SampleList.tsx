@@ -36,6 +36,9 @@ export const SampleList = ({
       (item) => item.id === product.id.toString()
     );
 
+    console.log('main ==> ', imgUrl);
+    console.log('item ==> ', dataList[0].img);
+
     if (isSelected) {
       removeProduct(product.id.toString());
     } else {
@@ -45,6 +48,13 @@ export const SampleList = ({
         count: 1,
       });
     }
+  };
+
+  const normalizeUrl = (url: string) => {
+    if (url.startsWith('https:') && !url.startsWith('https://')) {
+      return url.replace('https:', 'https://');
+    }
+    return url;
   };
 
   // 페이지네이션 적용
@@ -93,7 +103,7 @@ export const SampleList = ({
                 <div className='relative w-full aspect-square overflow-hidden'>
                   {product.img ? (
                     <Image
-                      src={product.img}
+                      src={normalizeUrl(product.img)}
                       alt={product.name}
                       fill
                       sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
