@@ -7,7 +7,7 @@ import { TopButton } from '@/components/common';
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '700'], // 원하는 굵기
+  weight: ['300', '400', '500', '700'],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,6 @@ export default function RootLayout({
         <Header />
         <div>{children}</div>
         <TopButton />
-        {/* <QuickInquiry /> TODO: 빠른 문의 적용 필요?*/}
         <Footer />
       </body>
     </html>
