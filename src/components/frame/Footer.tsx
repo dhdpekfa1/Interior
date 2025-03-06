@@ -29,7 +29,8 @@ export const Footer = () => {
             <span className='text-white/70 w-20'>{item.label}</span>
             {item.label === '주소' ? (
               <a
-                href='https://map.naver.com/p/search/경기도%20평택시%20청북읍%20드림산단7로%2036'
+                // TODO: 주소 변경
+                href='https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C523953%2C1084098&rt1=&rt2=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8C%90%EA%B5%90%EC%98%A4%ED%94%BC%EC%8A%A4&rtIds=%2C&rtTypes=%2C'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='font-bold'

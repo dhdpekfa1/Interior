@@ -1,5 +1,6 @@
 import { SubTitle } from '@/components/common';
 import { Button } from '../ui';
+import { KakaoMap } from '@/components/common/KakaoMap';
 
 export const DirectionsTab = () => {
   // TODO: 데이터 받으면 수정
@@ -7,7 +8,7 @@ export const DirectionsTab = () => {
     {
       label: '주소',
       info: '경기도 평택시 청북읍 드림산단7로 36',
-      link: `https://map.naver.com/p/entry/address/14134031.107402,4448179.4054819,%EA%B2%BD%EA%B8%B0%20%ED%8F%89%ED%83%9D%EC%8B%9C%20%EC%B2%AD%EB%B6%81%EC%9D%8D%20%EB%93%9C%EB%A6%BC%EC%82%B0%EB%8B%A87%EB%A1%9C%2036?c=17.00,0,0,0,dh`, // Naver Maps 길찾기
+      link: `https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C523953%2C1084098&rt1=&rt2=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8C%90%EA%B5%90%EC%98%A4%ED%94%BC%EC%8A%A4&rtIds=%2C&rtTypes=%2C`, // Kakao Maps 길찾기
     },
     {
       label: '전화번호',
@@ -23,16 +24,14 @@ export const DirectionsTab = () => {
   return (
     <div className='wrapper'>
       <SubTitle title='오시는 길' />
-      <div
+      {/* <div
         className='bg-cream'
         style={{
           width: '100%',
           height: 'calc(50vh)',
         }}
-      >
-        지도
-      </div>
-
+      /> */}
+      <KakaoMap />
       <div className='w-full flex items-end justify-end my-6'>
         <Button
           variant='ghost'
