@@ -1,5 +1,5 @@
 import { SubTitle } from '@/components/common';
-import { Button } from '../ui';
+import { Separator } from '@/components/ui';
 import { KakaoMap } from '@/components/common/KakaoMap';
 
 export const DirectionsTab = () => {
@@ -24,23 +24,10 @@ export const DirectionsTab = () => {
   return (
     <div className='wrapper'>
       <SubTitle title='오시는 길' />
-      {/* <div
-        className='bg-cream'
-        style={{
-          width: '100%',
-          height: 'calc(50vh)',
-        }}
-      /> */}
+
+      {/* 지도 */}
       <KakaoMap />
-      <div className='w-full flex items-end justify-end my-6'>
-        <Button
-          variant='ghost'
-          className='border border-point hover:bg-point hover:text-white'
-          // onClick={() => console.log('TODO: 바로가기 연동')}
-        >
-          바로가기
-        </Button>
-      </div>
+      <Separator className='my-4' />
       <div className='grid grid-cols-1 md:grid-cols-3 items-center justify-center gap-4'>
         {contact.map((item) => (
           <div
@@ -50,7 +37,7 @@ export const DirectionsTab = () => {
             <p className='text-base sm:text-sm md:text-lg font-bold text-white'>
               {item.label}
             </p>
-            <div className='w-[85%] h-0.5 bg-dd/50' />
+            <Separator className='w-[90%]' />
             {item.link ? (
               <a
                 href={item.link}
