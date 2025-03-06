@@ -7,6 +7,7 @@ import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryDialog, ProductCounter } from '@/components/product';
 import { Check, Asterisk } from 'lucide-react';
+import { Separator } from '@/components/ui';
 
 interface Data {
   id: number;
@@ -17,7 +18,8 @@ interface Data {
 
 interface SampleListProps {
   title: string;
-  imgUrl: string;
+  mainImgUrl: string;
+  subImgUrl: string;
   content: string;
   dataList: Data[];
 }
@@ -26,7 +28,8 @@ const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
 
 export const SampleList = ({
   title,
-  imgUrl,
+  mainImgUrl,
+  subImgUrl,
   dataList,
   content,
 }: SampleListProps) => {
@@ -62,28 +65,53 @@ export const SampleList = ({
       <SubTitle title={title} />
 
       {/* 제품 설명 */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 items-center lg:items-end mb-10'>
-        <Image
-          src={imgUrl}
-          alt={`${title} 소개`}
-          width={200}
-          height={300}
-          className='w-full h-full'
-        />
-        <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep lg:pb-8'>
-          {content}
-        </p>
+      {/* <div className='grid grid-cols-1 sm:grid-cols-2 items-start h-[20rem] gap-6'> */}
+      <div className='flex flex-col sm:flex-row items-start h-[40rem] gap-6'>
+        {/* 메인 이미지 */}
+        <div className='relative w-full h-full flex-1'>
+          <Image
+            src={mainImgUrl}
+            alt={`${title} 소개 이미지 1`}
+            fill
+            className='object-cover'
+          />
+        </div>
+
+        {/* 서브 이미지 + 텍스트 */}
+        <div className='flex flex-col gap-6 lg:gap-12 justify-end h-full flex-1'>
+          <div className='relative w-full h-full'>
+            <Image
+              src={subImgUrl}
+              alt={`${title} 소개 이미지 2`}
+              fill
+              className='object-cover'
+            />
+          </div>
+          <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep'>
+            {content}
+          </p>
+
+          <div className='relative w-full h-full'>
+            <Image
+              src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2662&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              alt={`${title} 소개 이미지 3`}
+              fill
+              className='object-cover'
+            />
+          </div>
+        </div>
       </div>
 
-      <div className='flex item-center justify-center text-[10px] sm:xs md:text-sm text-two/70'>
+      <Separator className='my-4 sm:my-6' />
+      <div className='flex item-center justify-center text-[10px] sm:xs md:text-sm text-two/70 mb-4'>
         <Asterisk className='h-auto w-2 md:w-3' />
-        <span>
-          원하시는 제품을 선택한 후, 문의하기 버튼을 통해 상담을 진행해 주세요.
+        <span className='break-keep'>
+          하단에서 원하시는 제품을 선택한 후, 문의하기 버튼을 통해 상담을 진행해
+          주세요.
         </span>
       </div>
-
       {/* 제품 리스트 */}
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4'>
+      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {paginatedProducts.map((product) => {
           const isSelected = selectedProducts.some(
             (item) => item.id === product.id.toString()
