@@ -1,25 +1,12 @@
 import { SubTitle } from '@/components/common';
 import { Separator } from '@/components/ui';
 import { KakaoMap } from '@/components/common/KakaoMap';
+import { CompanyInfo } from '@/assets/companyInfo';
 
 export const DirectionsTab = () => {
-  // TODO: 데이터 받으면 수정
-  const contact = [
-    {
-      label: '주소',
-      info: '경기도 평택시 청북읍 드림산단7로 36',
-      link: `https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C523953%2C1084098&rt1=&rt2=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8C%90%EA%B5%90%EC%98%A4%ED%94%BC%EC%8A%A4&rtIds=%2C&rtTypes=%2C`, // Kakao Maps 길찾기
-    },
-    {
-      label: '전화번호',
-      info: '031-334-6771',
-      link: 'tel:031-334-6771', // 전화 앱 열기
-    },
-    {
-      label: '팩스',
-      info: '031-334-6771',
-    },
-  ];
+  const contact = CompanyInfo.filter((item) =>
+    ['주소', 'TEL', 'FAX'].includes(item.label)
+  );
 
   return (
     <div className='wrapper'>
@@ -45,11 +32,11 @@ export const DirectionsTab = () => {
                 rel='noopener noreferrer'
                 className='text-base md:text-lg font-bold text-white hover:underline text-center break-keep'
               >
-                {item.info}
+                {item.content}
               </a>
             ) : (
               <p className='text-base md:text-lg font-bold text-white break-keep'>
-                {item.info}
+                {item.content}
               </p>
             )}
           </div>
