@@ -2,26 +2,20 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
 
 export const DesktopHeader = ({
   isHome,
   isScrolled,
+  mounted,
 }: {
   isHome: boolean;
   isScrolled: boolean;
+  mounted: boolean;
 }) => {
   const [isHover, setIsHover] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setMounted(true);
-    }, 280);
-    return () => clearTimeout(timeout);
-  }, []);
 
   const getHeaderClass = () => {
     if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
