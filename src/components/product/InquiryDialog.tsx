@@ -37,7 +37,7 @@ export const InquiryDialog = () => {
   };
 
   return (
-    <div className='fixed bottom-32 md:bottom-auto md:top-1/2 right-6 md:right-10 md:-translate-y-1/2'>
+    <div className='fixed bottom-32 right-6'>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
@@ -50,7 +50,7 @@ export const InquiryDialog = () => {
           >
             <Button
               className={cn(
-                'w-16 h-16 rounded-full text-white shadow-point shadow-md flex items-center justify-center slow-bounce relative',
+                'w-12 h-12 text-white shadow-point shadow-md flex items-center justify-center slow-bounce relative',
                 selectedProducts.length === 0
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-point hover:bg-point'

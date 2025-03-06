@@ -15,17 +15,17 @@ import {
 
 const slides = [
   {
-    img: 'https://images.unsplash.com/photo-1523152694284-c6cb4816d021?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    img: 'https://images.unsplash.com/photo-1499916078039-922301b0eb9b?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: '편안함이 머무는 공간',
     desc: '사람을 편안하게 하는, 안락한 인테리어를 완성합니다.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    img: 'https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: '삶에 품격을 더하다',
     desc: '당신만의 감성을 담아내는 공간을 함께 만들어갑니다.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1558505212-da33bc774163?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    img: 'https://images.unsplash.com/photo-1618221639244-c1a8502c0eb9?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: '디자인과 기능, 그 이상의 가치',
     desc: '섬세한 디테일과 신뢰를 바탕으로 공간을 완성합니다.',
   },
