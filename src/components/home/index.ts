@@ -1,3 +1,5 @@
-export { FirstSlide } from './FirstSlide';
-export { SecondSlide } from './SecondSlide';
-export { ThirdSlide } from './ThirdSlide';
+export { FirstSection } from './FirstSection';
+export { SecondSection } from './SecondSection';
+export { ThirdSection } from './ThirdSection';
+export { FourthSection } from './FourthSection';
+export { SectionHeader } from './SectionHeader';

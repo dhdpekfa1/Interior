@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
@@ -9,26 +9,31 @@ import { cn } from '@/lib/utils';
 export const DesktopHeader = ({
   isHome,
   isScrolled,
+  mounted,
 }: {
   isHome: boolean;
   isScrolled: boolean;
+  mounted: boolean;
 }) => {
   const [isHover, setIsHover] = useState(false);
 
   const getHeaderClass = () => {
-    if (isHover) return 'h-[350px] bg-white text-point shadow-lg';
+    if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
     if (isHome) {
       if (isScrolled) return 'h-[80px] bg-white text-point shadow-md';
       return 'h-[80px] bg-transparent text-white';
     }
     return 'h-[80px] bg-point text-white';
   };
+
   return (
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full',
+        'transition-all duration-500 ease-in-out',
+        mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0',
         getHeaderClass()
       )}
     >
@@ -36,8 +41,7 @@ export const DesktopHeader = ({
       <div className='w-full max-w-7xl flex items-center justify-between px-10 h-[80px]'>
         {/* 로고 */}
         <Link href='/'>
-          <h2 className='font-bold text-2xl italic'>LOGO</h2>
-          {/* <Image src='/assets/logo.png' alt='logo' width={80} height={50} /> */}
+          <Image src='/assets/logo.png' alt='logo' width={80} height={50} />
         </Link>
 
         {/* 메뉴 */}
@@ -62,14 +66,14 @@ export const DesktopHeader = ({
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[80px] mt-2 flex flex-col gap-4 p-4 rounded-md transition-all duration-300',
+                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 rounded-md transition-all duration-100',
                     isHover ? 'opacity-100 visible' : 'opacity-0 invisible'
                   )}
                 >
                   {menu.subMenu.map((subItem) => (
                     <li
                       key={subItem.label}
-                      className='text-sm whitespace-nowrap hover:text-two hover:font-semibold'
+                      className='text-sm whitespace-nowrap text-three/80 hover:text-point hover:font-semibold'
                     >
                       <Link href={subItem.url}>{subItem.label}</Link>
                     </li>

@@ -55,7 +55,6 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
         point: '#3C4D59',
-        // point: '#2C3E50',
         second: '#C8D9E6',
         blue: '#C8D9E6',
         cream: '#EAE0C8',

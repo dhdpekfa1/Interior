@@ -10,18 +10,13 @@ export interface TabItem {
 }
 
 interface UrlTabsProps {
-  title: string;
+  title?: string; // TODO: 제거
   basePath: string; // ex) '/about , '/product'
   defaultTab: string; // ex) 'deco', 'carpet', 'wood'
   tabs: TabItem[];
 }
 
-export const UrlTabs = ({
-  title,
-  basePath,
-  defaultTab,
-  tabs,
-}: UrlTabsProps) => {
+export const UrlTabs = ({ basePath, defaultTab, tabs }: UrlTabsProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -35,18 +30,10 @@ export const UrlTabs = ({
 
   return (
     <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
-      <TabsList className='w-full flex bg-ef'>
-        <div className='flex items-center px-4 py-2 bg-black mr-1 text-white font-bold'>
-          {title}
-        </div>
-
+      <TabsList className='w-full h-full bg-white'>
         <div className='flex flex-1'>
           {tabs.map((tab) => (
-            <TabsTrigger
-              key={tab.value}
-              value={tab.value}
-              className='flex-1 hover:bg-point/20'
-            >
+            <TabsTrigger key={tab.value} value={tab.value} className='flex-1'>
               {tab.label}
             </TabsTrigger>
           ))}
@@ -54,7 +41,7 @@ export const UrlTabs = ({
       </TabsList>
 
       {tabs.map((tab) => (
-        <TabsContent key={tab.value} value={tab.value}>
+        <TabsContent key={tab.value} value={tab.value} className='container'>
           {tab.component}
         </TabsContent>
       ))}

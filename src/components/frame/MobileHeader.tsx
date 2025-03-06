@@ -23,9 +23,11 @@ import { menuData } from '@/assets/navMenuData';
 export const MobileHeader = ({
   isHome,
   isScrolled,
+  mounted,
 }: {
   isHome: boolean;
   isScrolled: boolean;
+  mounted: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -70,13 +72,13 @@ export const MobileHeader = ({
   return (
     <div
       className={cn(
-        'md:hidden fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 text-center px-10 py-4 z-30 transition-all duration-300',
+        'md:hidden fixed top-0 left-0 right-0 flex items-center justify-between w-full h-14 text-center px-10 py-4 z-30 transition-all duration-500 ease-in-out',
+        mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0',
         getStyle('header')
       )}
     >
       <Link href='/'>
         <h2 className='font-bold text-xl sm:text-2xl italic'>YD-INDUSTRY</h2>
-        {/* <Image src='/assets/logo.png' alt='logo' width={80} height={50} /> */}
       </Link>
 
       <div>
@@ -88,7 +90,7 @@ export const MobileHeader = ({
             <SheetHeader>
               <SheetTitle className='text-point italic'>YD-INDUSTRY</SheetTitle>
               <SheetDescription className='text-gray-400'>
-                짧은 소개
+                신뢰로 미래를 설계하다.
               </SheetDescription>
             </SheetHeader>
 

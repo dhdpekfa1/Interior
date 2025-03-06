@@ -31,7 +31,7 @@ const slides = [
   },
 ];
 
-export const FirstSlide = () => {
+export const FirstSection = () => {
   const [current, setCurrent] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 
@@ -68,6 +68,7 @@ export const FirstSlide = () => {
                   alt={slide.title}
                   width={400}
                   height={300}
+                  priority
                   className='w-full h-full object-cover object-center'
                 />
                 <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white shadow-sm backdrop-brightness-75'>
@@ -85,13 +86,13 @@ export const FirstSlide = () => {
 
         {/* 버튼 */}
         <CarouselPrevious
-          className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-two/90 text-white/70 
-               hover:bg-two hover:text-white
+          className='absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-two/60 text-white/70 
+               hover:bg-two/70 hover:text-white
                opacity-0 group-hover:opacity-100 transition-opacity duration-300'
         />
         <CarouselNext
-          className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-two/90 text-white/70 
-               hover:bg-two hover:text-white
+          className='absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-two/60 text-white/70 
+               hover:bg-two/70 hover:text-white
                opacity-0 group-hover:opacity-100 transition-opacity duration-300'
         />
       </Carousel>

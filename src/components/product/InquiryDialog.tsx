@@ -82,12 +82,14 @@ export const InquiryDialog = () => {
           <ScrollArea className='max-h-[80vh] overflow-auto'>
             {/* 선택된 상품 목록 */}
             <ScrollArea className='max-h-40 overflow-auto border px-2 bg-white mb-4'>
-              {selectedProducts.map((product) => (
+              {selectedProducts.map((product, index) => (
                 <div
                   key={product.id}
                   className='flex justify-between items-center py-1 gap-2 text-xs sm:text-sm md:text-base'
                 >
-                  <span>{product.name}</span>
+                  <span>
+                    {index + 1}. {product.name}
+                  </span>
                   {/* 카운터 */}
                   <ProductCounter
                     id={product.id}

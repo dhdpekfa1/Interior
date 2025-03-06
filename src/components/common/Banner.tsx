@@ -11,17 +11,22 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
   return (
     <div
       className={cn(
-        'h-[12rem] md:h-[20rem] lg:h-[32rem] w-full relative text-white flex items-center justify-center overflow-hidden'
+        'h-[16rem] md:h-[20rem] lg:h-[32rem] w-full relative pt-14 md:pt-20  text-white flex items-center justify-center overflow-hidden'
       )}
-      style={{
-        backgroundImage: `url(${imgUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
-      <div className='absolute inset-0 bg-black/30' />
+      {/* 이미지: 확대 후 축소 애니메이션 */}
+      <div
+        className='absolute inset-0 bg-black/30'
+        style={{
+          backgroundImage: `url(${imgUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          animation: 'zoomIn 3s ease-out forwards',
+        }}
+      />
 
-      <div className='relative z-10 text-center space-y-2 p-4 rounded-md'>
+      {/* 텍스트 애니메이션 */}
+      <div className='relative z-10 text-center space-y-2 p-4 rounded-md animate-fadeUp'>
         <h2
           className='font-bold text-xl md:text-3xl lg:text-5xl drop-shadow-lg'
           style={{

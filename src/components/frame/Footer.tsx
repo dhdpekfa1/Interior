@@ -1,20 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { CompanyInfo, CompanyInfoType } from '@/assets/companyInfo';
 
-// TODO: 데이터 받으면 수정
-const leftFooterData = [
-  { label: '회사명', content: '데코밸리(주)' },
-  { label: '대표이사', content: '송영관' },
-  { label: '주소', content: '경기도 평택시 청북읍 드림산단7로 36' },
-  { label: 'E-mail', content: 'decovalley@naver.com' },
-];
+const leftFooterData: CompanyInfoType[] = CompanyInfo.slice(0, 4);
+const rightFooterData: CompanyInfoType[] = CompanyInfo.slice(4, 8);
 
-const rightFooterData = [
-  { label: 'TEL', content: '031-334-6771~2' },
-  { label: 'FAX', content: '031-334-6773' },
-  { label: '사업자 번호', content: '142-81-12527' },
-  { label: '계좌번호', content: '000-000000-000' },
-];
 export const Footer = () => {
   return (
     <footer
@@ -29,16 +19,19 @@ export const Footer = () => {
             <span className='text-white/70 w-20'>{item.label}</span>
             {item.label === '주소' ? (
               <a
-                href='https://map.naver.com/p/search/경기도%20평택시%20청북읍%20드림산단7로%2036'
+                href={item.link}
                 target='_blank'
                 rel='noopener noreferrer'
+                className='font-bold'
               >
                 {item.content}
               </a>
             ) : item.label === 'E-mail' ? (
-              <a href={`mailto:${item.content}`}>{item.content}</a>
+              <a href={`mailto:${item.content}`} className='font-bold'>
+                {item.content}
+              </a>
             ) : (
-              <span>{item.content}</span>
+              <span className='font-bold'>{item.content}</span>
             )}
           </div>
         ))}
@@ -49,9 +42,11 @@ export const Footer = () => {
           <div key={item.label} className='flex gap-2 text-sm md:text-base'>
             <span className='text-white/70 w-24'>{item.label}</span>
             {item.label === 'TEL' ? (
-              <a href='tel:0313346771'>{item.content}</a>
+              <a href='tel:0313346771' className='font-bold'>
+                {item.content}
+              </a>
             ) : (
-              <span>{item.content}</span>
+              <span className='font-bold'>{item.content}</span>
             )}
           </div>
         ))}

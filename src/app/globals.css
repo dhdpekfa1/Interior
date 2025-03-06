@@ -108,7 +108,7 @@ input[type='number'] {
 }
 
 .input-style {
-  @apply w-full border p-2 rounded text-three text-xs sm:text-sm md:text-base;
+  @apply w-full border p-2 rounded-none text-three text-xs sm:text-sm md:text-base;
 }
 
 .error-style {
@@ -128,5 +128,34 @@ input[type='number'] {
 
   .slow-bounce {
     animation: slow-bounce 2s infinite;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-zoomIn {
+    animation: zoomIn 3s ease-out forwards;
+  }
+  .animate-fadeUp {
+    animation: fadeUp 1.5s ease-out forwards;
   }
 }
