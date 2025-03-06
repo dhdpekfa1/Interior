@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -10,7 +11,25 @@ import { Button } from '@/components/ui';
 import { SectionHeader } from '@/components/home';
 
 export const SecondSection = () => {
+  const [isMd, setIsMd] = useState(false);
+
   const data = menuData.find((data) => data.title === '제품소개');
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMd(event.matches);
+    };
+
+    // 초기값 설정
+    setIsMd(mediaQuery.matches);
+
+    // 사이즈 변경 감지
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   if (!data || !data.subMenu) {
     return (
@@ -39,10 +58,7 @@ export const SecondSection = () => {
         {data.subMenu.map((item, index) => (
           <InView key={item.label} threshold={0.2}>
             {({ ref, inView }) => {
-              const delay =
-                typeof window !== 'undefined' && window.innerWidth >= 768
-                  ? `${index * 200}ms`
-                  : '0ms';
+              const delay = isMd ? `${index * 200}ms` : '0ms';
 
               return (
                 <Link
