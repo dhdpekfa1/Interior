@@ -66,8 +66,10 @@ export const DesktopHeader = ({
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 rounded-md transition-all duration-100',
-                    isHover ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 transition-all duration-300 ease-in-out',
+                    isHover
+                      ? 'opacity-100 visible translate-y-0 delay-150'
+                      : 'opacity-0 invisible -translate-y-2 delay-0'
                   )}
                 >
                   {menu.subMenu.map((subItem) => (
