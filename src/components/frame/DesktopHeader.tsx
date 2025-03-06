@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
 
@@ -14,6 +14,14 @@ export const DesktopHeader = ({
   isScrolled: boolean;
 }) => {
   const [isHover, setIsHover] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMounted(true);
+    }, 280);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const getHeaderClass = () => {
     if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
@@ -23,12 +31,15 @@ export const DesktopHeader = ({
     }
     return 'h-[80px] bg-point text-white';
   };
+
   return (
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 hidden md:flex flex-col items-center w-full',
+        'transition-all duration-500 ease-in-out',
+        mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0',
         getHeaderClass()
       )}
     >
@@ -61,14 +72,14 @@ export const DesktopHeader = ({
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 rounded-md transition-all duration-300',
+                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 rounded-md transition-all duration-100',
                     isHover ? 'opacity-100 visible' : 'opacity-0 invisible'
                   )}
                 >
                   {menu.subMenu.map((subItem) => (
                     <li
                       key={subItem.label}
-                      className='text-sm whitespace-nowrap hover:text-two hover:font-semibold'
+                      className='text-sm whitespace-nowrap text-three/80 hover:text-point hover:font-semibold'
                     >
                       <Link href={subItem.url}>{subItem.label}</Link>
                     </li>
