@@ -1,20 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { CompanyInfo, CompanyInfoType } from '@/assets/companyInfo';
 
-// TODO: 데이터 받으면 수정
-const leftFooterData = [
-  { label: '회사명', content: 'YD-Industry' },
-  { label: '대표이사', content: '송영관' },
-  { label: '주소', content: '경기도 평택시 청북읍 드림산단7로 36' },
-  { label: 'E-mail', content: 'decovalley@naver.com' },
-];
+const leftFooterData: CompanyInfoType[] = CompanyInfo.slice(0, 4);
+const rightFooterData: CompanyInfoType[] = CompanyInfo.slice(4, 8);
 
-const rightFooterData = [
-  { label: 'TEL', content: '031-334-6771~2' },
-  { label: 'FAX', content: '031-334-6773' },
-  { label: '사업자 번호', content: '142-81-12527' },
-  { label: '계좌번호', content: '000-000000-000' },
-];
 export const Footer = () => {
   return (
     <footer
@@ -29,8 +19,7 @@ export const Footer = () => {
             <span className='text-white/70 w-20'>{item.label}</span>
             {item.label === '주소' ? (
               <a
-                // TODO: 주소 변경
-                href='https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C523953%2C1084098&rt1=&rt2=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8C%90%EA%B5%90%EC%98%A4%ED%94%BC%EC%8A%A4&rtIds=%2C&rtTypes=%2C'
+                href={item.link}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='font-bold'
