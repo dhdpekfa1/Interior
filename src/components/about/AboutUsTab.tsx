@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { SubTitle } from '@/components/common';
 
 export const AboutUsTab = () => {
@@ -6,7 +7,14 @@ export const AboutUsTab = () => {
     <div className='wrapper'>
       <SubTitle title='회사 소개' />
       <div className='grid gap-4 md:gap-6 lg:gap-8 w-full grid-cols-1 md:grid-cols-2'>
-        <div className='bg-cream h-[320px] md:h-[400px]'>사진</div>
+        <div className='relative h-[320px] md:h-[400px] w-full'>
+          <Image
+            src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            alt='회사'
+            fill
+            className='w-full h-full object-cover'
+          />
+        </div>
         <div className='h-[320px] md:h-[400px] text-sm md:text-base flex flex-col md:gap-2 leading-relaxed'>
           <p>안녕하세요.</p>
           <p>저희 YD-Industry는</p>
