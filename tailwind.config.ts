@@ -54,6 +54,8 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        // point: '#73675C', // 모카그레이
+        // point: '#B97A6B', // 로즈우드
         point: '#3C4D59',
         second: '#C8D9E6',
         blue: '#C8D9E6',
