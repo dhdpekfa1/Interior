@@ -15,10 +15,12 @@ import { cn } from '@/lib/utils';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryForm } from './InquiryForm';
 import { ProductCounter } from './ProductCounter';
-import { MailQuestion } from 'lucide-react';
+import { MailQuestion, X } from 'lucide-react';
 
 export const InquiryDialog = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // dialog
+  const [showNotice, setShowNotice] = useState(true); // 제품 선택 문구
+
   const { selectedProducts, removeProduct } = useProductStore();
 
   const handleRemoveProduct = (id: string) => {
@@ -37,7 +39,7 @@ export const InquiryDialog = () => {
   };
 
   return (
-    <div className='fixed bottom-32 md:bottom-auto md:top-1/2 right-6 md:right-10 md:-translate-y-1/2'>
+    <div className='fixed bottom-32 right-6'>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div
@@ -48,22 +50,34 @@ export const InquiryDialog = () => {
               }
             }}
           >
-            <Button
-              className={cn(
-                'w-16 h-16 rounded-full text-white shadow-point shadow-md flex items-center justify-center slow-bounce relative',
-                selectedProducts.length === 0
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-point hover:bg-point'
-              )}
-            >
-              {/* 툴팁 문구 */}
-              <MailQuestion className='w-20 h-20' />
-              {selectedProducts.length === 0 && (
-                <div className='absolute bottom-full mb-2 w-max px-2 py-1 text-[10px] md:text-xs text-white bg-two/90 opacity-0 group-hover:opacity-100 transition-opacity'>
-                  제품을 선택 후 문의하세요
+            <div className='fixed bottom-28 right-6 flex flex-col items-end gap-2 z-50'>
+              {/* 안내 메시지 */}
+              {showNotice && (
+                <div className='flex items-center gap-2 md:gap-3 px-2 py-1 md:px-4 md:py-2 shadow-sm slow-bounce bg-black/80'>
+                  <span className='font-bold text-[10px] sm:text-xs md:text-sm text-dd'>
+                    제품 선택 후 문의하세요.
+                  </span>
+                  <button
+                    className='text-gray-400 hover:text-dd'
+                    onClick={() => setShowNotice(false)}
+                  >
+                    <X className='w-3 md:w-4 h-auto' />
+                  </button>
                 </div>
               )}
-            </Button>
+
+              {/* 문의 버튼 */}
+              <Button
+                className={cn(
+                  'w-10 h-10 md:w-12 md:h-12 text-white shadow-point shadow-md flex items-center justify-center',
+                  selectedProducts.length === 0
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-point hover:bg-point'
+                )}
+              >
+                <MailQuestion className='w-6 h-6' />
+              </Button>
+            </div>
           </div>
         </DialogTrigger>
 

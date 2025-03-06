@@ -11,7 +11,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
   return (
     <div
       className={cn(
-        'h-[16rem] md:h-[20rem] lg:h-[32rem] w-full relative pt-14 md:pt-20  text-white flex items-center justify-center overflow-hidden'
+        'h-[16rem] md:h-[24rem] lg:h-[32rem] w-full relative pt-14 md:pt-20  text-white flex items-center justify-center overflow-hidden'
       )}
     >
       {/* 이미지: 확대 후 축소 애니메이션 */}
