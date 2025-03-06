@@ -31,7 +31,7 @@ const slides = [
   },
 ];
 
-export const FirstSlide = () => {
+export const FirstSection = () => {
   const [current, setCurrent] = useState(0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 

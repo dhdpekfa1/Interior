@@ -8,7 +8,7 @@ import { menuData } from '@/assets/navMenuData';
 import { Button } from '@/components/ui';
 import { MoveRight } from 'lucide-react';
 
-export const SecondSlide = () => {
+export const SecondSection = () => {
   const data = menuData.find((data) => data.title === '제품소개');
 
   if (!data || !data.subMenu) {

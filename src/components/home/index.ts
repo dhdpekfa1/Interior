@@ -1,4 +1,4 @@
-export { FirstSlide } from './FirstSlide';
-export { SecondSlide } from './SecondSlide';
-export { ThirdSlide } from './ThirdSlide';
-export { FourthSlide } from './FourthSlide';
+export { FirstSection } from './FirstSection';
+export { SecondSection } from './SecondSection';
+export { ThirdSection } from './ThirdSection';
+export { FourthSection } from './FourthSection';

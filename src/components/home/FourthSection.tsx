@@ -1,7 +1,7 @@
 import React from 'react';
 import { KakaoMap } from '../common';
 
-export const FourthSlide = () => {
+export const FourthSection = () => {
   return (
     <div className='m-8'>
       <div className='flex flex-col sm:flex-row gap-6 sm:gap-2'>
