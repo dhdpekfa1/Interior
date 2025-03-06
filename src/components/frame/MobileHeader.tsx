@@ -86,7 +86,7 @@ export const MobileHeader = ({
           <SheetTrigger asChild>
             <AlignRight className={cn('cursor-pointer', getStyle('icon'))} />
           </SheetTrigger>
-          <SheetContent side='left' className='w-64 bg-white'>
+          <SheetContent side='right' className='w-64 bg-white'>
             <SheetHeader>
               <SheetTitle className='text-point italic'>YD-INDUSTRY</SheetTitle>
               <SheetDescription className='text-gray-400'>
