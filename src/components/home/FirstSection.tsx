@@ -68,6 +68,7 @@ export const FirstSection = () => {
                   alt={slide.title}
                   width={400}
                   height={300}
+                  priority
                   className='w-full h-full object-cover object-center'
                 />
                 <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white shadow-sm backdrop-brightness-75'>

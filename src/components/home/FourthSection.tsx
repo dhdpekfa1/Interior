@@ -1,9 +1,14 @@
 import React from 'react';
-import { KakaoMap } from '../common';
+import { KakaoMap } from '@/components/common';
+import { SectionHeader } from '@/components/home';
 
 export const FourthSection = () => {
   return (
     <div className='m-8'>
+      <SectionHeader
+        title='새로운 길, 변함없는 약속'
+        description='고객과 함께 성장하는 우리의 이야기를 만나보세요.'
+      />
       <div className='flex flex-col sm:flex-row gap-6 sm:gap-2'>
         <KakaoMap />
         {/* TODO: lg: 교통편 추가? */}
