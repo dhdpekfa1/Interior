@@ -37,7 +37,7 @@ const items = [
   },
 ];
 
-const SideBar = () => {
+export const SideBar = () => {
   const pathname = usePathname();
 
   return (
@@ -77,5 +77,3 @@ const SideBar = () => {
     </Sidebar>
   );
 };
-
-export default SideBar;

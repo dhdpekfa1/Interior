@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import productData from '@/assets/mock/mockProduct.json';
 import { Button } from '@/components/ui';
+import { EditProductDialog } from '@/components/admin';
 
 const AdminProductPage = () => {
   const decoProducts = productData.map((item) => ({
@@ -47,15 +48,15 @@ const AdminProductPage = () => {
             </p>
 
             {/* 호버 시 버튼 */}
-            <div className='absolute bottom-0 left-0 right-0 flex justify-center bg-white/70 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+            <div className='absolute top-0 left-0 w-full flex gap-1 py-2 px-1 bg-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden'>
+              <EditProductDialog
+                onEditProduct={onEditProduct}
+                name={product.name}
+                description={'TODO: 제품 설명 변경'}
+                image={product.img}
+              />
               <Button
-                className='mr-2 bg-point/90 hover:bg-point border-point'
-                onClick={onEditProduct}
-              >
-                수정
-              </Button>
-              <Button
-                className='bg-red-500/80 text-white border hover:bg-red-500'
+                className='bg-red-500/80 text-white hover:bg-red-500 flex-1 w-fit'
                 onClick={onRemoveProduct}
               >
                 삭제
