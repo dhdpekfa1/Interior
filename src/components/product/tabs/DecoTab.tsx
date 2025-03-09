@@ -1,10 +1,10 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
-import ProductData from '@/assets/mock/mockProduct.json';
+import productData from '@/assets/mock/mockProduct.json';
 
 export const DecoTab = () => {
   // 형식 변환
-  const decoProducts = ProductData.map((item) => ({
+  const decoProducts = productData.map((item) => ({
     id: item.id,
     name: item.name,
     category: item.category,

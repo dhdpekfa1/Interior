@@ -20,7 +20,7 @@ const AdminPage = () => {
 
   return (
     <div className='flex flex-col items-center justify-center h-screen gap-4'>
-      <h1 className='text-2xl md:text-3xl text-ef font-bold'>관리자 로그인</h1>
+      <h1 className='text-2xl md:text-3xl text-two font-bold'>관리자 로그인</h1>
       <div>
         <input
           type='password'
