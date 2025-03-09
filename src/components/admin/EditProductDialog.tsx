@@ -35,13 +35,13 @@ export const EditProductDialog = ({
   const [description, setDescription] = useState(initialDescription);
   const [image, setImage] = useState(initialImage);
 
-  // 파일 업로드 핸들러 (이미지를 URL로 변환)
+  // 파일 업로드 핸들러 (이미지 URL 변환)
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]; // 첫 번째 파일 가져오기
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result as string); // 파일을 base64 URL로 변환하여 상태 업데이트
+        setImage(reader.result as string);
       };
       console.log();
       reader.readAsDataURL(file);
@@ -60,7 +60,7 @@ export const EditProductDialog = ({
           <DialogTitle>제품 정보 수정</DialogTitle>
         </DialogHeader>
         <div className='flex flex-col gap-4 py-4'>
-          {/* 품명 입력 */}
+          {/* 품명 */}
           <div className='grid grid-cols-4 items-center gap-4'>
             <Label htmlFor='name' className='text-right'>
               품명
@@ -101,7 +101,7 @@ export const EditProductDialog = ({
             </div>
           )}
 
-          {/* 설명 입력 */}
+          {/* 설명 */}
           <div className='grid grid-cols-4 items-center gap-4'>
             <Label htmlFor='description' className='text-right'>
               설명
@@ -116,7 +116,6 @@ export const EditProductDialog = ({
           </div>
         </div>
 
-        {/* 저장 버튼 */}
         <DialogFooter>
           <Button
             onClick={() =>
