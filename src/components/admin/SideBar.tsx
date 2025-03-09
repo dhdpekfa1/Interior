@@ -41,7 +41,7 @@ const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <Sidebar className='mt-14'>
+    <Sidebar className='mt-20'>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>관리자 메뉴</SidebarGroupLabel>
@@ -58,7 +58,7 @@ const SideBar = () => {
                           className={cn(
                             'flex items-center gap-2 p-2 rounded-md',
                             isActive
-                              ? 'bg-point text-second font-semibold'
+                              ? 'bg-point text-ef font-semibold pr-4'
                               : 'text-point font-semibold'
                           )}
                         >
