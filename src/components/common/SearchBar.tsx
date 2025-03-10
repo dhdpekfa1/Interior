@@ -59,10 +59,7 @@ export const SearchBar = ({
         </div>
         <Button
           type='submit'
-          className={cn(
-            'shrink-0 bg-point/90 text-second text-center hover:bg-point transition-colors border h-full',
-            'h-fit'
-          )}
+          className='shrink-0 bg-point/90 text-second text-center hover:bg-point transition-colors border h-full'
         >
           <span className={cn('text-xs text-white md:text-sm font-semibold')}>
             검색

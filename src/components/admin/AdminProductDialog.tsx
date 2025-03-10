@@ -13,27 +13,30 @@ import {
   DialogFooter,
 } from '@/components/ui';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
-interface EditProductDialogProps {
-  onEditProduct: (editedProduct: {
+interface AdminProductDialogProps {
+  onSubmit: (product: {
     name: string;
     description: string;
     image: string;
   }) => void;
-  name: string;
-  description: string;
-  image: string;
+  name?: string;
+  description?: string;
+  image?: string;
+  isEdit?: boolean; // 수정 모드 여부
 }
 
-export const EditProductDialog = ({
+export const AdminProductDialog = ({
   name: initialName,
   description: initialDescription,
   image: initialImage,
-  onEditProduct,
-}: EditProductDialogProps) => {
-  const [name, setName] = useState(initialName);
-  const [description, setDescription] = useState(initialDescription);
-  const [image, setImage] = useState(initialImage);
+  onSubmit,
+  isEdit = false,
+}: AdminProductDialogProps) => {
+  const [name, setName] = useState(initialName || '');
+  const [description, setDescription] = useState(initialDescription || '');
+  const [image, setImage] = useState(initialImage || '');
 
   // 파일 업로드 핸들러 (이미지 URL 변환)
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +46,6 @@ export const EditProductDialog = ({
       reader.onloadend = () => {
         setImage(reader.result as string);
       };
-      console.log();
       reader.readAsDataURL(file);
     }
   };
@@ -51,13 +53,20 @@ export const EditProductDialog = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='bg-point/90 hover:bg-point flex-1 w-fit'>
-          수정
+        <Button
+          className={cn(
+            'bg-point/90 hover:bg-point flex-1 w-fit',
+            !isEdit && 'text-xs text-white md:text-sm font-semibold h-full'
+          )}
+        >
+          {isEdit ? '수정' : '제품 추가'}
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>제품 정보 수정</DialogTitle>
+          <DialogTitle>
+            {isEdit ? '제품 정보 수정' : '새 제품 추가'}
+          </DialogTitle>
         </DialogHeader>
         <div className='flex flex-col gap-4 py-4'>
           {/* 품명 */}
@@ -96,7 +105,7 @@ export const EditProductDialog = ({
                 alt='미리보기'
                 width={200}
                 height={200}
-                className='col-span-3  shadow-md max-h-32'
+                className='col-span-3 shadow-md max-h-32'
               />
             </div>
           )}
@@ -119,7 +128,7 @@ export const EditProductDialog = ({
         <DialogFooter>
           <Button
             onClick={() =>
-              onEditProduct({
+              onSubmit({
                 name,
                 description,
                 image,
@@ -127,7 +136,7 @@ export const EditProductDialog = ({
             }
             className='bg-point/90 hover:bg-point'
           >
-            저장
+            {isEdit ? '저장' : '추가'}
           </Button>
         </DialogFooter>
       </DialogContent>
