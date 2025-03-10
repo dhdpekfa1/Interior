@@ -15,8 +15,8 @@ export default function AdminDashBoardLayout({
     <SidebarProvider>
       <div className='flex min-h-screen'>
         <SideBar />
-        <div className='flex flex-col flex-1 min-h-screen'>
-          <main className='container'>
+        <div className='flex-1 flex flex-col items-center justify-center'>
+          <main className='w-full max-w-5xl px-4'>
             <SidebarTrigger />
             {children}
           </main>

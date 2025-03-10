@@ -5,6 +5,7 @@ import Image from 'next/image';
 import productData from '@/assets/mock/mockProduct.json';
 import { Button } from '@/components/ui';
 import { EditProductDialog } from '@/components/admin';
+import { SearchBar } from '@/components/common';
 
 const AdminProductPage = () => {
   const decoProducts = productData.map((item) => ({
@@ -19,7 +20,11 @@ const AdminProductPage = () => {
   const onRemoveProduct = () => {};
 
   return (
-    <div className='wrapper flex items-center justify-center'>
+    <div className='wrapper flex flex-col items-center justify-center'>
+      <div className='flex items-center justify-between my-4 w-full'>
+        <SearchBar onSubmit={() => console.log('TODO: 검섹 이벤트')} />
+        <Button>제품 등록</Button>
+      </div>
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {decoProducts.map((product) => (
           <div
