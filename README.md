@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 프로젝트 개요
 
-## Getting Started
+본 프로젝트는 회사 소개 및 제품 소개 웹사이트를 구축하는 것입니다. 사용자는 회사 정보, 제품 정보, 지도 API, 문의하기 등의 기능을 이용할 수 있습니다. 어드민 기능을 통해 상품 추가 및 관리를 할 수 있으며 회사 정보 수정도 가능합니다.
 
-First, run the development server:
+## 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **프론트엔드**: Next.js, TypeScript, React
+- **스타일링**: Tailwind CSS
+- **폼 관리**: react-hook-form + Zod (유효성 검사)
+- **이메일 전송**: Nodemailer (Next.js API Route)
+- **지도 API**: Kakao Map API
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 주요 기능
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. 탭 메뉴 구성
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 회사소개
 
-## Learn More
+- 회사의 간단한 소개
+- 오시는 길 (카카오 맵 API 연동)
 
-To learn more about Next.js, take a look at the following resources:
+#### 제품소개
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 제품 카테고리 별 탭 제공
+- 상품 관련 기능
+  - 제품을 선택할 수 있으며 수량 변경 가능
+  - 제품 선택 시 우측 하단 문의하기 모달 버튼 활성화
+    - 문의하기 폼 제출 시 Nodemailer 사용, 관리자 이메일로 내역 발송
+    - ZOD, react-hook-form 활용 유효성 검사
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### 고객 지원
 
-## Deploy on Vercel
+- 문의하기
+  - 문의 작성 시 제품 문의 모달과 동일한 방식으로 이메일 전송
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. 푸터 정보
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **회사 정보 작성** (어드민 페이지에서 수정 가능)
+
+### 3. 메인 페이지
+
+- 슬라이더 배너 적용
+- 제품 소개
+- 오시는 길
+
+### 4. 제품 페이지
+
+- 텍스트 및 이미지 제공 예정 (현재 mockData 사용 중)
+  - Backend 없이 JSON 파일로 작업 예정
+- 제품 리스트 (카테고리, 이미지, 품번 제공 예정)
+
+### 5. 어드민 기능
+
+- **상품 관리**
+  - 제품 추가, 수정, 삭제 지원
+- **회사 정보 관리**
+  - 회사 정보 업데이트 지원
+
+<br/>
+
+## 배포
+
+- **배포 플랫폼**: Vercel
+- **배포 주소**: [https://yd-industry.vercel.app/](https://yd-industry.vercel.app/)
+- **배포 방식**: GitHub 연결 및 자동 배포
+- **환경 변수**: Vercel 환경 변수 설정 활용
+
+<br/>
+
+## 디자인 및 UI/UX
+
+### 1. **깔끔하고 세련된 디자인**
+
+- 블랙 & 화이트 기반으로 모던한 느낌을 강조
+- 불필요한 요소를 배제하고 직관적인 UI 제공
+
+### 2. **스크롤 애니메이션 적용**
+
+- `react-intersection-observer`를 활용하여 특정 요소가 화면에 진입할 때 자연스럽게 등장하는 효과 적용
+- 사용자의 몰입감을 높이고 동적인 UI 경험 제공
+
+### 3. **반응형 디자인 지원**
+
+- 모바일, 태블릿, 데스크톱 등 다양한 디바이스에서 최적화된 UI 제공
+- Tailwind CSS를 활용하여 유연한 레이아웃 구성 및 미디어 쿼리 적용
+
+---
+
+본 README는 프로젝트 진행 상황에 따라 업데이트될 예정입니다.
