@@ -35,7 +35,7 @@ export const SecondSection = () => {
         title='우리의 제품'
         description='최고의 품질과 기술력으로 완성된 제품을 소개합니다.'
       />
-      <div className='w-full flex flex-wrap justify-center gap-8 px-4'>
+      <div className='w-full flex flex-wrap justify-center gap-4 md:gap-8 px-4'>
         {data.subMenu.map((item, index) => (
           <InView key={item.label} threshold={0.2}>
             {({ ref, inView }) => {
@@ -52,7 +52,7 @@ export const SecondSection = () => {
                   )}
                 >
                   {/* 이미지 */}
-                  <div className='flex items-center justify-center w-full h-[30rem] md:h-[380px] lg:h-[480px] overflow-hidden'>
+                  <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[480px] overflow-hidden'>
                     <Image
                       src={item.img!}
                       alt={item.label}
