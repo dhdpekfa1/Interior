@@ -13,7 +13,7 @@ export default function AdminDashBoardLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <SidebarProvider>
-      <div className='flex min-h-screen'>
+      <div className='flex min-h-screen w-full'>
         <SideBar />
         <div className='flex-1 flex flex-col items-center justify-center'>
           <main className='w-full max-w-5xl px-4'>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import productData from '@/assets/mock/mockProduct.json';
 import { Button } from '@/components/ui';
 import { AdminProductDialog } from '@/components/admin';
-import { SearchBar } from '@/components/common';
+import { SearchBar, SubTitle } from '@/components/common';
 
 const AdminProductPage = () => {
   const decoProducts = productData.map((item) => ({
@@ -21,7 +21,9 @@ const AdminProductPage = () => {
   const addProduct = () => {};
 
   return (
-    <div className='wrapper flex flex-col items-center justify-center'>
+    <div className='wrapper flex flex-col justify-center'>
+      <SubTitle title='상품 관리' />
+
       <div className='flex items-center justify-between my-4 w-full'>
         <div>
           <AdminProductDialog
