@@ -7,7 +7,7 @@ export interface CompanyInfoType {
 // TODO: // 변경 완료 다른 부분 확인 필요
 export const CompanyInfo: CompanyInfoType[] = [
   { label: '회사명', content: '㈜YD인더스트리' }, //
-  { label: '대표이사', content: '송영관' },
+  { label: '대표이사', content: '최영대' }, //
   {
     label: '주소',
     content: '인천광역시 서구 가정로 88번길 13 2층', //
