@@ -13,7 +13,6 @@ interface Data {
   id: number;
   name: string;
   img?: string;
-  // tags: string[];
   description: string;
 }
 
