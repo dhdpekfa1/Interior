@@ -13,7 +13,8 @@ interface Data {
   id: number;
   name: string;
   img?: string;
-  tags: string[];
+  // tags: string[];
+  description: string;
 }
 
 interface SampleListProps {
@@ -158,14 +159,9 @@ export const SampleList = ({
 
                 {/* 태그 */}
                 <div className='flex items-center justify-around'>
-                  {product.tags.map((tag, index) => (
-                    <p
-                      key={tag + index}
-                      className='text-two/60 text-xs sm:text-sm'
-                    >
-                      {tag}
-                    </p>
-                  ))}
+                  <p className='text-two/60 text-xs sm:text-sm'>
+                    {product.description}
+                  </p>
                 </div>
               </div>
               {/* 선택된 상품: 카운터 표시 */}

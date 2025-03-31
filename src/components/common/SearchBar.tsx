@@ -40,7 +40,7 @@ export const SearchBar = ({
             type='text'
             placeholder='검색어를 입력해주세요'
             className={cn(
-              'border border-dd/50 rounded-md pr-8 text-xs md:text-sm',
+              'border border-dd/50 pr-8 text-xs md:text-sm',
               'placeholder:text-[#c9c9cb] opacity-90',
               'hover:opacity-100 hover:border-cream',
               'px-8 h-fit',
@@ -59,13 +59,9 @@ export const SearchBar = ({
         </div>
         <Button
           type='submit'
-          className={cn(
-            'shrink-0 rounded-md bg-point/60 text-second text-center hover:bg-point/90 transition-colors border border-cream/50',
-            'h-fit'
-          )}
+          className='shrink-0 bg-point/90 text-second text-center hover:bg-point transition-colors border h-full'
         >
-          <span className={cn('text-xs text-second md:text-sm font-semibold')}>
-            {' '}
+          <span className={cn('text-xs text-white md:text-sm font-semibold')}>
             검색
           </span>
         </Button>

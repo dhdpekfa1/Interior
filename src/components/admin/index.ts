@@ -1,2 +1,2 @@
-export { EditProductDialog } from './EditProductDialog';
+export { AdminProductDialog } from './AdminProductDialog';
 export { SideBar } from './SideBar';

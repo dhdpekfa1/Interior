@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
   Sheet,
@@ -78,7 +78,7 @@ export const MobileHeader = ({
       )}
     >
       <Link href='/'>
-        <h2 className='font-bold text-xl sm:text-2xl italic'>YD-INDUSTRY</h2>
+        <Image src='/assets/logo.png' alt='logo' width={68} height={50} />
       </Link>
 
       <div>

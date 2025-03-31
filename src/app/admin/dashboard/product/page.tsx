@@ -4,7 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import productData from '@/assets/mock/mockProduct.json';
 import { Button } from '@/components/ui';
-import { EditProductDialog } from '@/components/admin';
+import { AdminProductDialog } from '@/components/admin';
+import { SearchBar, SubTitle } from '@/components/common';
 
 const AdminProductPage = () => {
   const decoProducts = productData.map((item) => ({
@@ -17,9 +18,24 @@ const AdminProductPage = () => {
 
   const onEditProduct = () => {};
   const onRemoveProduct = () => {};
+  const addProduct = () => {};
 
   return (
-    <div className='wrapper flex items-center justify-center'>
+    <div className='wrapper flex flex-col justify-center'>
+      <SubTitle title='상품 관리' />
+
+      <div className='flex items-center justify-between my-4 w-full'>
+        <div>
+          <AdminProductDialog
+            onSubmit={addProduct}
+            name={''}
+            description={''}
+            image={''}
+          />
+        </div>
+
+        <SearchBar onSubmit={() => console.log('TODO: 검섹 이벤트')} />
+      </div>
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {decoProducts.map((product) => (
           <div
@@ -49,11 +65,12 @@ const AdminProductPage = () => {
 
             {/* 호버 시 버튼 */}
             <div className='absolute top-0 left-0 w-full flex gap-1 py-2 px-1 bg-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden'>
-              <EditProductDialog
-                onEditProduct={onEditProduct}
+              <AdminProductDialog
+                onSubmit={onEditProduct}
                 name={product.name}
                 description={'TODO: 제품 설명 변경'}
                 image={product.img}
+                isEdit={true}
               />
               <Button
                 className='bg-red-500/80 text-white hover:bg-red-500 flex-1 w-fit'

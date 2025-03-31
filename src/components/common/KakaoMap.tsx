@@ -17,7 +17,7 @@ export const KakaoMap = () => {
     if (!container) return;
 
     // TODO: 주소 변경
-    const centerPosition = new maps.LatLng(37.5665, 126.978);
+    const centerPosition = new maps.LatLng(37.4927, 126.67294133729);
 
     const map = new maps.Map(container, {
       center: centerPosition,

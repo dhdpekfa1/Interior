@@ -6,28 +6,38 @@ export const AboutUsTab = () => {
   return (
     <div className='wrapper'>
       <SubTitle title='회사 소개' />
-      <div className='grid gap-4 md:gap-6 lg:gap-8 w-full grid-cols-1 md:grid-cols-2'>
-        <div className='relative h-[320px] md:h-[400px] w-full'>
+      <div className='grid gap-4 md:gap-6 lg:gap-8 w-full grid-cols-1 md:grid-cols-2 items-center justify-center'>
+        <div className='relative h-[400px] md:h-[400px] w-full'>
           <Image
-            src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
             alt='회사'
             fill
             className='w-full h-full object-cover'
           />
         </div>
-        <div className='h-[320px] md:h-[400px] text-sm md:text-base flex flex-col md:gap-2 leading-relaxed'>
-          <p>안녕하세요.</p>
-          <p>저희 YD-Industry는</p>
-          <p>수많은 현장에서 쌓아온 경험과 노하우를 바탕으로,</p>
-          <p>신뢰할 수 있는 전문 타일 시공 서비스를 제공합니다.</p>
+        <div className='h-[320px] md:h-[400px] flex flex-col gap-2 md:gap-4 lg:gap-6 leading-relaxed text-sm md:text-base'>
+          <p className='break-keep'>
+            YD인더스트리에 변함없는 관심과 성원을 주시는 여러분께 깊은 감사를
+            드립니다. ㈜YD인더스트리는 대한민국을 대표하는 친환경 목재 가공 전문
+            기업 입니다.
+          </p>
+          <p className='break-keep'>
+            친환경 가공보드인 MDF(Melamine Faced Board) / PB(Particle Board)에
+            L.P.M / H.P.M / P.E.T / A.S.A / P.P / P.V.C 등 다양한 표면재를
+            가공하여 APT가구, 부엌가구, 인테리어 가구 등에 공급, 납품하고
+            있습니다.
+          </p>
+          <p className='break-keep'>
+            2018년 건립 이후 끊임없는 연구, 개발과 설비투자를 통하여 고객의
+            니즈와 다양한 디자인을 창조, 개발에 힘쓰고 있습니다. 앞으로도 다양한
+            칼라구현이 가능한 포면재를 개발 하여 건설사, 인테리어 업체 및
+            가구업체 공급에 앞장설 것을 약속 드립니다.
+          </p>
 
-          <p className='mt-4'>정직한 시공, 최상의 품질, 합리적인 비용으로</p>
-          <p>고객님의 공간에 가치를 더하며,</p>
-          <p>마지막까지 책임지는 시공으로 믿음을 드리겠습니다.</p>
-
-          <p className='mt-4'>언제나 신뢰를 최우선으로 생각하는 YD-Industry,</p>
-          <p>변함없는 마음으로 최선을 다하겠습니다.</p>
-          <p>감사합니다.</p>
+          <div className='mt-4 text-lg md:text-xl flex justify-end gap-2 sm:gap-3 text-[#555]'>
+            <p>㈜YD인더스트리 대표이사</p>
+            <p className='font-semibold'>최영대</p>
+          </div>
         </div>
       </div>
     </div>
