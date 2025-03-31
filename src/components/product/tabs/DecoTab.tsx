@@ -7,9 +7,8 @@ export const DecoTab = () => {
   const decoProducts = productData.map((item) => ({
     id: item.id,
     name: item.name,
-    category: item.category,
     img: item.img,
-    tags: item.tags,
+    description: item.description,
   }));
 
   return (
