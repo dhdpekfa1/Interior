@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { Suspense } from 'react';
 import Image from 'next/image';
 import productData from '@/assets/mock/mockProduct.json';
 import { Button } from '@/components/ui';
@@ -11,9 +11,8 @@ const AdminProductPage = () => {
   const decoProducts = productData.map((item) => ({
     id: item.id,
     name: item.name,
-    category: item.category,
     img: item.img,
-    tags: item.tags,
+    description: item.description,
   }));
 
   const onEditProduct = () => {};
@@ -34,7 +33,9 @@ const AdminProductPage = () => {
           />
         </div>
 
-        <SearchBar onSubmit={() => console.log('TODO: 검섹 이벤트')} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SearchBar onSubmit={() => console.log('TODO: 검섹 이벤트')} />
+        </Suspense>
       </div>
       <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {decoProducts.map((product) => (
