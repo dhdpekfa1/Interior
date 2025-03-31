@@ -11,7 +11,7 @@ export const CompanyInfo: CompanyInfoType[] = [
   {
     label: '주소',
     content: '인천광역시 서구 가정로 88번길 13 2층', //
-    link: 'https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C523953%2C1084098&rt1=&rt2=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%8C%90%EA%B5%90%EC%98%A4%ED%94%BC%EC%8A%A4&rtIds=%2C&rtTypes=%2C',
+    link: 'https://kko.kakao.com/-Ju5YtXsix',
   },
   {
     label: 'E-mail',
