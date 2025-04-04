@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { CompanyInfo, CompanyInfoType } from '@/assets/companyInfo';
@@ -5,7 +7,17 @@ import { CompanyInfo, CompanyInfoType } from '@/assets/companyInfo';
 const leftFooterData: CompanyInfoType[] = CompanyInfo.slice(0, 4);
 const rightFooterData: CompanyInfoType[] = CompanyInfo.slice(4, 8);
 
-export const Footer = () => {
+interface InfoType {
+  id: string;
+  label: string;
+  content: string;
+  link?: string;
+  direction: 'left' | 'right';
+}
+
+export const Footer = ({ companyInfo }: { companyInfo: InfoType[] }) => {
+  console.log(companyInfo);
+
   return (
     <footer
       className={cn(
