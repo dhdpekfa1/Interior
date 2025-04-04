@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
-import './globals.css';
 import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
-import { getCompanyInfo } from '@/api/componyInfo';
-import { getMenuData } from '@/api/navigationMenu';
+import { getCompanyInfo } from '@/app/api/companyInfo';
+import { getMenuData } from '@/app/api/navigationMenu';
+import './globals.css';
 
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',

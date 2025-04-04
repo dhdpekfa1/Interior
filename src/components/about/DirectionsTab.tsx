@@ -10,7 +10,7 @@ import {
 import { ChevronRight } from 'lucide-react';
 import { KakaoMap } from '@/components/common/KakaoMap';
 import { cn } from '@/lib/utils';
-import { getCompanyInfo } from '@/api/componyInfo';
+import { getCompanyInfo } from '@/app/api/companyInfo';
 
 const busInfo = [
   { type: '간선', color: 'bg-sky-600', buses: '12, 13, 7, 103' },
