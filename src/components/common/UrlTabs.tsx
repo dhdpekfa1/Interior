@@ -10,7 +10,6 @@ export interface TabItem {
 }
 
 interface UrlTabsProps {
-  title?: string; // TODO: 제거
   basePath: string; // ex) '/about , '/product'
   defaultTab: string; // ex) 'deco', 'carpet', 'wood'
   tabs: TabItem[];
