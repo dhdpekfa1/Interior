@@ -47,7 +47,7 @@ export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
         ))}
       </div>
 
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 mt-2 sm:mt-0'>
         {rightFooterData.map((item) => (
           <div key={item.label} className='flex gap-2'>
             <span className='text-white/70 w-24'>{item.label}</span>
