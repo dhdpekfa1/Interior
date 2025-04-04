@@ -9,18 +9,17 @@ import {
 } from '@/components/ui';
 import { ChevronRight } from 'lucide-react';
 import { KakaoMap } from '@/components/common/KakaoMap';
-import { CompanyInfo } from '@/assets/companyInfo';
 import { cn } from '@/lib/utils';
+import { getCompanyInfo } from '@/app/api/companyInfo';
 
-// TODO: 정보 수정 후 분리
-export const busInfo = [
+const busInfo = [
   { type: '간선', color: 'bg-sky-600', buses: '12, 13, 7, 103' },
 ];
+const subwayInfo = ['택시 5분', '도보 10분'];
 
-export const subwayInfo = ['택시 5분', '도보 10분'];
-
-export const DirectionsTab = () => {
-  const contact = CompanyInfo.filter((item) =>
+export const DirectionsTab = async () => {
+  const companyInfo = await getCompanyInfo();
+  const contact = companyInfo.filter((item) =>
     ['주소', 'TEL', 'FAX'].includes(item.label)
   );
 

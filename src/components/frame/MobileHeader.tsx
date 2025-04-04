@@ -18,16 +18,18 @@ import {
   AccordionTrigger,
 } from '@/components/ui';
 import { AlignRight } from 'lucide-react';
-import { menuData } from '@/assets/navMenuData';
+import { MenuItem } from '@/types/frame';
 
 export const MobileHeader = ({
   isHome,
   isScrolled,
   mounted,
+  menuData,
 }: {
   isHome: boolean;
   isScrolled: boolean;
   mounted: boolean;
+  menuData: MenuItem[];
 }) => {
   const [open, setOpen] = useState(false);
 

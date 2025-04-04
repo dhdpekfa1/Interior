@@ -1,11 +1,14 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
-import { CompanyInfo, CompanyInfoType } from '@/assets/companyInfo';
+import { CompanyInfoType } from '@/types/frame';
 
-const leftFooterData: CompanyInfoType[] = CompanyInfo.slice(0, 4);
-const rightFooterData: CompanyInfoType[] = CompanyInfo.slice(4, 8);
+export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
+  const leftFooterData = companyInfo.filter(
+    (info) => info.direction === 'left'
+  );
+  const rightFooterData = companyInfo.filter(
+    (info) => info.direction === 'right'
+  );
 
-export const Footer = () => {
   return (
     <footer
       className={cn(
@@ -15,7 +18,7 @@ export const Footer = () => {
     >
       <div className='flex flex-col gap-2'>
         {leftFooterData.map((item) => (
-          <div key={item.label} className='flex gap-2 text-sm md:text-base'>
+          <div key={item.label} className='flex gap-2'>
             <span className='text-white/70 w-20'>{item.label}</span>
             {item.label === '주소' ? (
               <a
@@ -37,12 +40,12 @@ export const Footer = () => {
         ))}
       </div>
 
-      <div className='flex flex-col gap-2 mt-6 md:mt-0'>
+      <div className='flex flex-col gap-2 mt-2 sm:mt-0'>
         {rightFooterData.map((item) => (
-          <div key={item.label} className='flex gap-2 text-sm md:text-base'>
+          <div key={item.label} className='flex gap-2'>
             <span className='text-white/70 w-24'>{item.label}</span>
             {item.label === 'TEL' ? (
-              <a href='tel:0313346771' className='font-bold'>
+              <a href='tel:0324723661' className='font-bold'>
                 {item.content}
               </a>
             ) : (

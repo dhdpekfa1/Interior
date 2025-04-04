@@ -11,7 +11,6 @@ export const FourthSection = () => {
       />
       <div className='flex flex-col sm:flex-row gap-6 sm:gap-2'>
         <KakaoMap />
-        {/* TODO: lg: 교통편 추가? */}
         <div className='flex items-center justify-center w-full'>
           <p className='text-two text-base md:text-lg font-semibold text-center leading-relaxed'>
             <span className='text-point font-bold'>신뢰</span>와{' '}

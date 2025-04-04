@@ -3,17 +3,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { menuData } from '@/assets/navMenuData';
 import { cn } from '@/lib/utils';
+import { MenuItem, SubMenuItem } from '@/types/frame';
 
 export const DesktopHeader = ({
   isHome,
   isScrolled,
   mounted,
+  menuData,
 }: {
   isHome: boolean;
   isScrolled: boolean;
   mounted: boolean;
+  menuData: MenuItem[];
 }) => {
   const [isHover, setIsHover] = useState(false);
 
@@ -47,7 +49,7 @@ export const DesktopHeader = ({
         {/* 메뉴 */}
         <nav>
           <ul className='flex gap-10 text-lg font-semibold relative'>
-            {menuData.map((menu) => (
+            {menuData.map((menu: MenuItem) => (
               <li
                 key={menu.title}
                 className={cn(
@@ -72,7 +74,7 @@ export const DesktopHeader = ({
                       : 'opacity-0 invisible -translate-y-2 delay-0'
                   )}
                 >
-                  {menu.subMenu.map((subItem) => (
+                  {menu.subMenu.map((subItem: SubMenuItem) => (
                     <li
                       key={subItem.label}
                       className='text-sm whitespace-nowrap text-three/80 hover:text-point hover:font-semibold'
