@@ -5,14 +5,16 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { InView } from 'react-intersection-observer';
 import { MoveRight } from 'lucide-react';
-import { menuData } from '@/assets/navMenuData';
 import { Button } from '@/components/ui';
 import { SectionHeader } from '@/components/home';
+import { useProductMenuFetcher } from '@/api/useProductMenuFetcher';
 
 export const SecondSection = () => {
-  const data = menuData.find((data) => data.title === '제품소개');
+  const { subMenuData, loading } = useProductMenuFetcher();
 
-  if (!data || !data.subMenu) {
+  console.log(subMenuData);
+
+  if (!subMenuData || loading) {
     return (
       <div className='w-full flex flex-wrap justify-center gap-8 px-4 py-10'>
         {[...Array(5)].map((_, index) => (
@@ -36,7 +38,7 @@ export const SecondSection = () => {
         description='최고의 품질과 기술력으로 완성된 제품을 소개합니다.'
       />
       <div className='w-full flex flex-wrap justify-center gap-4 md:gap-8 px-4'>
-        {data.subMenu.map((item, index) => (
+        {subMenuData.map((item, index) => (
           <InView key={item.label} threshold={0.2}>
             {({ ref, inView }) => {
               return (
