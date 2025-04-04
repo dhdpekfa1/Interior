@@ -1,12 +1,5 @@
 import { cn } from '@/lib/utils';
-
-interface CompanyInfoType {
-  id: string;
-  label: string;
-  content: string;
-  link?: string;
-  direction: 'left' | 'right';
-}
+import { CompanyInfoType } from '@/types/frame';
 
 export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
   const leftFooterData = companyInfo.filter(
