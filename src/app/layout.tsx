@@ -4,6 +4,7 @@ import './globals.css';
 import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
 import { getCompanyInfo } from '@/api/componyInfo';
+import { getMenuData } from '@/api/navigationMenu';
 
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',
@@ -21,12 +22,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menuData = await getMenuData();
   const companyInfo = await getCompanyInfo();
 
   return (
     <html lang='ko'>
       <body className={`${notoSans.variable} antialiased`}>
-        <Header />
+        <Header menuData={menuData} />
         <div>{children}</div>
         <TopButton />
         <Footer companyInfo={companyInfo} />
