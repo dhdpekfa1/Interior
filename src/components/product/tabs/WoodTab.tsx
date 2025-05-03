@@ -1,24 +1,26 @@
 import { getProductWood } from '@/app/api/\bproduct';
 import { SampleList } from '@/components/common';
+import { ProductCategory } from '@/types/sample';
 import React from 'react';
 
-export const WoodTab = async () => {
+interface Props {
+  wood: ProductCategory;
+}
+
+export const WoodTab = async ({ wood }: Props) => {
   const woodProducts = await getProductWood();
 
-  const wood = woodProducts.find(
-    (product) => product.id === 'f024def7-bde5-4205-94ed-77b02275e99d'
-  );
+  if (!wood || !woodProducts) return '오류가 발생했습니다.';
 
-  if (!wood) return '오류가 발생했습니다.';
+  console.log('woodProducts', woodProducts);
 
   return (
     <SampleList
-      title='데코타일'
-      mainImageUrl='https://images.unsplash.com/photo-1711110175192-fbb074ae03d8?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-      subImageUrl='https://images.unsplash.com/photo-1625470496744-a01bf36a262f?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-      thirdImageUrl=''
-      content='폴리프로필렌은 분자구성이 안정적이며, 연소 및 분해시 유해가스의 발생이 없고, 강도 및 식품안정성이 우수하여 식품 포장재료로도 널리 사용 되는 소재 입니다.
-    또한 PVC등 타 표면소재를 가공할 때 필요로 하는 가소제(Phthalate)를 전혀 사용하지 않아 환경호르몬과 새집 증후군의 원인물질인휘발성 유기화합물(VOCs)의 발생을 사전에 차단하고 있습니다.'
+      title='우드타일'
+      mainImageUrl={wood.main_image}
+      subImageUrl={wood.sub_image}
+      thirdImageUrl={wood.third_image}
+      content={wood.content}
       dataList={woodProducts}
     />
   );

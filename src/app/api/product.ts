@@ -55,3 +55,35 @@ export const getProductWood = async (): Promise<Product[]> => {
   }
   return data;
 };
+
+export const getProductCarpet = async (): Promise<Product[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('product_carpet').select('*');
+  if (error) {
+    console.error('Error fetching product_carpet:', error);
+    return [];
+  }
+  return data;
+};
+
+export const getProductCarpetTile = async (): Promise<Product[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('product_carpet_tile')
+    .select('*');
+  if (error) {
+    console.error('Error fetching product_carpet_tile:', error);
+    return [];
+  }
+  return data;
+};
+
+export const getProductDeluxe = async (): Promise<Product[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('product_deluxe').select('*');
+  if (error) {
+    console.error('Error fetching product_deluxe:', error);
+    return [];
+  }
+  return data;
+};

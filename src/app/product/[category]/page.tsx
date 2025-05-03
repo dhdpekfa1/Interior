@@ -10,33 +10,36 @@ import {
 } from '@/components/product';
 import { ProductCategory } from '@/types/sample';
 
-const componentMap: Record<string, JSX.Element> = {
-  deco: <DecoTab />,
-  wood: <WoodTab />,
-  carpet: <CarpetTab />,
-  carpet_tile: <CarpetTilesTab />,
-  deluxe: <DeluxeTab />,
-};
-
-export const getProductTabs = (productData: ProductCategory[]) => {
+export const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
   return productData
     .map((item) => {
-      const component = componentMap[item.category];
-      if (!component) return null;
+      const componentFactory: Record<
+        string,
+        (info: ProductCategory) => JSX.Element
+      > = {
+        deco: (info) => <DecoTab deco={info} />,
+        wood: (info) => <WoodTab wood={info} />,
+        carpet: (info) => <CarpetTab carpet={info} />,
+        carpet_tile: (info) => <CarpetTilesTab carpetTile={info} />,
+        deluxe: (info) => <DeluxeTab deluxe={info} />,
+      };
+
+      const factory = componentFactory[item.category];
+      if (!factory) return null;
 
       return {
         label: item.label,
         value: item.category,
-        component,
+        component: factory(item),
       };
     })
-    .filter(Boolean);
+    .filter((tab): tab is TabItem => tab !== null);
 };
 
 const ProductPage = async () => {
-  const productTab = await getProductList();
+  const productList = await getProductList();
 
-  const tabs: TabItem[] = getProductTabs(productTab).filter(
+  const tabs: TabItem[] = getProductTabs(productList).filter(
     (tab): tab is TabItem => tab !== null
   );
 

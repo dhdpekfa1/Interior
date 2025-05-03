@@ -1,16 +1,16 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
-import { getProductDeco, getProductList } from '@/app/api/\bproduct';
+import { getProductDeco } from '@/app/api/\bproduct';
+import { ProductCategory } from '@/types/sample';
 
-export const DecoTab = async () => {
+interface Props {
+  deco: ProductCategory;
+}
+
+export const DecoTab = async ({ deco }: Props) => {
   const decoProducts = await getProductDeco();
-  const productCategory = await getProductList();
 
-  const deco = productCategory.find(
-    (product) => product.id === '1f5c9fb8-a04e-40cc-ab5d-2ed84f4aedd7'
-  );
-
-  if (!deco) return '오류가 발생했습니다.';
+  if (!deco || !decoProducts) return '오류가 발생했습니다.';
 
   return (
     <SampleList

@@ -12,9 +12,9 @@ import { cn } from '@/lib/utils';
 
 interface SampleListProps {
   title: string;
-  mainImageUrl: string;
-  subImageUrl: string;
-  thirdImageUrl: string;
+  mainImageUrl?: string;
+  subImageUrl?: string;
+  thirdImageUrl?: string;
   content: string;
   dataList: Product[];
 }
@@ -61,43 +61,48 @@ export const SampleList = ({
       <SubTitle title={title} />
 
       {/* 제품 설명 */}
-      {/* <div className='grid grid-cols-1 sm:grid-cols-2 items-start h-[20rem] gap-6'> */}
       <div className='flex flex-col sm:flex-row items-start h-[40rem] gap-6'>
         {/* 메인 이미지 */}
-        <div className='relative w-full h-full flex-1'>
-          <Image
-            src={mainImageUrl}
-            alt={`${title} 소개 이미지 1`}
-            sizes='(max-width: 768px) 100vw, 50vw'
-            fill
-            className='object-cover'
-          />
-        </div>
+        {mainImageUrl && (
+          <div className='relative w-full h-full flex-1'>
+            <Image
+              src={mainImageUrl}
+              alt={`${title} 소개 이미지 1`}
+              sizes='(max-width: 768px) 100vw, 50vw'
+              fill
+              className='object-cover'
+            />
+          </div>
+        )}
 
         {/* 서브 이미지 + 텍스트 */}
         <div className='flex flex-col gap-6 lg:gap-12 justify-end h-full flex-1'>
-          <div className='relative w-full h-full'>
-            <Image
-              src={subImageUrl}
-              alt={`${title} 소개 이미지 2`}
-              fill
-              className='object-cover'
-              sizes='(max-width: 768px) 100vw, 50vw'
-            />
-          </div>
+          {subImageUrl && (
+            <div className='relative w-full h-full'>
+              <Image
+                src={subImageUrl}
+                alt={`${title} 소개 이미지 2`}
+                fill
+                className='object-cover'
+                sizes='(max-width: 768px) 100vw, 50vw'
+              />
+            </div>
+          )}
           <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep'>
             {content}
           </p>
 
-          <div className='relative w-full h-full'>
-            <Image
-              src={thirdImageUrl}
-              alt={`${title} 소개 이미지 3`}
-              fill
-              className='object-cover'
-              sizes='(max-width: 768px) 100vw, 50vw'
-            />
-          </div>
+          {thirdImageUrl && (
+            <div className='relative w-full h-full'>
+              <Image
+                src={thirdImageUrl}
+                alt={`${title} 소개 이미지 3`}
+                fill
+                className='object-cover'
+                sizes='(max-width: 768px) 100vw, 50vw'
+              />
+            </div>
+          )}
         </div>
       </div>
 
