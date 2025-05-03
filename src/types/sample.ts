@@ -1,13 +1,9 @@
-export interface Product {
-  id: number;
+export type Product = {
+  id: string;
   name: string;
-  brand: string;
-  thickness: string;
-  width: string;
-  length: string;
-  category: string;
-  img: string;
-}
+  image: string;
+  description: string;
+};
 
 export interface Construction {
   id: number;
