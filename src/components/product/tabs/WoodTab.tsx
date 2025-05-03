@@ -12,8 +12,6 @@ export const WoodTab = async ({ wood }: Props) => {
 
   if (!wood || !woodProducts) return '오류가 발생했습니다.';
 
-  console.log('woodProducts', woodProducts);
-
   return (
     <SampleList
       title='우드타일'
