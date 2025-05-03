@@ -2,41 +2,35 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryDialog, ProductCounter } from '@/components/product';
 import { Check, Asterisk } from 'lucide-react';
 import { Separator } from '@/components/ui';
-
-interface Data {
-  id: number;
-  name: string;
-  img?: string;
-  description: string;
-}
+import { Product } from '@/types/sample';
+import { cn } from '@/lib/utils';
 
 interface SampleListProps {
   title: string;
-  mainImgUrl: string;
-  subImgUrl: string;
+  mainImageUrl: string;
+  subImageUrl: string;
   content: string;
-  dataList: Data[];
+  dataList: Product[];
 }
 
-const ITEMS_PER_PAGE = 15; // 페이지당 아이템 수
+const ITEMS_PER_PAGE = 15;
 
 export const SampleList = ({
   title,
-  mainImgUrl,
-  subImgUrl,
+  mainImageUrl,
+  subImageUrl,
   dataList,
   content,
 }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { addProduct, removeProduct, selectedProducts } = useProductStore();
 
-  const handleSelectProduct = (product: Data) => {
+  const handleSelectProduct = (product: Product) => {
     const isSelected = selectedProducts.some(
       (item) => item.id === product.id.toString()
     );
@@ -70,7 +64,7 @@ export const SampleList = ({
         {/* 메인 이미지 */}
         <div className='relative w-full h-full flex-1'>
           <Image
-            src={mainImgUrl}
+            src={mainImageUrl}
             alt={`${title} 소개 이미지 1`}
             fill
             className='object-cover'
@@ -81,7 +75,7 @@ export const SampleList = ({
         <div className='flex flex-col gap-6 lg:gap-12 justify-end h-full flex-1'>
           <div className='relative w-full h-full'>
             <Image
-              src={subImgUrl}
+              src={subImageUrl}
               alt={`${title} 소개 이미지 2`}
               fill
               className='object-cover'
@@ -127,9 +121,9 @@ export const SampleList = ({
                 className='flex flex-col gap-4'
               >
                 <div className='relative w-full aspect-square overflow-hidden'>
-                  {product.img ? (
+                  {product.image ? (
                     <Image
-                      src={product.img}
+                      src={product.image}
                       alt={product.name}
                       fill
                       sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
