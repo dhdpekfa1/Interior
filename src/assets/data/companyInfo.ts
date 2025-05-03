@@ -13,7 +13,7 @@ export const companyInfoData: CompanyInfoType[] = [
   },
   {
     label: '주소',
-    content: '최영대',
+    content: '인천 서구 가정로88번길 13',
     link: 'https://map.kakao.com/?map_type=TYPE_MAP&target=car&rt=%2C%2C427697%2C1109354&rt1=&rt2=%EC%9D%B8%EC%B2%9C+%EC%84%9C%EA%B5%AC+%EA%B0%80%EC%A0%95%EB%A1%9C88%EB%B2%88%EA%B8%B8+13&rtIds=%2CN30037419&rtTypes=%2CADDRESS',
     direction: 'left',
   },
