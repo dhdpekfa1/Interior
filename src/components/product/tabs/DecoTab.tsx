@@ -1,6 +1,6 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
-import { getProductDeco } from '@/app/api/deco';
+import { getProductDeco } from '@/app/api/\bproduct';
 
 export const DecoTab = async () => {
   const decoProducts = await getProductDeco();
