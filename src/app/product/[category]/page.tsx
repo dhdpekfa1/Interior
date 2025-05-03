@@ -10,7 +10,7 @@ import {
 } from '@/components/product';
 import { ProductCategory } from '@/types/sample';
 
-export const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
+const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
   return productData
     .map((item) => {
       const componentFactory: Record<
