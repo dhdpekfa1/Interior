@@ -11,7 +11,7 @@ const PRODUCT_TABS = [
   { label: '데코타일', value: 'deco', component: <DecoTab /> },
   { label: '우드타일', value: 'wood', component: <WoodTab /> },
   { label: '카페트', value: 'carpet', component: <CarpetTab /> },
-  { label: '카펫타일', value: 'carpet-tiles', component: <CarpetTilesTab /> },
+  { label: '카펫타일', value: 'carpet-tile', component: <CarpetTilesTab /> },
   { label: '디럭스스타일', value: 'deluxe', component: <DeluxeTab /> },
 ];
 

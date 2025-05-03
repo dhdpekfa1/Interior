@@ -14,6 +14,7 @@ interface SampleListProps {
   title: string;
   mainImageUrl: string;
   subImageUrl: string;
+  thirdImageUrl: string;
   content: string;
   dataList: Product[];
 }
@@ -24,6 +25,7 @@ export const SampleList = ({
   title,
   mainImageUrl,
   subImageUrl,
+  thirdImageUrl,
   dataList,
   content,
 }: SampleListProps) => {
@@ -66,6 +68,7 @@ export const SampleList = ({
           <Image
             src={mainImageUrl}
             alt={`${title} 소개 이미지 1`}
+            sizes='(max-width: 768px) 100vw, 50vw'
             fill
             className='object-cover'
           />
@@ -79,6 +82,7 @@ export const SampleList = ({
               alt={`${title} 소개 이미지 2`}
               fill
               className='object-cover'
+              sizes='(max-width: 768px) 100vw, 50vw'
             />
           </div>
           <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep'>
@@ -87,10 +91,11 @@ export const SampleList = ({
 
           <div className='relative w-full h-full'>
             <Image
-              src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2662&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              src={thirdImageUrl}
               alt={`${title} 소개 이미지 3`}
               fill
               className='object-cover'
+              sizes='(max-width: 768px) 100vw, 50vw'
             />
           </div>
         </div>
