@@ -1,1 +1,0 @@
-export { companyInfoData } from './companyInfo';
