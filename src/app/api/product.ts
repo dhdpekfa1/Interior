@@ -25,7 +25,10 @@ export const getProductHome = async (): Promise<ProductHome[]> => {
 // 전체 카테고리
 export const getProductList = async (): Promise<ProductCategory[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product').select('*');
+  const { data, error } = await supabase
+    .from('product')
+    .select('*')
+    .order('created_at', { ascending: true });
   if (error) {
     console.error('Error fetching product:', error);
     return [];
