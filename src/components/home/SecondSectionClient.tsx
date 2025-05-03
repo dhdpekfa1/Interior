@@ -6,16 +6,16 @@ import { cn } from '@/lib/utils';
 import { InView } from 'react-intersection-observer';
 import { MoveRight } from 'lucide-react';
 import { Button } from '@/components/ui';
-import { SubMenuItem } from '@/types/frame';
+import { ProductHome } from '@/types/sample';
 
 const SecondSectionClient = ({
-  subMenuData,
+  productHomeData,
 }: {
-  subMenuData: SubMenuItem[];
+  productHomeData: ProductHome[];
 }) => {
   return (
     <>
-      {subMenuData.map((item, index) => (
+      {productHomeData.map((item, index) => (
         <InView key={item.label} threshold={0.2}>
           {({ ref, inView }) => {
             return (
@@ -33,7 +33,7 @@ const SecondSectionClient = ({
                 {/* 이미지 */}
                 <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[480px] overflow-hidden'>
                   <Image
-                    src={item.img!}
+                    src={item.home_image}
                     alt={item.label}
                     width={300}
                     height={200}
@@ -48,7 +48,7 @@ const SecondSectionClient = ({
                     {item.label}
                   </h2>
                   <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
-                    {item.description}
+                    {item.home_description}
                   </span>
                   <Button
                     variant='outline'

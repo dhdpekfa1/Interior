@@ -1,10 +1,10 @@
 import { SecondSectionClient, SectionHeader } from '@/components/home';
-import { getSubMenuData } from '@/app/api/navigationMenu';
+import { getProductHome } from '@/app/api/\bproduct';
 
 export const SecondSection = async () => {
-  const subMenuData = await getSubMenuData();
+  const productHomeData = await getProductHome();
 
-  if (!subMenuData) {
+  if (!productHomeData) {
     return (
       <div className='w-full flex flex-wrap justify-center gap-8 px-4 py-10'>
         {[...Array(5)].map((_, index) => (
@@ -28,7 +28,7 @@ export const SecondSection = async () => {
         description='최고의 품질과 기술력으로 완성된 제품을 소개합니다.'
       />
       <div className='w-full flex flex-wrap justify-center gap-4 md:gap-8 px-4'>
-        <SecondSectionClient subMenuData={subMenuData} />
+        <SecondSectionClient productHomeData={productHomeData} />
       </div>
     </>
   );

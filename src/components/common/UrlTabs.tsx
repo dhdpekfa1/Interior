@@ -2,11 +2,12 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui';
+import { JSX } from 'react';
 
 export interface TabItem {
   label: string;
   value: string;
-  component: React.ReactNode;
+  component: JSX.Element;
 }
 
 interface UrlTabsProps {

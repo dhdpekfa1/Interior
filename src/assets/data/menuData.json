@@ -1,0 +1,37 @@
+[
+  {
+    "title": "회사소개",
+    "baseUrl": "/about/us",
+    "subMenu": [
+      {
+        "label": "회사소개",
+        "url": "/about/us"
+      },
+      {
+        "label": "오시는 길",
+        "url": "/about/directions"
+      }
+    ]
+  },
+  {
+    "title": "제품소개",
+    "baseUrl": "/product/deco",
+    "subMenu": [
+      { "label": "데코타일", "url": "/product/deco" },
+      { "label": "우드타일", "url": "/product/wood" },
+      { "label": "카펫타일", "url": "/product/carpet-tiles" },
+      { "label": "카페트", "url": "/product/carpet" },
+      { "label": "디럭스타일", "url": "/product/deluxe" }
+    ]
+  },
+  {
+    "title": "고객지원",
+    "baseUrl": "/customer/inquiry",
+    "subMenu": [
+      {
+        "label": "문의접수",
+        "url": "/customer/inquiry"
+      }
+    ]
+  }
+]

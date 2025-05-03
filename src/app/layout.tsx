@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
-import { getCompanyInfo } from '@/app/api/companyInfo';
-import { getMenuData } from '@/app/api/navigationMenu';
+import MenuData from '@/assets/data/menuData.json';
+import companyInfo from '@/assets/data/companyInfo.json';
 import './globals.css';
+import { CompanyInfoType } from '@/types/frame';
 
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',
@@ -46,16 +47,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const menuData = await getMenuData();
-  const companyInfo = await getCompanyInfo();
-
+  const companyInfoData = companyInfo as CompanyInfoType[];
   return (
     <html lang='ko'>
       <body className={`${notoSans.variable} antialiased`}>
-        <Header menuData={menuData} />
+        <Header menuData={MenuData} />
         <div>{children}</div>
         <TopButton />
-        <Footer companyInfo={companyInfo} />
+        <Footer companyInfo={companyInfoData} />
       </body>
     </html>
   );
