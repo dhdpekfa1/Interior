@@ -13,10 +13,9 @@ export type SubMenuItem = {
 };
 
 // Footer
-export interface CompanyInfoType {
-  id: string;
+export type CompanyInfoType = {
   label: string;
   content: string;
-  link?: string;
   direction: 'left' | 'right';
-}
+  link?: string;
+};

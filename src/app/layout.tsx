@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
-import { getCompanyInfo } from '@/app/api/companyInfo';
 import { getMenuData } from '@/app/api/navigationMenu';
 import './globals.css';
+import { companyInfoData } from '@/assets/data';
 
 const notoSans = Noto_Sans_KR({
   variable: '--font-noto-sans',
@@ -47,7 +47,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const menuData = await getMenuData();
-  const companyInfo = await getCompanyInfo();
+  // const companyInfo = await getCompanyInfo();
 
   return (
     <html lang='ko'>
@@ -55,7 +55,7 @@ export default async function RootLayout({
         <Header menuData={menuData} />
         <div>{children}</div>
         <TopButton />
-        <Footer companyInfo={companyInfo} />
+        <Footer companyInfo={companyInfoData} />
       </body>
     </html>
   );
