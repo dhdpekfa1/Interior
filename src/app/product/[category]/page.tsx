@@ -17,14 +17,24 @@ export const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
         string,
         (info: ProductCategory) => JSX.Element
       > = {
-        deco: (info) => <DecoTab deco={info} />,
-        wood: (info) => <WoodTab wood={info} />,
-        carpet: (info) => <CarpetTab carpet={info} />,
-        carpet_tile: (info) => <CarpetTilesTab carpetTile={info} />,
-        deluxe: (info) => <DeluxeTab deluxe={info} />,
+        '1f5c9fb8-a04e-40cc-ab5d-2ed84f4aedd7': (info) => (
+          <DecoTab deco={info} />
+        ),
+        'f024def7-bde5-4205-94ed-77b02275e99d': (info) => (
+          <WoodTab wood={info} />
+        ),
+        'f1fef9f6-5e31-444c-8f16-c743b8506a96': (info) => (
+          <CarpetTilesTab carpetTile={info} />
+        ),
+        '4e1b32c0-c79c-4375-ac5f-afcda0c2f164': (info) => (
+          <CarpetTab carpet={info} />
+        ),
+        'ae6f5894-7de4-422e-bf0b-b7517ac23bd3': (info) => (
+          <DeluxeTab deluxe={info} />
+        ),
       };
 
-      const factory = componentFactory[item.category];
+      const factory = componentFactory[item.id];
       if (!factory) return null;
 
       return {
