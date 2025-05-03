@@ -1,5 +1,5 @@
 import { CompanyInfoType } from '@/types/frame';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/app/lib/supabase/server';
 
 export const getCompanyInfo = async (): Promise<CompanyInfoType[]> => {
   const supabase = await createClient();

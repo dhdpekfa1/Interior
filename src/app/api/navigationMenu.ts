@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/app/lib/supabase/server';
 import { MenuItem, SubMenuItem } from '@/types/frame';
 
 export const getMenuData = async (): Promise<MenuItem[]> => {

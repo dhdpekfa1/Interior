@@ -1,5 +1,5 @@
 import { Product } from '@/types/sample';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/client';
 
 export const getProductDeco = async (): Promise<Product[]> => {
   const supabase = await createClient();
