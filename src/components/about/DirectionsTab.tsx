@@ -10,7 +10,7 @@ import {
 import { ChevronRight } from 'lucide-react';
 import { KakaoMap } from '@/components/common/KakaoMap';
 import { cn } from '@/lib/utils';
-import { getCompanyInfo } from '@/app/api/companyInfo';
+import companyInfo from '@/assets/data/companyInfo.json';
 
 const busInfo = [
   { type: '간선', color: 'bg-sky-600', buses: '12, 13, 7, 103' },
@@ -18,7 +18,6 @@ const busInfo = [
 const subwayInfo = ['택시 5분', '도보 10분'];
 
 export const DirectionsTab = async () => {
-  const companyInfo = await getCompanyInfo();
   const contact = companyInfo.filter((item) =>
     ['주소', 'TEL', 'FAX'].includes(item.label)
   );
