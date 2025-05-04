@@ -72,17 +72,17 @@ export const getProductAsa = async (): Promise<Product[]> => {
   const supabase = await createClient();
   const { data, error } = await supabase.from('product_asa_pet').select('*');
   if (error) {
-    console.error('Error fetching product_sva:', error);
+    console.error('Error fetching product_asa_pet:', error);
     return [];
   }
   return data;
 };
 
-export const getProductCarpet = async (): Promise<Product[]> => {
+export const getProductHpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_carpet').select('*');
+  const { data, error } = await supabase.from('product_hpm').select('*');
   if (error) {
-    console.error('Error fetching product_carpet:', error);
+    console.error('Error fetching product_hpm:', error);
     return [];
   }
   return data;

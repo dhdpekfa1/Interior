@@ -6,7 +6,7 @@ import {
   MirrorLpmTab,
   PvcTab,
   AsaPetTab,
-  CarpetTab,
+  HpmTab,
 } from '@/components/product';
 import { ProductCategory } from '@/types/sample';
 
@@ -26,9 +26,7 @@ const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
         'f024def7-bde5-4205-94ed-77b02275e99d': (info) => (
           <AsaPetTab asa={info} />
         ),
-        'f1fef9f6-5e31-444c-8f16-c743b8506a96': (info) => (
-          <CarpetTab carpet={info} />
-        ),
+        'f1fef9f6-5e31-444c-8f16-c743b8506a96': (info) => <HpmTab hpm={info} />,
       };
 
       const factory = componentFactory[item.id];

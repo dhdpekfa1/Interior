@@ -1,9 +1,8 @@
-export { LpmTab } from './tabs/LpmTab'; // deco
-export { MirrorLpmTab } from './tabs/MirrorLpmTab'; // carpet-tile
-export { PvcTab } from './tabs/PvcTab'; // deluxe
-export { AsaPetTab } from './tabs/AsaPetTab'; // wood
-
-export { CarpetTab } from './tabs/CarpetTab';
+export { LpmTab } from './tabs/LpmTab';
+export { MirrorLpmTab } from './tabs/MirrorLpmTab';
+export { PvcTab } from './tabs/PvcTab';
+export { AsaPetTab } from './tabs/AsaPetTab';
+export { HpmTab } from './tabs/HpmTab';
 
 export { InquiryDialog } from './InquiryDialog';
 export { ProductCounter } from './ProductCounter';
