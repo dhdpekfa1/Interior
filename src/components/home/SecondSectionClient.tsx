@@ -47,9 +47,12 @@ const SecondSectionClient = ({
                   <h2 className='text-lg md:text-xl font-bold text-two'>
                     {item.label}
                   </h2>
-                  <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
-                    {item.home_description}
-                  </span>
+                  {item.home_description && (
+                    <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
+                      {item.home_description}
+                    </span>
+                  )}
+
                   <Button
                     variant='outline'
                     className={cn(

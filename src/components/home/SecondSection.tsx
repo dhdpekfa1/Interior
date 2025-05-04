@@ -1,5 +1,5 @@
 import { SecondSectionClient, SectionHeader } from '@/components/home';
-import { getProductHome } from '@/app/api/\bproduct';
+import { getProductHome } from '@/app/api/product';
 
 export const SecondSection = async () => {
   const productHomeData = await getProductHome();

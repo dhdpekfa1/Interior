@@ -38,53 +38,51 @@ export const getProductList = async (): Promise<ProductCategory[]> => {
   return data;
 };
 
-export const getProductDeco = async (): Promise<Product[]> => {
+export const getProductLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_deco').select('*');
+  const { data, error } = await supabase.from('product_lpm').select('*');
   if (error) {
-    console.error('Error fetching product_deco:', error);
+    console.error('Error fetching product_lpm:', error);
     return [];
   }
   return data;
 };
 
-export const getProductWood = async (): Promise<Product[]> => {
+export const getProductMirrorLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_wood').select('*');
+  const { data, error } = await supabase.from('product_mirror_lpm').select('*');
   if (error) {
-    console.error('Error fetching product_wood:', error);
+    console.error('Error fetching product_mirror_lpm:', error);
     return [];
   }
   return data;
 };
 
-export const getProductCarpet = async (): Promise<Product[]> => {
+export const getProductPvc = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_carpet').select('*');
+  const { data, error } = await supabase.from('product_pvc_pp').select('*');
   if (error) {
-    console.error('Error fetching product_carpet:', error);
+    console.error('Error fetching product_pvc_pp:', error);
     return [];
   }
   return data;
 };
 
-export const getProductCarpetTile = async (): Promise<Product[]> => {
+export const getProductAsa = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('product_carpet_tile')
-    .select('*');
+  const { data, error } = await supabase.from('product_asa_pet').select('*');
   if (error) {
-    console.error('Error fetching product_carpet_tile:', error);
+    console.error('Error fetching product_asa_pet:', error);
     return [];
   }
   return data;
 };
 
-export const getProductDeluxe = async (): Promise<Product[]> => {
+export const getProductHpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_deluxe').select('*');
+  const { data, error } = await supabase.from('product_hpm').select('*');
   if (error) {
-    console.error('Error fetching product_deluxe:', error);
+    console.error('Error fetching product_hpm:', error);
     return [];
   }
   return data;
