@@ -1,6 +1,6 @@
 import React from 'react';
 import { SampleList } from '@/components/common';
-import { getProductLpm } from '@/app/api/\bproduct';
+import { getProductLpm } from '@/app/api/product';
 import { ProductCategory } from '@/types/sample';
 
 interface Props {

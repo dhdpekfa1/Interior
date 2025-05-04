@@ -1,12 +1,12 @@
 import { JSX } from 'react';
-import { getProductList } from '@/app/api/\bproduct';
+import { getProductList } from '@/app/api/product';
 import { Banner, TabItem, UrlTabs } from '@/components/common';
 import {
   LpmTab,
   MirrorLpmTab,
   PvcTab,
+  AsaPetTab,
   CarpetTab,
-  WoodTab,
 } from '@/components/product';
 import { ProductCategory } from '@/types/sample';
 
@@ -24,7 +24,7 @@ const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
         'ae6f5894-7de4-422e-bf0b-b7517ac23bd3': (info) => <PvcTab pvc={info} />,
 
         'f024def7-bde5-4205-94ed-77b02275e99d': (info) => (
-          <WoodTab wood={info} />
+          <AsaPetTab asa={info} />
         ),
         'f1fef9f6-5e31-444c-8f16-c743b8506a96': (info) => (
           <CarpetTab carpet={info} />

@@ -1,4 +1,4 @@
-import { getProductMirrorLpm } from '@/app/api/\bproduct';
+import { getProductMirrorLpm } from '@/app/api/product';
 import { SampleList } from '@/components/common';
 import { ProductCategory } from '@/types/sample';
 import React from 'react';

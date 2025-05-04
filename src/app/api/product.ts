@@ -68,11 +68,11 @@ export const getProductPvc = async (): Promise<Product[]> => {
   return data;
 };
 
-export const getProductWood = async (): Promise<Product[]> => {
+export const getProductAsa = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_wood').select('*');
+  const { data, error } = await supabase.from('product_asa_pet').select('*');
   if (error) {
-    console.error('Error fetching product_wood:', error);
+    console.error('Error fetching product_sva:', error);
     return [];
   }
   return data;
