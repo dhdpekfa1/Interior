@@ -1,6 +1,7 @@
 export { LpmTab } from './tabs/LpmTab'; // deco
+export { MirrorLpmTab } from './tabs/MirrorLpmTab'; // carpet-tile
+
 export { CarpetTab } from './tabs/CarpetTab';
-export { CarpetTilesTab } from './tabs/CarpetTilesTab';
 export { DeluxeTab } from './tabs/DeluxeTab';
 export { WoodTab } from './tabs/WoodTab';
 
