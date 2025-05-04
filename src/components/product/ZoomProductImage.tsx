@@ -63,7 +63,7 @@ export const ZoomProductImage = ({
       />
       {/* 렌즈 */}
       <div
-        className='absolute border border-gray-400 bg-white/40 pointer-events-none'
+        className='absolute border border-gray-400 bg-white/40 pointer-events-none hidden sm:block'
         style={{
           width: lensSize,
           height: lensSize,
