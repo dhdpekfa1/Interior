@@ -53,7 +53,7 @@ const ProductPage = async () => {
       <Banner
         title='제품소개'
         description='공간의 품격을 높여줄 고품질 타일'
-        imgUrl='https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        imgUrl='http://hslpl.com/wordpress/wp-content/uploads/2018/12/13_01.jpg'
       />
       <UrlTabs basePath='/product' defaultTab='lpm' tabs={tabs} />
     </>
