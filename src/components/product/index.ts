@@ -1,6 +1,6 @@
+export { LpmTab } from './tabs/LpmTab'; // deco
 export { CarpetTab } from './tabs/CarpetTab';
 export { CarpetTilesTab } from './tabs/CarpetTilesTab';
-export { DecoTab } from './tabs/DecoTab';
 export { DeluxeTab } from './tabs/DeluxeTab';
 export { WoodTab } from './tabs/WoodTab';
 

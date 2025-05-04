@@ -15,9 +15,9 @@
   },
   {
     "title": "제품소개",
-    "baseUrl": "/product/deco",
+    "baseUrl": "/product/lpm",
     "subMenu": [
-      { "label": "데코타일", "url": "/product/deco" },
+      { "label": "LPM", "url": "/product/lpm" },
       { "label": "우드타일", "url": "/product/wood" },
       { "label": "카펫타일", "url": "/product/carpet-tiles" },
       { "label": "카페트", "url": "/product/carpet" },

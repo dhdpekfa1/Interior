@@ -2,9 +2,9 @@ import { JSX } from 'react';
 import { getProductList } from '@/app/api/\bproduct';
 import { Banner, TabItem, UrlTabs } from '@/components/common';
 import {
+  LpmTab,
   CarpetTab,
   CarpetTilesTab,
-  DecoTab,
   DeluxeTab,
   WoodTab,
 } from '@/components/product';
@@ -17,9 +17,7 @@ const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
         string,
         (info: ProductCategory) => JSX.Element
       > = {
-        '1f5c9fb8-a04e-40cc-ab5d-2ed84f4aedd7': (info) => (
-          <DecoTab deco={info} />
-        ),
+        '1f5c9fb8-a04e-40cc-ab5d-2ed84f4aedd7': (info) => <LpmTab lpm={info} />,
         'f024def7-bde5-4205-94ed-77b02275e99d': (info) => (
           <WoodTab wood={info} />
         ),
@@ -60,7 +58,7 @@ const ProductPage = async () => {
         description='공간의 품격을 높여줄 고품질 타일'
         imgUrl='https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
       />
-      <UrlTabs basePath='/product' defaultTab='deco' tabs={tabs} />
+      <UrlTabs basePath='/product' defaultTab='lpm' tabs={tabs} />
     </>
   );
 };
