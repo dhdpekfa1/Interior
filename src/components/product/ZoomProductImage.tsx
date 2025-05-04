@@ -11,7 +11,7 @@ interface Props {
   isZooming: boolean;
   isSelected: boolean;
   lensPos: { x: number; y: number };
-  onZoomStart: () => void;
+  onZoomStart: (e: React.MouseEvent) => void;
   onZoomEnd: () => void;
   onMoveLens: (pos: { x: number; y: number }) => void;
 }

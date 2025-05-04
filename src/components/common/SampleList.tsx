@@ -37,6 +37,7 @@ export const SampleList = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 }); // 확대 렌즈 위치
   const [zoomSrc, setZoomSrc] = useState<string | null>(null); // 현재 확대 중인 이미지 src
+  const [zoomSide, setZoomSide] = useState<'left' | 'right'>('right'); // 마우스(호버 아이템) 위치
 
   const { addProduct, removeProduct, selectedProducts } = useProductStore();
 
@@ -144,8 +145,17 @@ export const SampleList = ({
                   isZooming={zoomSrc === product.image}
                   isSelected={isSelected}
                   lensPos={lensPos}
-                  onZoomStart={() => {
+                  onZoomStart={(e: React.MouseEvent) => {
                     setZoomSrc(product.image);
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const screenWidth = window.innerWidth;
+                    const itemCenterX = rect.left + rect.width / 2;
+
+                    // 아이템이 화면 오른쪽에 있으면 확대 이미지를 왼쪽에 띄우기
+                    setZoomSide(
+                      itemCenterX > screenWidth / 2 ? 'left' : 'right'
+                    );
                   }}
                   onZoomEnd={() => {
                     setZoomSrc(null);
@@ -156,7 +166,13 @@ export const SampleList = ({
                   {product.name}
                 </p>
 
-                {zoomSrc && <ZoomPreview src={zoomSrc} lensPos={lensPos} />}
+                {zoomSrc && (
+                  <ZoomPreview
+                    src={zoomSrc}
+                    lensPos={lensPos}
+                    position={zoomSide}
+                  />
+                )}
 
                 {/* 태그 */}
                 <div className='flex items-center justify-around'>
