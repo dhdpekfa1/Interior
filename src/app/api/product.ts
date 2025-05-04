@@ -38,11 +38,21 @@ export const getProductList = async (): Promise<ProductCategory[]> => {
   return data;
 };
 
-export const getProductDeco = async (): Promise<Product[]> => {
+export const getProductLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('product_deco').select('*');
+  const { data, error } = await supabase.from('product_lpm').select('*');
   if (error) {
-    console.error('Error fetching product_deco:', error);
+    console.error('Error fetching product_lpm:', error);
+    return [];
+  }
+  return data;
+};
+
+export const getProductMirrorLpm = async (): Promise<Product[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('product_mirror_lpm').select('*');
+  if (error) {
+    console.error('Error fetching product_mirror_lpm:', error);
     return [];
   }
   return data;
@@ -63,18 +73,6 @@ export const getProductCarpet = async (): Promise<Product[]> => {
   const { data, error } = await supabase.from('product_carpet').select('*');
   if (error) {
     console.error('Error fetching product_carpet:', error);
-    return [];
-  }
-  return data;
-};
-
-export const getProductCarpetTile = async (): Promise<Product[]> => {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('product_carpet_tile')
-    .select('*');
-  if (error) {
-    console.error('Error fetching product_carpet_tile:', error);
     return [];
   }
   return data;

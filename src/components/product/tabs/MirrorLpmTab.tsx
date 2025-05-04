@@ -1,4 +1,4 @@
-import { getProductWood } from '@/app/api/\bproduct';
+import { getProductMirrorLpm } from '@/app/api/\bproduct';
 import { SampleList } from '@/components/common';
 import { ProductCategory } from '@/types/sample';
 import React from 'react';
@@ -8,9 +8,9 @@ interface Props {
 }
 
 export const MirrorLpmTab = async ({ mirrorLpm }: Props) => {
-  const woodProducts = await getProductWood();
+  const mirrorLpmProducts = await getProductMirrorLpm();
 
-  if (!mirrorLpm || !woodProducts) return '오류가 발생했습니다.';
+  if (!mirrorLpm || !mirrorLpmProducts) return '오류가 발생했습니다.';
 
   return (
     <SampleList
@@ -19,7 +19,7 @@ export const MirrorLpmTab = async ({ mirrorLpm }: Props) => {
       subImageUrl={mirrorLpm.sub_image}
       thirdImageUrl={mirrorLpm.third_image}
       content={mirrorLpm.content}
-      dataList={woodProducts}
+      dataList={mirrorLpmProducts}
     />
   );
 };
