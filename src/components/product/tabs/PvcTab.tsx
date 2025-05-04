@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProductDeluxe } from '@/app/api/\bproduct';
+import { getProductPvc } from '@/app/api/product';
 import { SampleList } from '@/components/common';
 import { ProductCategory } from '@/types/sample';
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const PvcTab = async ({ pvc }: Props) => {
-  const pvcProducts = await getProductDeluxe();
+  const pvcProducts = await getProductPvc();
 
   if (!pvcProducts || !pvc) return '오류가 발생했습니다.';
 
