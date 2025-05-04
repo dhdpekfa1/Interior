@@ -37,7 +37,6 @@ const SecondSectionClient = ({
                     alt={item.label}
                     width={300}
                     height={200}
-                    priority
                     className='w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110'
                   />
                 </div>
