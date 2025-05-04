@@ -1,6 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 interface ZoomPreviewProps {
@@ -9,24 +8,28 @@ interface ZoomPreviewProps {
   scale?: number;
   width?: number;
   height?: number;
-  position: 'left' | 'right';
+  position?: 'left' | 'right';
 }
 
 export const ZoomPreview = ({
   src,
   lensPos,
   scale = 2,
-  width = 400,
-  height = 400,
+  width = 300,
+  height = 300,
   position = 'right',
 }: ZoomPreviewProps) => {
   return (
     <div
-      className={cn(
-        'fixed top-32 z-50 border shadow-lg overflow-hidden bg-white',
-        position === 'right' ? 'right-10' : 'left-10'
-      )}
-      style={{ width, height }}
+      className='absolute top-0 z-40 bg-white border shadow-lg overflow-hidden'
+      style={{
+        width,
+        height,
+        left: position === 'right' ? '100%' : undefined,
+        right: position === 'left' ? '100%' : undefined,
+        marginLeft: position === 'right' ? '12px' : undefined,
+        marginRight: position === 'left' ? '12px' : undefined,
+      }}
     >
       <Image
         src={src}

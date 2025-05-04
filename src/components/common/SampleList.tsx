@@ -137,7 +137,7 @@ export const SampleList = ({
             >
               <div
                 onClick={() => handleSelectProduct(product)}
-                className='flex flex-col gap-4'
+                className='flex flex-col gap-4 relative'
               >
                 <ZoomProductImage
                   src={product.image}
@@ -166,7 +166,7 @@ export const SampleList = ({
                   {product.name}
                 </p>
 
-                {zoomSrc && (
+                {zoomSrc === product.image && (
                   <ZoomPreview
                     src={zoomSrc}
                     lensPos={lensPos}
