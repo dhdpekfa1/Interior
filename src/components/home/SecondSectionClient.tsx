@@ -45,7 +45,7 @@ const SecondSectionClient = ({
                 {/* 텍스트 + 버튼 */}
                 <div className='flex flex-col items-center gap-2'>
                   <h2 className='text-lg md:text-xl font-bold text-two'>
-                    {item.category}
+                    {item.label}
                   </h2>
                   <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
                     {item.home_description}
