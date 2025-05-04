@@ -19,7 +19,7 @@
     "subMenu": [
       { "label": "LPM", "url": "/product/lpm" },
       { "label": "경면 LPM", "url": "/product/mirror-lpm" },
-      { "label": "우드타일", "url": "/product/wood" },
+      { "label": "PVC/PP", "url": "/product/pvc-pp" },
       { "label": "카페트", "url": "/product/carpet" },
       { "label": "디럭스타일", "url": "/product/deluxe" }
     ]

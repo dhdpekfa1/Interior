@@ -4,8 +4,8 @@ import { Banner, TabItem, UrlTabs } from '@/components/common';
 import {
   LpmTab,
   MirrorLpmTab,
+  PvcTab,
   CarpetTab,
-  DeluxeTab,
   WoodTab,
 } from '@/components/product';
 import { ProductCategory } from '@/types/sample';
@@ -21,15 +21,13 @@ const getProductTabs = (productData: ProductCategory[]): TabItem[] => {
         '4e1b32c0-c79c-4375-ac5f-afcda0c2f164': (info) => (
           <MirrorLpmTab mirrorLpm={info} />
         ),
+        'ae6f5894-7de4-422e-bf0b-b7517ac23bd3': (info) => <PvcTab pvc={info} />,
 
         'f024def7-bde5-4205-94ed-77b02275e99d': (info) => (
           <WoodTab wood={info} />
         ),
         'f1fef9f6-5e31-444c-8f16-c743b8506a96': (info) => (
           <CarpetTab carpet={info} />
-        ),
-        'ae6f5894-7de4-422e-bf0b-b7517ac23bd3': (info) => (
-          <DeluxeTab deluxe={info} />
         ),
       };
 
