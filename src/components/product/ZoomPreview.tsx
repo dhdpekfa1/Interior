@@ -21,7 +21,7 @@ export const ZoomPreview = ({
       className={cn(
         'absolute top-0 z-40 bg-white border shadow-lg overflow-hidden',
         position === 'right' ? 'left-full ml-3' : 'right-full mr-3',
-        'w-[220px] sm:w-[260px] md:w-[300px] aspect-square'
+        'w-[105%] sm:w-[260px] md:w-[300px] aspect-square sm:aspect-square'
       )}
     >
       <Image
