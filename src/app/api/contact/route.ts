@@ -17,8 +17,8 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: 'dhdpekfa1@daum.net', // TODO: 수신 이메일 주소 변경
-      cc: ['person1@example.com', 'person2@example.com'], // TODO: 참조 수신 이메일 주소 변경
+      to: 'hanjunt57@naver.com', // TODO: 수신 이메일 주소 변경
+      cc: ['dhdpekfa1@daum.net', 'hanjunt57@gmail.com'], // TODO: 참조 수신 이메일 주소 변경
       subject: '📩 새로운 문의가 도착했습니다!',
       text: `📌 문의 유형: ${categoryLabel}\n📧이메일: ${email}\n📞 연락처: ${phone}\n\n📝문의 내용: ${message}\n\n상품 목록:\n${products
         .map(
