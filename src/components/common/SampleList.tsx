@@ -4,8 +4,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
-import { InquiryDialog, ProductCounter } from '@/components/product';
-import { Check, Asterisk } from 'lucide-react';
+import {
+  InquiryDialog,
+  ProductCounter,
+  ZoomPreview,
+  ZoomProductImage,
+} from '@/components/product';
+import { Asterisk } from 'lucide-react';
 import { Separator } from '@/components/ui';
 import { Product } from '@/types/sample';
 import { cn } from '@/lib/utils';
@@ -30,6 +35,9 @@ export const SampleList = ({
   content,
 }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [lensPos, setLensPos] = useState({ x: 0, y: 0 }); // 확대 렌즈 위치
+  const [zoomSrc, setZoomSrc] = useState<string | null>(null); // 현재 확대 중인 이미지 src
+
   const { addProduct, removeProduct, selectedProducts } = useProductStore();
 
   const handleSelectProduct = (product: Product) => {
@@ -130,35 +138,25 @@ export const SampleList = ({
                 onClick={() => handleSelectProduct(product)}
                 className='flex flex-col gap-4'
               >
-                <div className='relative w-full aspect-square overflow-hidden'>
-                  {product.image ? (
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw'
-                      className='duration-300 hover:scale-125 object-cover'
-                    />
-                  ) : (
-                    <div className='w-full h-full flex items-center justify-center bg-gray-300 animate-pulse'>
-                      <p className='text-xs md:text-sm'>이미지 준비중</p>
-                    </div>
-                  )}
-
-                  <Check
-                    className={cn(
-                      'absolute top-2 right-2 text-point bg-white',
-                      'transition-all duration-300',
-                      isSelected
-                        ? 'opacity-100 visible scale-100'
-                        : 'opacity-0 invisible scale-95'
-                    )}
-                    size={24}
-                  />
-                </div>
+                <ZoomProductImage
+                  src={product.image}
+                  alt={product.name}
+                  isZooming={zoomSrc === product.image}
+                  isSelected={isSelected}
+                  lensPos={lensPos}
+                  onZoomStart={() => {
+                    setZoomSrc(product.image);
+                  }}
+                  onZoomEnd={() => {
+                    setZoomSrc(null);
+                  }}
+                  onMoveLens={(pos) => setLensPos(pos)}
+                />
                 <p className='mt-2 text-center text-two text-xs sm:text-sm md:text-base'>
                   {product.name}
                 </p>
+
+                {zoomSrc && <ZoomPreview src={zoomSrc} lensPos={lensPos} />}
 
                 {/* 태그 */}
                 <div className='flex items-center justify-around'>
