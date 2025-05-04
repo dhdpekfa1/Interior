@@ -9,7 +9,7 @@ export const AboutUsTab = () => {
       <div className='grid gap-4 md:gap-6 lg:gap-8 w-full grid-cols-1 md:grid-cols-2 items-center justify-center'>
         <div className='relative h-[400px] md:h-[400px] w-full'>
           <Image
-            src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            src='/assets/companyInfo.jpeg'
             alt='회사'
             fill
             className='w-full h-full object-cover'

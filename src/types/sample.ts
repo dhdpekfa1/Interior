@@ -12,7 +12,7 @@ export type ProductCategory = {
 
 export type ProductHome = Pick<
   ProductCategory,
-  'home_image' | 'home_description' | 'label' | 'id'
+  'home_image' | 'home_description' | 'label' | 'id' | 'category'
 > & {
   url: string;
 };

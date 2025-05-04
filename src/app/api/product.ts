@@ -6,7 +6,8 @@ export const getProductHome = async (): Promise<ProductHome[]> => {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('product')
-    .select('home_image, home_description, category, label, id');
+    .select('home_image, home_description, category, label, id')
+    .order('created_at', { ascending: true });
 
   if (error) {
     console.error('Error fetching product_home:', error);
@@ -19,6 +20,7 @@ export const getProductHome = async (): Promise<ProductHome[]> => {
     home_description: item.home_description,
     label: item.label,
     url: `/product/${item.category}`,
+    category: item.category,
   }));
 };
 
