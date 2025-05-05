@@ -78,7 +78,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
           return (
             <div
               key={product.id}
-              className='group transition-transform duration-300 cursor-pointer border border-two-1'
+              className='group transition-transform duration-300 cursor-pointer'
             >
               <div
                 onClick={() => handleSelectProduct(product)}
@@ -108,14 +108,14 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                   onMoveLens={(pos) => setLensPos(pos)}
                 />
 
-                {/* 설명 */}
-                <div className='ml-2 gap-3'>
-                  <p className='text-two text-xs sm:text-sm md:text-base font-bold'>
+                {/* 품명/설명 */}
+                <div className='gap-3'>
+                  <p className='text-two text-xs sm:text-sm md:text-base font-bold text-center'>
                     {product.name}
                   </p>
-                  <span className='text-two/60 text-xs sm:text-sm break-keep'>
+                  <p className='text-two/60 text-xs sm:text-sm break-keep text-center'>
                     {product.description}
-                  </span>
+                  </p>
                 </div>
 
                 {zoomSrc === product.image && (
