@@ -23,7 +23,7 @@ const SecondSectionClient = ({
                 href={item.url}
                 ref={ref}
                 className={cn(
-                  'flex flex-col items-center gap-4 group transition-all duration-700 ease-out',
+                  'flex flex-col items-center gap-2 group transition-all duration-700 ease-out',
                   index < 3 ? 'w-[90%] md:w-[30%]' : 'w-[90%] md:w-[30%]',
                   inView
                     ? 'opacity-100 translate-y-0 md:translate-y-0 md:translate-x-0'
@@ -56,7 +56,7 @@ const SecondSectionClient = ({
                     variant='outline'
                     className={cn(
                       'group flex items-center justify-center',
-                      'mt-2 px-3 py-1 border bg-white/80 border-two/50 text-two/50 text-xs md:text-sm transition-all duration-300 mb-6',
+                      'px-3 py-1 border bg-white/80 border-two/50 text-two/50 text-xs md:text-sm transition-all duration-300 mb-6',
                       'group-hover:border-point group-hover:text-point hover:bg-white/80'
                     )}
                   >
