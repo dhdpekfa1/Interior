@@ -27,7 +27,7 @@ export const ZoomProductImage = ({
   onMoveLens,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
-  const lensSize = 100;
+  const lensSize = 70;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const bounds = ref.current?.getBoundingClientRect();
@@ -45,12 +45,7 @@ export const ZoomProductImage = ({
       onMouseLeave={onZoomEnd}
       onMouseMove={handleMouseMove}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className='object-cover duration-300 hover:scale-125'
-      />
+      <Image src={src} alt={alt} fill className='object-cover duration-300' />
       <Check
         className={cn(
           'absolute top-2 right-2 text-point bg-white',

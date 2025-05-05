@@ -1,19 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import {
   InquiryDialog,
-  ProductCounter,
   ZoomPreview,
   ZoomProductImage,
 } from '@/components/product';
 import { Asterisk } from 'lucide-react';
 import { Separator } from '@/components/ui';
 import { Product } from '@/types/sample';
-import { cn } from '@/lib/utils';
 
 interface SampleListProps {
   title: string;
@@ -26,14 +23,7 @@ interface SampleListProps {
 
 const ITEMS_PER_PAGE = 15;
 
-export const SampleList = ({
-  title,
-  mainImageUrl,
-  subImageUrl,
-  thirdImageUrl,
-  dataList,
-  content,
-}: SampleListProps) => {
+export const SampleList = ({ title, dataList }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 }); // 확대 렌즈 위치
   const [zoomSrc, setZoomSrc] = useState<string | null>(null); // 현재 확대 중인 이미지 src
@@ -69,53 +59,6 @@ export const SampleList = ({
     <div className='wrapper'>
       <SubTitle title={title} />
 
-      {/* 제품 설명 */}
-      <div className='flex flex-col sm:flex-row items-start h-[40rem] gap-6'>
-        {/* 메인 이미지 */}
-        {mainImageUrl && (
-          <div className='relative w-full h-full flex-1'>
-            <Image
-              src={mainImageUrl}
-              alt={`${title} 소개 이미지 1`}
-              sizes='(max-width: 768px) 100vw, 50vw'
-              fill
-              className='object-cover'
-            />
-          </div>
-        )}
-
-        {/* 서브 이미지 + 텍스트 */}
-        <div className='flex flex-col gap-6 lg:gap-12 justify-end h-full flex-1'>
-          {subImageUrl && (
-            <div className='relative w-full h-full'>
-              <Image
-                src={subImageUrl}
-                alt={`${title} 소개 이미지 2`}
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, 50vw'
-              />
-            </div>
-          )}
-          <p className='text-xs sm:text-sm md:text-base lg:text-xl text-two break-keep'>
-            {content}
-          </p>
-
-          {thirdImageUrl && (
-            <div className='relative w-full h-full'>
-              <Image
-                src={thirdImageUrl}
-                alt={`${title} 소개 이미지 3`}
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, 50vw'
-              />
-            </div>
-          )}
-        </div>
-      </div>
-
-      <Separator className='my-4 sm:my-6' />
       <div className='flex item-center justify-center text-[10px] sm:xs md:text-sm text-two/70 mb-4'>
         <Asterisk className='h-auto w-2 md:w-3' />
         <span className='break-keep'>
@@ -123,8 +66,10 @@ export const SampleList = ({
           주세요.
         </span>
       </div>
+      <Separator className='my-4 sm:my-6' />
+
       {/* 제품 리스트 */}
-      <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {paginatedProducts.map((product) => {
           const isSelected = selectedProducts.some(
             (item) => item.id === product.id.toString()
@@ -133,11 +78,11 @@ export const SampleList = ({
           return (
             <div
               key={product.id}
-              className='group transition-transform duration-300 cursor-pointer border-point bg-white shadow-md'
+              className='group transition-transform duration-300 cursor-pointer border border-two-1'
             >
               <div
                 onClick={() => handleSelectProduct(product)}
-                className='flex flex-col gap-4 relative'
+                className='flex flex-col gap-3 relative  mb-4'
               >
                 <ZoomProductImage
                   src={product.image}
@@ -162,9 +107,16 @@ export const SampleList = ({
                   }}
                   onMoveLens={(pos) => setLensPos(pos)}
                 />
-                <p className='mt-2 text-center text-two text-xs sm:text-sm md:text-base'>
-                  {product.name}
-                </p>
+
+                {/* 설명 */}
+                <div className='ml-2 gap-3'>
+                  <p className='text-two text-xs sm:text-sm md:text-base font-bold'>
+                    {product.name}
+                  </p>
+                  <span className='text-two/60 text-xs sm:text-sm break-keep'>
+                    {product.description}
+                  </span>
+                </div>
 
                 {zoomSrc === product.image && (
                   <ZoomPreview
@@ -173,32 +125,6 @@ export const SampleList = ({
                     position={zoomSide}
                   />
                 )}
-
-                {/* 태그 */}
-                <div className='flex items-center justify-around'>
-                  <p className='text-two/60 text-xs sm:text-sm'>
-                    {product.description}
-                  </p>
-                </div>
-              </div>
-              {/* 선택된 상품: 카운터 표시 */}
-              <div
-                className={cn(
-                  'flex justify-center pb-2 transition-all duration-300',
-                  isSelected
-                    ? 'opacity-100 visible scale-100 mt-5'
-                    : 'opacity-0 invisible scale-95'
-                )}
-              >
-                <ProductCounter
-                  id={product.id.toString()}
-                  count={
-                    selectedProducts.find(
-                      (item) => item.id === product.id.toString()
-                    )?.count || 1
-                  }
-                  showRemoveButton={false}
-                />
               </div>
             </div>
           );
