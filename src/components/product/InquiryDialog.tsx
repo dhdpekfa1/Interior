@@ -7,36 +7,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
   ScrollArea,
   Button,
 } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { useProductStore } from '@/store/useProductStore';
 import { InquiryForm } from './InquiryForm';
-import { ProductCounter } from './ProductCounter';
 import { MailQuestion, X } from 'lucide-react';
 
 export const InquiryDialog = () => {
   const [open, setOpen] = useState(false); // dialog
   const [showNotice, setShowNotice] = useState(true); // 제품 선택 문구
 
-  const { selectedProducts, removeProduct } = useProductStore();
-
-  const handleRemoveProduct = (id: string) => {
-    if (selectedProducts.length === 1) {
-      // 마지막 상품 알림
-      const confirmClose = window.confirm(
-        `마지막 상품을 삭제하시면 문의가 종료되며, \n다시 상품을 선택 후 이용 가능합니다. 정말 삭제하시겠습니까?`
-      );
-      if (confirmClose) {
-        removeProduct(id);
-        setOpen(false);
-      }
-    } else {
-      removeProduct(id);
-    }
-  };
+  const { selectedProducts } = useProductStore();
 
   return (
     <div className='fixed bottom-32 right-6'>
@@ -88,9 +71,6 @@ export const InquiryDialog = () => {
                 문의접수
               </DialogTitle>
             </div>
-            <DialogDescription>
-              제품 수량을 확인 후 문의 내용을 작성해주세요.
-            </DialogDescription>
           </DialogHeader>
 
           <ScrollArea className='max-h-[80vh] overflow-auto'>
@@ -104,12 +84,6 @@ export const InquiryDialog = () => {
                   <span>
                     {index + 1}. {product.name}
                   </span>
-                  {/* 카운터 */}
-                  <ProductCounter
-                    id={product.id}
-                    count={product.count}
-                    onRemove={handleRemoveProduct}
-                  />
                 </div>
               ))}
             </ScrollArea>
