@@ -53,7 +53,7 @@ const ProductPage = async () => {
       <Banner
         title='제품소개'
         description='공간의 품격을 높여줄 고품질 타일'
-        imgUrl='assets/product.png'
+        imgUrl='/assets/product.png'
       />
       <UrlTabs basePath='/product' defaultTab='lpm' tabs={tabs} />
     </>
