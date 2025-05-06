@@ -61,7 +61,8 @@ export const MobileHeader = ({
 
       case 'icon':
         if (isHome) {
-          return isScrolled ? 'text-two hover:text-point' : 'text-white';
+          return isScrolled ? 'text-two hover:text-point' : 'text-point';
+          // return isScrolled ? 'text-two hover:text-point' : 'text-white';
         } else {
           return 'text-ef hover:text-white';
         }

@@ -23,7 +23,8 @@ export const DesktopHeader = ({
     if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
     if (isHome) {
       if (isScrolled) return 'h-[80px] bg-white text-point shadow-md';
-      return 'h-[80px] bg-transparent text-white';
+      return 'h-[80px] bg-transparent text-point';
+      // return 'h-[80px] bg-transparent text-white';
     }
     return 'h-[80px] bg-point text-white';
   };
