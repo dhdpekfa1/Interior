@@ -32,7 +32,7 @@ const SecondSectionClient = ({
                 )}
               >
                 {/* 이미지 */}
-                <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[480px] overflow-hidden'>
+                <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[500px] overflow-hidden'>
                   <Image
                     src={item.home_image}
                     alt={item.label}

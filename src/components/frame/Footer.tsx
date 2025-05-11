@@ -12,7 +12,7 @@ export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
   return (
     <footer
       className={cn(
-        'bottom-0 left-0 w-full py-10 px-10 bg-gray-500 text-white text-xs sm:text-sm md:text-base',
+        'bottom-0 left-0 w-full py-10 px-10 bg-point/95 text-white text-xs sm:text-sm md:text-base',
         'flex flex-col sm:flex-row sm:justify-between md:justify-around'
       )}
     >
