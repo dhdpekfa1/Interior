@@ -12,14 +12,5 @@ export const HpmTab = async ({ hpm }: Props) => {
 
   if (!hpm || !hpmProducts) return '오류가 발생했습니다.';
 
-  return (
-    <SampleList
-      title='HPM'
-      mainImageUrl={hpm.main_image}
-      subImageUrl={hpm.sub_image}
-      thirdImageUrl={hpm.third_image}
-      content={hpm.content}
-      dataList={hpmProducts}
-    />
-  );
+  return <SampleList title='HPM' dataList={hpmProducts} />;
 };

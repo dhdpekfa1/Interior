@@ -12,14 +12,5 @@ export const LpmTab = async ({ lpm }: Props) => {
 
   if (!lpm || !lpmProducts) return '오류가 발생했습니다.';
 
-  return (
-    <SampleList
-      title='LPM'
-      mainImageUrl={lpm.main_image}
-      subImageUrl={lpm.sub_image}
-      thirdImageUrl={lpm.third_image}
-      content={lpm.content}
-      dataList={lpmProducts}
-    />
-  );
+  return <SampleList title='LPM' dataList={lpmProducts} />;
 };

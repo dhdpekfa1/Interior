@@ -12,14 +12,5 @@ export const PvcTab = async ({ pvc }: Props) => {
 
   if (!pvcProducts || !pvc) return '오류가 발생했습니다.';
 
-  return (
-    <SampleList
-      title='PVC/PP'
-      mainImageUrl={pvc.main_image}
-      subImageUrl={pvc.sub_image}
-      thirdImageUrl={pvc.third_image}
-      content={pvc.content}
-      dataList={pvcProducts}
-    />
-  );
+  return <SampleList title='PVC/PP' dataList={pvcProducts} />;
 };
