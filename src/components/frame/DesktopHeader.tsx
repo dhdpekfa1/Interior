@@ -26,7 +26,8 @@ export const DesktopHeader = ({
       return 'h-[80px] bg-transparent text-point';
       // return 'h-[80px] bg-transparent text-white';
     }
-    return 'h-[80px] bg-point text-white';
+    return 'h-[80px] bg-transparent text-point'; // 일단 홈이랑 동일하게 변경
+    // return 'h-[80px] bg-point text-white';
   };
 
   return (
@@ -44,7 +45,7 @@ export const DesktopHeader = ({
       <div className='w-full max-w-7xl flex items-center justify-between px-10 h-[80px]'>
         {/* 로고 */}
         <Link href='/'>
-          <Image src='/assets/logo.png' alt='logo' width={80} height={50} />
+          <Image src='/assets/logo.png' alt='logo' width={120} height={50} />
         </Link>
 
         {/* 메뉴 */}

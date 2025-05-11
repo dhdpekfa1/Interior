@@ -56,7 +56,8 @@ export const MobileHeader = ({
             ? 'bg-white text-point shadow'
             : 'bg-transparent text-white';
         } else {
-          return 'bg-point text-white';
+          return 'bg-transparent text-point'; // 일단 홈이랑 동일하게 변경
+          // return 'bg-point text-white';
         }
 
       case 'icon':
@@ -64,7 +65,8 @@ export const MobileHeader = ({
           return isScrolled ? 'text-two hover:text-point' : 'text-point';
           // return isScrolled ? 'text-two hover:text-point' : 'text-white';
         } else {
-          return 'text-ef hover:text-white';
+          return 'text-point hover:text-white';
+          // return 'text-ef hover:text-white';
         }
 
       default:
