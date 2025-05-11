@@ -2,8 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'SCoreDream';
+  src: url('/fonts/SCoreDream/SCoreDream3.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCoreDream';
+  src: url('/fonts/SCoreDream/SCoreDream4.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCoreDream';
+  src: url('/fonts/SCoreDream/SCoreDream5.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCoreDream';
+  src: url('/fonts/SCoreDream/SCoreDream7.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'SCoreDream', 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
