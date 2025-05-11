@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 interface Props {
   src: string;
@@ -11,9 +11,11 @@ interface Props {
   isZooming: boolean;
   isSelected: boolean;
   lensPos: { x: number; y: number };
+  lensSize: number;
   onZoomStart: (e: React.MouseEvent) => void;
   onZoomEnd: () => void;
   onMoveLens: (pos: { x: number; y: number }) => void;
+  onImageLoad: (width: number) => void;
 }
 
 export const ZoomProductImage = ({
@@ -22,18 +24,31 @@ export const ZoomProductImage = ({
   isZooming,
   isSelected,
   lensPos,
+  lensSize,
   onZoomStart,
   onZoomEnd,
   onMoveLens,
+  onImageLoad,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
-  const lensSize = 70;
+
+  useEffect(() => {
+    if (ref.current) {
+      const width = ref.current.offsetWidth;
+      onImageLoad(width);
+    }
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const bounds = ref.current?.getBoundingClientRect();
     if (!bounds) return;
-    const x = e.clientX - bounds.left - lensSize / 2;
-    const y = e.clientY - bounds.top - lensSize / 2;
+
+    let x = e.clientX - bounds.left - lensSize / 2;
+    let y = e.clientY - bounds.top - lensSize / 2;
+
+    x = Math.max(0, Math.min(x, bounds.width - lensSize));
+    y = Math.max(0, Math.min(y, bounds.height - lensSize));
+
     onMoveLens({ x, y });
   };
 
@@ -56,7 +71,6 @@ export const ZoomProductImage = ({
         )}
         size={24}
       />
-      {/* 렌즈 */}
       <div
         className={cn(
           'absolute border border-gray-400 bg-white/40 pointer-events-none hidden',
