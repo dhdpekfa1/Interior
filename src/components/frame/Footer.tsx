@@ -25,16 +25,16 @@ export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
                 href={item.link}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='font-bold'
+                className='font-medium'
               >
                 {item.content}
               </a>
             ) : item.label === 'E-mail' ? (
-              <a href={`mailto:${item.content}`} className='font-bold'>
+              <a href={`mailto:${item.content}`} className='font-medium'>
                 {item.content}
               </a>
             ) : (
-              <span className='font-bold'>{item.content}</span>
+              <span className='font-medium'>{item.content}</span>
             )}
           </div>
         ))}
@@ -45,11 +45,11 @@ export const Footer = ({ companyInfo }: { companyInfo: CompanyInfoType[] }) => {
           <div key={item.label} className='flex gap-2'>
             <span className='text-white/70 w-24'>{item.label}</span>
             {item.label === 'TEL' ? (
-              <a href='tel:0324723661' className='font-bold'>
+              <a href='tel:0324723661' className='font-medium'>
                 {item.content}
               </a>
             ) : (
-              <span className='font-bold'>{item.content}</span>
+              <span className='font-medium'>{item.content}</span>
             )}
           </div>
         ))}
