@@ -25,10 +25,10 @@ const SecondSectionClient = ({
                 style={{ transitionDelay: inView ? `${index * 100}ms` : '0ms' }}
                 className={cn(
                   'flex flex-col items-center gap-2 group transition-all duration-700 ease-out',
-                  index < 3 ? 'w-[90%] md:w-[30%]' : 'w-[90%] md:w-[30%]',
+                  'w-[90%] md:w-[30%]',
                   inView
-                    ? 'opacity-100 translate-y-0 md:translate-y-0 md:translate-x-0'
-                    : 'opacity-0 translate-y-10 md:translate-y-0 md:translate-x-10'
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
                 )}
               >
                 {/* 이미지 */}

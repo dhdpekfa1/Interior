@@ -81,13 +81,13 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
           return (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 40, x: 0 }}
-              whileInView={{ opacity: 1, y: 0, x: 0 }}
+              initial={{ opacity: 0, y: Math.random() * 80 + 20, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0, 0, 0.2, 1],
+                duration: 0.7,
+                delay: index * 0.1 + Math.random() * 0.1,
+                ease: 'easeOut',
               }}
               className='group cursor-pointer'
             >

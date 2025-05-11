@@ -18,7 +18,7 @@ export const FourthSection = () => {
         <div className='flex flex-col sm:flex-row gap-10 mt-10'>
           {/* 지도 */}
           <motion.div
-            className='w-full sm:w-1/2 shadow-lg border border-gray-200'
+            className='w-full sm:w-1/2 lg:w-2/3 shadow-lg border border-gray-200'
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -27,8 +27,8 @@ export const FourthSection = () => {
             <KakaoMap />
           </motion.div>
           {/* 텍스트 */}
-          <div className='w-full sm:w-1/2 flex items-center justify-center'>
-            <div className='text-base md:text-lg leading-relaxed space-y-6 text-three'>
+          <div className='w-full sm:w-1/2 lg:w-1/3 flex items-center justify-center'>
+            <div className='text-base md:text-lg leading-relaxed space-y-6 text-three break-keep'>
               <p>
                 <strong className='text-two'>신뢰</strong>와{' '}
                 <strong className='text-two'>진심</strong>을 바탕으로 언제나
