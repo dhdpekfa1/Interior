@@ -16,9 +16,9 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
     >
       {/* 이미지: 확대 후 축소 애니메이션 */}
       <div
-        className='absolute inset-0 bg-black/30'
+        className='absolute inset-0 bg-black/50'
         style={{
-          backgroundImage: `url(${imgUrl})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${imgUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           animation: 'zoomIn 3s ease-out forwards',
@@ -30,7 +30,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
         <h2
           className='font-medium text-xl md:text-3xl lg:text-5xl drop-shadow-lg'
           style={{
-            textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8)',
+            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)',
           }}
         >
           {title}
@@ -38,7 +38,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
         <h4
           className='text-sm md:text-xl lg:text-xl'
           style={{
-            textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8)',
+            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.6)',
           }}
         >
           {description}
