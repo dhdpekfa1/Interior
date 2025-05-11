@@ -26,20 +26,20 @@ export const FirstSection = () => {
 
       {/* 우측: 텍스트 */}
       <div className='w-1/2 h-full flex flex-col items-start justify-center text-[#423C34] break-keep ml-auto'>
-        <div className='md:ml-8 lg:ml-12'>
-          <p className='text-xs sm:text-base md:text-lg lg:text-2xl font-semibold'>
+        <div className='md:ml-8 lg:ml-12 flex flex-col gap-1 lg:gap-2'>
+          <p className='text-xs sm:text-base md:text-lg lg:text-2xl'>
             지금까지 누구나 꿈꿔왔던 공간을 만들어왔습니다
           </p>
-          <p className='text-xs sm:text-base md:text-lg lg:text-2xl font-semibold'>
+          <p className='text-xs sm:text-base md:text-lg lg:text-2xl'>
             하지만, 만족하고 멈추는 법을 배우기 보다는
           </p>
-          <p className='text-xs sm:text-base md:text-lg lg:text-2xl font-semibold'>
+          <p className='text-xs sm:text-base md:text-lg lg:text-2xl'>
             우리가 만든 공간이 우리를 정의한다는 사실을 믿고
           </p>
-          <p className='text-xs sm:text-base md:text-lg lg:text-2xl font-semibold'>
+          <p className='text-xs sm:text-base md:text-lg lg:text-2xl'>
             더 행복한 공간을 창조하기 위해
           </p>
-          <p className='text-xs sm:text-base md:text-lg lg:text-2xl font-semibold'>
+          <p className='text-xs sm:text-base md:text-lg lg:text-2xl'>
             끊임없이 노력하기를 멈추지 않겠습니다
           </p>
         </div>
