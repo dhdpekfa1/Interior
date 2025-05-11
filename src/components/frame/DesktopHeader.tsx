@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { MenuItem, SubMenuItem } from '@/types/frame';
 
 export const DesktopHeader = ({
-  isHome,
+  // isHome,
   isScrolled,
   mounted,
   menuData,
@@ -21,13 +21,25 @@ export const DesktopHeader = ({
 
   const getHeaderClass = () => {
     if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
-    if (isHome) {
-      if (isScrolled) return 'h-[80px] bg-white text-point shadow-md';
-      return 'h-[80px] bg-transparent text-point';
-      // return 'h-[80px] bg-transparent text-white';
+
+    if (isScrolled) {
+      return 'h-[80px] bg-white text-point shadow-md';
     }
-    return 'h-[80px] bg-point text-white';
+
+    return 'h-[80px] bg-transparent text-point';
   };
+
+  /** 홈 화면에서만 스크롤 감지 및 스타일 변경 */
+  // const getHeaderClass = () => {
+  //   if (isHover) return 'h-[260px] bg-white text-point shadow-lg';
+  //   if (isHome) {
+  //     if (isScrolled) return 'h-[80px] bg-white text-point shadow-md';
+  //     return 'h-[80px] bg-transparent text-point';
+  //     // return 'h-[80px] bg-transparent text-white';
+  //   }
+  //   return 'h-[80px] bg-transparent text-point';
+  //   // return 'h-[80px] bg-point text-white';
+  // };
 
   return (
     <div
@@ -44,7 +56,7 @@ export const DesktopHeader = ({
       <div className='w-full max-w-7xl flex items-center justify-between px-10 h-[80px]'>
         {/* 로고 */}
         <Link href='/'>
-          <Image src='/assets/logo.png' alt='logo' width={80} height={50} />
+          <Image src='/assets/logo.png' alt='logo' width={120} height={50} />
         </Link>
 
         {/* 메뉴 */}

@@ -21,7 +21,7 @@ import { AlignRight } from 'lucide-react';
 import { MenuItem } from '@/types/frame';
 
 export const MobileHeader = ({
-  isHome,
+  // isHome,
   isScrolled,
   mounted,
   menuData,
@@ -51,26 +51,46 @@ export const MobileHeader = ({
   const getStyle = (type: 'header' | 'icon') => {
     switch (type) {
       case 'header':
-        if (isHome) {
-          return isScrolled
-            ? 'bg-white text-point shadow'
-            : 'bg-transparent text-white';
-        } else {
-          return 'bg-point text-white';
-        }
+        return isScrolled
+          ? 'bg-white text-point shadow'
+          : 'bg-transparent text-white';
 
       case 'icon':
-        if (isHome) {
-          return isScrolled ? 'text-two hover:text-point' : 'text-point';
-          // return isScrolled ? 'text-two hover:text-point' : 'text-white';
-        } else {
-          return 'text-ef hover:text-white';
-        }
+        return isScrolled
+          ? 'text-two hover:text-point'
+          : 'text-white hover:text-point';
 
       default:
         return '';
     }
   };
+
+  /** 홈 화면만 스크롤 적용 */
+  // const getStyle = (type: 'header' | 'icon') => {
+  //   switch (type) {
+  //     case 'header':
+  //       if (isHome) {
+  //         return isScrolled
+  //           ? 'bg-white text-point shadow'
+  //           : 'bg-transparent text-white';
+  //       } else {
+  //         return 'bg-transparent text-point'; // 일단 홈이랑 동일하게 변경
+  //         // return 'bg-point text-white';
+  //       }
+
+  //     case 'icon':
+  //       if (isHome) {
+  //         return isScrolled ? 'text-two hover:text-point' : 'text-point';
+  //         // return isScrolled ? 'text-two hover:text-point' : 'text-white';
+  //       } else {
+  //         return 'text-point hover:text-white';
+  //         // return 'text-ef hover:text-white';
+  //       }
+
+  //     default:
+  //       return '';
+  //   }
+  // };
 
   return (
     <div

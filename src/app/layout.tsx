@@ -1,17 +1,10 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
 import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
 import MenuData from '@/assets/data/menuData.json';
 import companyInfo from '@/assets/data/companyInfo.json';
 import './globals.css';
 import { CompanyInfoType } from '@/types/frame';
-
-const notoSans = Noto_Sans_KR({
-  variable: '--font-noto-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
-});
 
 export const metadata: Metadata = {
   title: 'YD-Industry',
@@ -50,7 +43,7 @@ export default async function RootLayout({
   const companyInfoData = companyInfo as CompanyInfoType[];
   return (
     <html lang='ko'>
-      <body className={`${notoSans.variable} antialiased`}>
+      <body className='antialiased font-sans'>
         <Header menuData={MenuData} />
         <div>{children}</div>
         <TopButton />

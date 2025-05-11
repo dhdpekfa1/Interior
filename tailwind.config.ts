@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['SCoreDream', 'Noto Sans KR', 'sans-serif'],
+      },
       spacing: {
         wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
       },
