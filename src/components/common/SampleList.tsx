@@ -111,7 +111,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                 />
 
                 <div className='gap-3'>
-                  <p className='text-two text-xs sm:text-sm md:text-base font-bold text-center'>
+                  <p className='text-two text-xs sm:text-sm md:text-base font-semibold text-center'>
                     {product.name}
                   </p>
                   <p className='text-two/60 text-xs sm:text-sm break-keep text-center'>

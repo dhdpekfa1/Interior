@@ -61,7 +61,7 @@ export const DesktopHeader = ({
 
         {/* 메뉴 */}
         <nav>
-          <ul className='flex gap-10 text-lg font-semibold relative'>
+          <ul className='flex gap-10 text-lg font-medium relative'>
             {menuData.map((menu: MenuItem) => (
               <li
                 key={menu.title}
@@ -73,7 +73,7 @@ export const DesktopHeader = ({
                 {/* 메인 메뉴 */}
                 <Link
                   href={menu.baseUrl}
-                  className='h-[80px] flex items-center border-b-4 border-transparent group-hover:border-point transition-colors'
+                  className='h-[80px] flex items-center border-b-2 border-transparent group-hover:border-point transition-colors'
                 >
                   {menu.title}
                 </Link>

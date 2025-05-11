@@ -28,7 +28,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
       {/* 텍스트 애니메이션 */}
       <div className='relative z-10 text-center space-y-2 p-4 rounded-md animate-fadeUp'>
         <h2
-          className='font-bold text-xl md:text-3xl lg:text-5xl drop-shadow-lg'
+          className='font-medium text-xl md:text-3xl lg:text-5xl drop-shadow-lg'
           style={{
             textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
           }}
