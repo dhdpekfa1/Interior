@@ -61,7 +61,7 @@ export const DesktopHeader = ({
 
         {/* 메뉴 */}
         <nav>
-          <ul className='flex gap-10 text-lg font-semibold relative'>
+          <ul className='flex gap-10 text-lg font-medium relative'>
             {menuData.map((menu: MenuItem) => (
               <li
                 key={menu.title}
@@ -73,15 +73,22 @@ export const DesktopHeader = ({
                 {/* 메인 메뉴 */}
                 <Link
                   href={menu.baseUrl}
-                  className='h-[80px] flex items-center border-b-4 border-transparent group-hover:border-point transition-colors'
+                  className='relative h-[60px] flex items-center group transition-colors'
                 >
-                  {menu.title}
+                  <span
+                    className={cn(
+                      'relative text-inherit pb-2',
+                      "after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-0 after:h-[2px] after:bg-point after:transition-all after:duration-500 group-hover:after:w-full"
+                    )}
+                  >
+                    {menu.title}
+                  </span>
                 </Link>
 
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[80px] mt-2 flex flex-col gap-2 p-4 transition-all duration-300 ease-in-out',
+                    'absolute top-[46px] flex flex-col gap-3 p-4 transition-all duration-300 ease-in-out',
                     isHover
                       ? 'opacity-100 visible translate-y-0 delay-150'
                       : 'opacity-0 invisible -translate-y-2 delay-0'

@@ -15,7 +15,7 @@ const ErrorPage = ({ error, reset }: { error: Error; reset: () => void }) => {
   return (
     <div className='container flex flex-col items-center justify-center h-screen text-center'>
       {/* ERROR 텍스트 */}
-      <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest flex items-center gap-2'>
+      <h1 className='text-3xl md:text-4xl lg:text-5xl font-semibold tracking-widest flex items-center gap-2'>
         <span className='flex items-center text-point'>
           ERR
           <AlertTriangle />R

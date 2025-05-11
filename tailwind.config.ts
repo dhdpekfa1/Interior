@@ -59,7 +59,8 @@ const config: Config = {
         },
         // point: '#73675C', // 모카그레이
         // point: '#B97A6B', // 로즈우드
-        point: '#3C4D59',
+        // point: '#3C4D59',
+        point: '#141827',
         second: '#C8D9E6',
         blue: '#C8D9E6',
         cream: '#EAE0C8',

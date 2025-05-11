@@ -123,7 +123,7 @@ export const MobileHeader = ({
                 <AccordionItem key={menu.title} value={`menu-${index}`}>
                   {menu.subMenu.length > 0 ? (
                     <>
-                      <AccordionTrigger className='text-two hover:text-two hover:font-semibold'>
+                      <AccordionTrigger className='text-two hover:text-two hover:font-medium'>
                         {menu.title}
                       </AccordionTrigger>
                       <AccordionContent className='flex flex-col gap-1'>
@@ -131,7 +131,7 @@ export const MobileHeader = ({
                           <SheetClose asChild key={subItem.label}>
                             <Link
                               href={subItem.url}
-                              className='block py-2 pl-4 text-sm hover:font-bold hover:bg-second/70 text-two'
+                              className='block py-2 pl-4 text-sm hover:font-medium hover:bg-second/70 text-two'
                             >
                               {subItem.label}
                             </Link>

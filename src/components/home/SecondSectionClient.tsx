@@ -22,16 +22,17 @@ const SecondSectionClient = ({
               <Link
                 href={item.url}
                 ref={ref}
+                style={{ transitionDelay: inView ? `${index * 100}ms` : '0ms' }}
                 className={cn(
                   'flex flex-col items-center gap-2 group transition-all duration-700 ease-out',
-                  index < 3 ? 'w-[90%] md:w-[30%]' : 'w-[90%] md:w-[30%]',
+                  'w-[90%] md:w-[30%]',
                   inView
-                    ? 'opacity-100 translate-y-0 md:translate-y-0 md:translate-x-0'
-                    : 'opacity-0 translate-y-10 md:translate-y-0 md:translate-x-10'
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-10'
                 )}
               >
                 {/* 이미지 */}
-                <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[480px] overflow-hidden'>
+                <div className='flex items-center justify-center w-full h-[20rem] md:h-[380px] lg:h-[500px] overflow-hidden'>
                   <Image
                     src={item.home_image}
                     alt={item.label}
@@ -43,11 +44,11 @@ const SecondSectionClient = ({
 
                 {/* 텍스트 + 버튼 */}
                 <div className='flex flex-col items-center gap-2'>
-                  <h2 className='text-lg md:text-xl font-bold text-two'>
+                  <h2 className='text-lg md:text-xl font-medium text-two'>
                     {item.label}
                   </h2>
                   {item.home_description && (
-                    <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
+                    <span className='text-xs md:text-sm lg:text-base w-[65%] break-keep text-center text-three'>
                       {item.home_description}
                     </span>
                   )}

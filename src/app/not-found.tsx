@@ -10,7 +10,7 @@ const NotFoundPage = () => {
   return (
     <div className='container flex flex-col items-center justify-center h-screen text-center'>
       {/* 404 ERROR 텍스트 */}
-      <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold tracking-widest flex items-center gap-2'>
+      <h1 className='text-3xl md:text-4xl lg:text-5xl font-semibold tracking-widest flex items-center gap-2'>
         <span className='flex items-center text-point'>
           4<Ban />4
         </span>

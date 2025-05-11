@@ -2,8 +2,16 @@ import { AboutUsTab, DirectionsTab } from '@/components/about';
 import { Banner, UrlTabs } from '@/components/common';
 
 const ABOUT_TABS = [
-  { label: '회사 소개', value: 'us', component: <AboutUsTab /> },
-  { label: '오시는 길', value: 'directions', component: <DirectionsTab /> },
+  {
+    label: '회사 소개',
+    value: 'us',
+    component: (
+      <div className='flex flex-col gap-8 sm:gap-14 md:gap-20'>
+        <AboutUsTab />
+        <DirectionsTab />
+      </div>
+    ),
+  },
 ];
 
 const AboutUsPage = () => {

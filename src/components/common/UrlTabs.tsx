@@ -19,32 +19,40 @@ interface UrlTabsProps {
 export const UrlTabs = ({ basePath, defaultTab, tabs }: UrlTabsProps) => {
   const router = useRouter();
   const pathname = usePathname();
-
-  // 현재 URL에서 마지막 경로 추출
   const currentTab = pathname.split('/').pop() || defaultTab;
 
-  // 탭 변경 시 URL 업데이트
   const handleTabChange = (value: string) => {
     router.push(`${basePath}/${value}`, { scroll: false });
   };
 
+  const showTabs = tabs.length >= 2;
+  const activeTab = tabs.find((tab) => tab.value === currentTab) ?? tabs[0];
+
   return (
     <Tabs defaultValue={currentTab} onValueChange={handleTabChange}>
-      <TabsList className='w-full h-full bg-white'>
-        <div className='flex flex-1'>
-          {tabs.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value} className='flex-1'>
-              {tab.label}
-            </TabsTrigger>
-          ))}
-        </div>
-      </TabsList>
+      {showTabs && (
+        <TabsList className='w-full h-full bg-white'>
+          <div className='flex flex-1'>
+            {tabs.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value} className='flex-1'>
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </div>
+        </TabsList>
+      )}
 
-      {tabs.map((tab) => (
-        <TabsContent key={tab.value} value={tab.value} className='container'>
-          {tab.component}
-        </TabsContent>
-      ))}
+      {showTabs
+        ? tabs.map((tab) => (
+            <TabsContent
+              key={tab.value}
+              value={tab.value}
+              className='container'
+            >
+              {tab.component}
+            </TabsContent>
+          ))
+        : activeTab && <div className='container'>{activeTab.component}</div>}
     </Tabs>
   );
 };
