@@ -12,16 +12,16 @@ export const FourthSection = () => {
       <div className='flex flex-col sm:flex-row gap-6 sm:gap-2'>
         <KakaoMap />
         <div className='flex items-center justify-center w-full'>
-          <p className='text-two text-base md:text-lg font-semibold text-center leading-relaxed'>
-            <span className='text-point font-bold'>신뢰</span>와{' '}
-            <span className='text-point font-bold'>진심</span>을 바탕으로 언제나
-            최선을 다하는
+          <p className='text-two text-base md:text-lg font-medium text-center leading-relaxed'>
+            <span className='text-point font-semibold'>신뢰</span>와{' '}
+            <span className='text-point font-semibold'>진심</span>을 바탕으로
+            언제나 최선을 다하는
             <br />
-            <span className='text-point font-bold'>YD-Industry</span>입니다.
+            <span className='text-point font-semibold'>YD-Industry</span>입니다.
             <br />
             <br className='hidden sm:block' />
             함께 성장하며,{' '}
-            <span className='text-point font-bold'>
+            <span className='text-point font-semibold'>
               믿고 맡길 수 있는 파트너
             </span>
             로

@@ -37,7 +37,7 @@ export const InquiryDialog = () => {
               {/* 안내 메시지 */}
               {showNotice && (
                 <div className='flex items-center gap-2 md:gap-3 px-2 py-1 md:px-4 md:py-2 shadow-sm slow-bounce bg-black/80'>
-                  <span className='font-bold text-[10px] sm:text-xs md:text-sm text-dd'>
+                  <span className='font-medium text-[10px] sm:text-xs md:text-sm text-dd'>
                     제품 선택 후 문의하세요.
                   </span>
                   <button
