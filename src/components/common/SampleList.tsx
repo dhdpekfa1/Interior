@@ -81,15 +81,15 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
           return (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, x: 0 }}
+              whileInView={{ opacity: 1, y: 0, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.6,
-                delay: index * 0.05,
-                ease: 'easeOut',
+                delay: index * 0.1,
+                ease: [0, 0, 0.2, 1],
               }}
-              className='group transition-transform duration-300 cursor-pointer'
+              className='group cursor-pointer'
             >
               <div
                 onClick={() => handleSelectProduct(product)}
