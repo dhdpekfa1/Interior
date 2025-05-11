@@ -66,6 +66,12 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
       </div>
       <Separator className='my-4 sm:my-6' />
 
+      {dataList.length < 1 && (
+        <div>
+          <p className='text-center'>상품 준비 중입니다. 곧 찾아뵙겠습니다.</p>
+        </div>
+      )}
+
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {paginatedProducts.map((product) => {
           const isSelected = selectedProducts.some(
