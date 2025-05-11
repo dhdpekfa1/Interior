@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import {
@@ -9,7 +10,6 @@ import {
   ZoomProductImage,
 } from '@/components/product';
 import { Asterisk } from 'lucide-react';
-import { Separator } from '@/components/ui';
 import { Product } from '@/types/sample';
 
 interface SampleListProps {
@@ -57,6 +57,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
   return (
     <div className='wrapper'>
       <SubTitle title={title} />
+
       <div className='flex item-center justify-center text-[10px] sm:xs md:text-sm text-two/70 mb-4'>
         <Asterisk className='h-auto w-2 md:w-3' />
         <span className='break-keep'>
@@ -64,7 +65,6 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
           주세요.
         </span>
       </div>
-      <Separator className='my-4 sm:my-6' />
 
       {dataList.length < 1 && (
         <div>
@@ -73,52 +73,56 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
       )}
 
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {paginatedProducts.map((product) => {
+        {paginatedProducts.map((product, index) => {
           const isSelected = selectedProducts.some(
             (item) => item.id === product.id.toString()
           );
 
           return (
-            <div
+            <motion.div
               key={product.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.05,
+                ease: 'easeOut',
+              }}
               className='group transition-transform duration-300 cursor-pointer'
             >
               <div
                 onClick={() => handleSelectProduct(product)}
                 className='flex flex-col gap-3 relative mb-4'
               >
-                <ZoomProductImage
-                  src={product.image}
-                  alt={product.name}
-                  isZooming={zoomSrc === product.image}
-                  isSelected={isSelected}
-                  lensPos={lensPos}
-                  lensSize={lensSize}
-                  onZoomStart={(e: React.MouseEvent) => {
-                    setZoomSrc(product.image);
+                <div className='relative'>
+                  <ZoomProductImage
+                    src={product.image}
+                    alt={product.name}
+                    isZooming={zoomSrc === product.image}
+                    isSelected={isSelected}
+                    lensPos={lensPos}
+                    lensSize={lensSize}
+                    onZoomStart={(e: React.MouseEvent) => {
+                      setZoomSrc(product.image);
 
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const screenWidth = window.innerWidth;
-                    const itemCenterX = rect.left + rect.width / 2;
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const screenWidth = window.innerWidth;
+                      const itemCenterX = rect.left + rect.width / 2;
 
-                    setZoomSide(
-                      itemCenterX > screenWidth / 2 ? 'left' : 'right'
-                    );
-                  }}
-                  onZoomEnd={() => setZoomSrc(null)}
-                  onMoveLens={(pos) => setLensPos(pos)}
-                  onImageLoad={(width) => setImageWidth(width)}
-                />
+                      setZoomSide(
+                        itemCenterX > screenWidth / 2 ? 'left' : 'right'
+                      );
+                    }}
+                    onZoomEnd={() => setZoomSrc(null)}
+                    onMoveLens={(pos) => setLensPos(pos)}
+                    onImageLoad={(width) => setImageWidth(width)}
+                  />
 
-                <div className='gap-3'>
-                  <p className='text-two text-xs sm:text-sm md:text-base font-semibold text-center'>
+                  <div className='absolute bottom-0 right-0 bg-white/70 px-2 py-1 shadow text-two text-sm md:text-base lg:text-lg font-semibold'>
                     {product.name}
-                  </p>
-                  <p className='text-two/60 text-xs sm:text-sm break-keep text-center'>
-                    {product.description}
-                  </p>
+                  </div>
                 </div>
-
                 {zoomSrc === product.image && (
                   <ZoomPreview
                     src={zoomSrc}
@@ -129,7 +133,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                   />
                 )}
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
