@@ -33,11 +33,20 @@ export const ZoomProductImage = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ref.current) {
-      const width = ref.current.offsetWidth;
+    if (!ref.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      const width = entry.contentRect.width;
       onImageLoad(width);
-    }
-  }, []);
+    });
+
+    resizeObserver.observe(ref.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [onImageLoad]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const bounds = ref.current?.getBoundingClientRect();

@@ -21,8 +21,8 @@ export const ZoomPreview = ({
   const lensCenterX = lensPos.x + lensSize / 2;
   const lensCenterY = lensPos.y + lensSize / 2;
   const previewSize = Math.floor(lensSize * scale);
-  const offsetX = Math.floor(lensCenterX * scale - previewSize / 2);
-  const offsetY = Math.floor(lensCenterY * scale - previewSize / 2);
+  const offsetX = Math.floor(lensCenterX * scale - previewSize / 2 - 8);
+  const offsetY = Math.floor(lensCenterY * scale - previewSize / 2 - 8);
 
   return (
     <div
@@ -42,9 +42,7 @@ export const ZoomPreview = ({
         fill
         className='object-cover pointer-events-none'
         style={{
-          transform: `translate(-${offsetX - 6}px, -${
-            offsetY - 6
-          }px) scale(${scale})`,
+          transform: `translate(-${offsetX}px, -${offsetY}px) scale(${scale})`,
           transformOrigin: 'top left',
         }}
       />
