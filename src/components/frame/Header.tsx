@@ -24,7 +24,8 @@ export const Header = ({ menuData }: { menuData: MenuItem[] }) => {
 
   return (
     <>
-      {isHome && <div ref={ref} />}
+      {/* {isHome &&<div ref={ref} />} */}
+      <div ref={ref} />
       <DesktopHeader
         isHome={isHome}
         isScrolled={!inView}
