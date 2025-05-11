@@ -30,7 +30,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
         <h2
           className='font-medium text-xl md:text-3xl lg:text-5xl drop-shadow-lg'
           style={{
-            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.5)',
+            textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8)',
           }}
         >
           {title}
@@ -38,7 +38,7 @@ export const Banner = ({ title, description, imgUrl }: BannerProps) => {
         <h4
           className='text-sm md:text-xl lg:text-xl'
           style={{
-            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.4)',
+            textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8)',
           }}
         >
           {description}
