@@ -22,6 +22,7 @@ const SecondSectionClient = ({
               <Link
                 href={item.url}
                 ref={ref}
+                style={{ transitionDelay: inView ? `${index * 100}ms` : '0ms' }}
                 className={cn(
                   'flex flex-col items-center gap-2 group transition-all duration-700 ease-out',
                   index < 3 ? 'w-[90%] md:w-[30%]' : 'w-[90%] md:w-[30%]',
@@ -47,7 +48,7 @@ const SecondSectionClient = ({
                     {item.label}
                   </h2>
                   {item.home_description && (
-                    <span className='text-sm md:text-base w-[65%] break-keep text-center text-three'>
+                    <span className='text-xs md:text-sm lg:text-base w-[65%] break-keep text-center text-three'>
                       {item.home_description}
                     </span>
                   )}
