@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { SubTitle } from '@/components/common';
 import {
   Button,
@@ -27,9 +30,15 @@ export const DirectionsTab = async () => {
       <SubTitle title='오시는 길' />
 
       {/* 지도 */}
-      <div className='shadow-lg'>
+      <motion.div
+        className='w-full shadow-lg border border-gray-200'
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
         <KakaoMap />
-      </div>
+      </motion.div>
       <Separator className='my-4' />
 
       <div className='flex flex-col gap-8'>
@@ -37,7 +46,7 @@ export const DirectionsTab = async () => {
           {contact.map((item) => (
             <div
               key={item.label}
-              className='flex flex-col items-center gap-3 bg-point p-3 w-full h-full'
+              className='flex flex-col items-center gap-3 bg-point/80 p-3 w-full h-full'
             >
               <p className='text-base sm:text-sm md:text-lg font-medium text-white'>
                 {item.label}

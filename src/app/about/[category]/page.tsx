@@ -12,6 +12,7 @@ const ABOUT_TABS = [
       </div>
     ),
   },
+  // { label: '오시는 길', value: 'directions', component: <DirectionsTab /> },
 ];
 
 const AboutUsPage = () => {
