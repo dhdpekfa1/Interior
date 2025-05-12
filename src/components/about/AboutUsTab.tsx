@@ -16,11 +16,12 @@ export const AboutUsTab = () => {
           />
         </div>
         <div className='h-[320px] md:h-[400px] flex flex-col gap-2 md:gap-4 lg:gap-6 leading-relaxed text-sm md:text-base'>
-          <p className='break-keep'>
+          <p className='break-keep leading-loose'>
             YD인더스트리에 변함없는 관심과 성원을 주시는 여러분께 깊은 감사를
             드립니다. ㈜YD인더스트리는 대한민국을 대표하는 친환경 목재 가공 전문
             기업 입니다.
           </p>
+          <p className='break-keep leading-loose'></p>
           <p className='break-keep'>
             친환경 가공보드인 MDF(Melamine Faced Board) / PB(Particle Board)에
             L.P.M / H.P.M / P.E.T / A.S.A / P.P / P.V.C 등 다양한 표면재를

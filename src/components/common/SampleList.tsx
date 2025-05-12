@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { SubTitle, Pagination } from '@/components/common';
 import { useProductStore } from '@/store/useProductStore';
 import {
@@ -25,6 +25,9 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
   const [zoomSrc, setZoomSrc] = useState<string | null>(null);
   const [zoomSide, setZoomSide] = useState<'left' | 'right'>('right');
   const [imageWidth, setImageWidth] = useState(0);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   const lensSize = imageWidth ? imageWidth * 0.25 : 70;
   const scale = imageWidth ? imageWidth / lensSize : 1.6;
@@ -67,7 +70,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
       </div>
 
       {dataList.length < 1 && (
-        <div>
+        <div className='mt-20'>
           <p className='text-center'>상품 준비 중입니다. 곧 찾아뵙겠습니다.</p>
         </div>
       )}
@@ -81,9 +84,9 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
           return (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: Math.random() * 80 + 20, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              ref={ref}
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{
                 duration: 0.7,
                 delay: index * 0.1 + Math.random() * 0.1,
