@@ -17,7 +17,7 @@ interface SampleListProps {
   dataList: Product[];
 }
 
-const ITEMS_PER_PAGE = 15;
+const ITEMS_PER_PAGE = 16;
 
 export const SampleList = ({ title, dataList }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
