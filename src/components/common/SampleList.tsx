@@ -17,7 +17,7 @@ interface SampleListProps {
   dataList: Product[];
 }
 
-const ITEMS_PER_PAGE = 15;
+const ITEMS_PER_PAGE = 16;
 
 export const SampleList = ({ title, dataList }: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,7 +67,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
       </div>
 
       {dataList.length < 1 && (
-        <div>
+        <div className='mt-20'>
           <p className='text-center'>상품 준비 중입니다. 곧 찾아뵙겠습니다.</p>
         </div>
       )}
@@ -86,7 +86,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.7,
-                delay: index * 0.1 + Math.random() * 0.1,
+                delay: index * 0.01 + Math.random() * 0.1,
                 ease: 'easeOut',
               }}
               className='group cursor-pointer'
@@ -119,7 +119,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                     onImageLoad={(width) => setImageWidth(width)}
                   />
 
-                  <div className='absolute bottom-0 right-0 bg-white/70 px-2 py-1 shadow text-two text-sm md:text-base lg:text-lg font-semibold'>
+                  <div className='absolute bottom-0 right-0 bg-white/70 px-2 py-1 shadow text-two text-sm md:text-base lg:text-lg font-semibold pointer-events-none'>
                     {product.name}
                   </div>
                 </div>
