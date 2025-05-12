@@ -60,8 +60,8 @@ const PaginationList = ({
                 className={cn(
                   'transition-colors duration-200',
                   currentPage === page
-                    ? 'text-two  bg-ef/30 hover:bg-ef/50 hover:text-two cursor-pointer'
-                    : 'hover:bg-ef/30 hover:text-two text-two cursor-pointer'
+                    ? 'text-two  bg-ef/80 hover:bg-ef hover:text-two cursor-pointer'
+                    : 'hover:bg-ef hover:text-two text-three cursor-pointer'
                 )}
               >
                 {page}
@@ -92,8 +92,8 @@ const PaginationList = ({
             onClick={() => onChange(currentPage + 1)}
             className={
               currentPage === totalPages
-                ? 'pointer-events-none opacity-50'
-                : 'hover:bg-ef/30 hover:text-two text-two cursor-pointer'
+                ? 'pointer-events-none opacity-90'
+                : 'hover:bg-ef hover:text-two text-two cursor-pointer'
             }
           />
         </PaginationItem>
