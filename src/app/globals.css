@@ -190,3 +190,66 @@ input[type='number'] {
     animation: fadeUp 1.5s ease-out forwards;
   }
 }
+
+/* Loading UI */
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.loader-bar {
+  @apply w-full h-[3px] bg-point;
+  animation: loading-bar 1.5s infinite ease-in-out;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(150%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.logo-shine {
+  @apply absolute top-0 left-0 w-full h-full;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 1.5s infinite ease-in-out;
+}
+
+@keyframes popUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.letter-pop {
+  display: inline-block;
+  animation: popUpDown 1s ease-in-out infinite;
+}

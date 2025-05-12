@@ -27,7 +27,9 @@ export const DirectionsTab = async () => {
       <SubTitle title='오시는 길' />
 
       {/* 지도 */}
-      <KakaoMap />
+      <div className='shadow-lg'>
+        <KakaoMap />
+      </div>
       <Separator className='my-4' />
 
       <div className='flex flex-col gap-8'>
@@ -93,7 +95,7 @@ export const DirectionsTab = async () => {
             </CardHeader>
             <CardContent>
               <h1 className='w-fit font-medium mb-2 relative z-0'>
-                <div className='absolute bottom-0 left-0 w-full h-1/2 bg-point/60 -z-10' />
+                <div className='absolute bottom-0 left-0 w-full h-1/2 bg-point/20 -z-10' />
                 인천 2호선 가좌역 하차
               </h1>
               <ul className='mt-2 flex flex-col gap-1 text-xs sm:text-sm md:text-base'>
