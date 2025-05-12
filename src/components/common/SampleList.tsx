@@ -89,14 +89,6 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                 delay: index * 0.01 + Math.random() * 0.1,
                 ease: 'easeOut',
               }}
-              // ref={ref}
-              // initial={{ opacity: 0, y: 60, scale: 0.95 }}
-              // animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              // transition={{
-              //   duration: 0.7,
-              //   delay: index * 0.1 + Math.random() * 0.1,
-              //   ease: 'easeOut',
-              // }}
               className='group cursor-pointer'
             >
               <div
@@ -127,7 +119,7 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
                     onImageLoad={(width) => setImageWidth(width)}
                   />
 
-                  <div className='absolute bottom-0 right-0 bg-white/70 px-2 py-1 shadow text-two text-sm md:text-base lg:text-lg font-semibold'>
+                  <div className='absolute bottom-0 right-0 bg-white/70 px-2 py-1 shadow text-two text-sm md:text-base lg:text-lg font-semibold pointer-events-none'>
                     {product.name}
                   </div>
                 </div>
