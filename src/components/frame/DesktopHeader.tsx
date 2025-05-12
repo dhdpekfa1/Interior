@@ -73,11 +73,11 @@ export const DesktopHeader = ({
                 {/* 메인 메뉴 */}
                 <Link
                   href={menu.baseUrl}
-                  className='relative h-[60px] flex items-center group transition-colors'
+                  className='relative h-[60px] flex items-center justify-center group transition-colors'
                 >
                   <span
                     className={cn(
-                      'relative text-inherit pb-2',
+                      'relative text-inherit',
                       "after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-0 after:h-[2px] after:bg-point after:transition-all after:duration-500 group-hover:after:w-full"
                     )}
                   >
@@ -88,7 +88,9 @@ export const DesktopHeader = ({
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[46px] flex flex-col gap-3 p-4 transition-all duration-300 ease-in-out',
+                    'absolute top-full left-0',
+                    'min-w-[160px] text-left items-start flex flex-col gap-3',
+                    'transition-all duration-300 ease-in-out',
                     isHover
                       ? 'opacity-100 visible translate-y-0 delay-150'
                       : 'opacity-0 invisible -translate-y-2 delay-0'
