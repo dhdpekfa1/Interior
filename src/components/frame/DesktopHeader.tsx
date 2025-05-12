@@ -88,7 +88,9 @@ export const DesktopHeader = ({
                 {/* 서브 메뉴 */}
                 <ul
                   className={cn(
-                    'absolute top-[46px] flex flex-col items-start gap-3 p-4 transition-all duration-300 ease-in-out',
+                    'absolute top-full left-0',
+                    'min-w-[160px] text-left items-start flex flex-col gap-3',
+                    'transition-all duration-300 ease-in-out',
                     isHover
                       ? 'opacity-100 visible translate-y-0 delay-150'
                       : 'opacity-0 invisible -translate-y-2 delay-0'
