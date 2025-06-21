@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     icon: '/assets/logo.png',
   },
   openGraph: {
-    title: 'YD-Industry',
+    title: '와이디인더스트리',
     description:
       '㈜YD인더스트리는 대한민국을 대표하는 친환경 목재 가공 전문 기업입니다.',
     images: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: '/assets/thumbnail.png',
         width: 800,
         height: 600,
-        alt: 'YD-Industry thumbnail',
+        alt: '와이디인더스트리 thumbnail',
       },
     ],
   },

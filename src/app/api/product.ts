@@ -41,7 +41,10 @@ export const getProductList = async (): Promise<ProductCategory[]> => {
 export const getProductLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
   //   const { data, error } = await supabase.from('product_lpm').select('*');
-  const { data, error } = await supabase.from('sorted_product_lpm').select('*');
+  const { data, error } = await supabase
+    .from('sorted_product_lpm')
+    .select('*')
+    .order('name');
   if (error) {
     console.error('Error fetching sorted_product_lpm:', error);
     return [];
@@ -54,7 +57,8 @@ export const getProductMirrorLpm = async (): Promise<Product[]> => {
   // const { data, error } = await supabase.from('product_mirror_lpm').select('*');
   const { data, error } = await supabase
     .from('sorted_product_mirror_lpm')
-    .select('*');
+    .select('*')
+    .order('name');
   if (error) {
     console.error('Error fetching product_mirror_lpm:', error);
     return [];
@@ -67,7 +71,8 @@ export const getProductPvc = async (): Promise<Product[]> => {
   // const { data, error } = await supabase.from('product_pvc_pp').select('*');
   const { data, error } = await supabase
     .from('sorted_product_pvc_pp')
-    .select('*');
+    .select('*')
+    .order('name');
   if (error) {
     console.error('Error fetching product_pvc_pp:', error);
     return [];
@@ -80,7 +85,8 @@ export const getProductAsa = async (): Promise<Product[]> => {
   // const { data, error } = await supabase.from('product_asa_pet').select('*');
   const { data, error } = await supabase
     .from('sorted_product_asa_pet')
-    .select('*');
+    .select('*')
+    .order('name');
   if (error) {
     console.error('Error fetching product_asa_pet:', error);
     return [];
@@ -90,7 +96,10 @@ export const getProductAsa = async (): Promise<Product[]> => {
 
 export const getProductHpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from('sorted_product_hpm').select('*');
+  const { data, error } = await supabase
+    .from('sorted_product_hpm')
+    .select('*')
+    .order('name');
   if (error) {
     console.error('Error fetching product_hpm:', error);
     return [];
