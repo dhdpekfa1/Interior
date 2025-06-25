@@ -15,11 +15,16 @@ import { Product } from '@/types/sample';
 interface SampleListProps {
   title: string;
   dataList: Product[];
+  onPageChange: () => void;
 }
 
 const ITEMS_PER_PAGE = 16;
 
-export const SampleList = ({ title, dataList }: SampleListProps) => {
+export const SampleList = ({
+  title,
+  dataList,
+  onPageChange,
+}: SampleListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
   const [zoomSrc, setZoomSrc] = useState<string | null>(null);
@@ -149,7 +154,10 @@ export const SampleList = ({ title, dataList }: SampleListProps) => {
             total={totalItems}
             limit={ITEMS_PER_PAGE}
             showPages={5}
-            onChange={(page) => setCurrentPage(page)}
+            onChange={(page) => {
+              setCurrentPage(page);
+              onPageChange();
+            }}
           />
         </div>
       )}
