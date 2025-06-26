@@ -43,7 +43,8 @@ export const ZoomPreview = ({
         src={src}
         alt='확대 이미지'
         fill
-        className='object-cover pointer-events-none'
+        quality={100}
+        className='object-cover pointer-events-none zoom-preview-img'
         style={{
           transform: `translate(-${offsetX}px, -${offsetY}px) scale(${scale})`,
           transformOrigin: 'top left',

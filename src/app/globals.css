@@ -253,3 +253,12 @@ input[type='number'] {
   display: inline-block;
   animation: popUpDown 1s ease-in-out infinite;
 }
+
+/* 이미지 확대 시 픽셀 모양 유지 */
+.zoom-preview-img {
+  /* 기본값, 브라우저가 최적화  */
+  image-rendering: auto;
+
+  /* 픽셀을 또렷하게 */
+  /* image-rendering: crisp-edges; */
+}
