@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     '㈜YD인더스트리는 대한민국을 대표하는 친환경 목재 가공 전문 기업입니다.',
   icons: {
-    icon: '/assets/logo.png',
+    icon: '/favicon.ico',
   },
   openGraph: {
     title: '와이디인더스트리',
