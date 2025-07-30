@@ -30,8 +30,8 @@ export const AboutUsTab = () => {
           <p className='break-keep leading-loose'>
             2018년 건립 이후 끊임없는 연구, 개발과 설비투자를 통하여 고객의
             니즈와 다양한 디자인을 창조, 개발에 힘쓰고 있습니다. 앞으로도 다양한
-            칼라구현이 가능한 포면재를 개발 하여 건설사, 인테리어 업체 및
-            가구업체 공급에 앞장설 것을 약속 드립니다.
+            칼라구현이 가능한 표면제 개발 하여 건설사, 인테리어 업체 및 가구업체
+            공급에 앞장설 것을 약속 드립니다.
           </p>
 
           <div className='mt-1 xl:mt-3 text-base md:text-lg lg:text-xl flex justify-end gap-2 sm:gap-3 text-point/80'>
