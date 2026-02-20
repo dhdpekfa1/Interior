@@ -6,7 +6,7 @@ import { useProductStore } from '@/store/useProductStore';
 export const useInquiryForm = (
   setValue: UseFormSetValue<InquiryFormType>,
   watch: UseFormWatch<InquiryFormType>,
-  reset: UseFormReset<InquiryFormType>
+  reset: UseFormReset<InquiryFormType>,
 ) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -22,7 +22,7 @@ export const useInquiryForm = (
       'email',
       `${e.target.value}${
         selectedDomain !== '직접 입력' ? '@' + selectedDomain : ''
-      }`
+      }`,
     );
   };
   // 이메일 도메인 선택 핸들러
@@ -55,7 +55,7 @@ export const useInquiryForm = (
     setSuccess(false);
 
     const selectedCategory = categoryList.find(
-      (item) => item.value === formData.category
+      (item) => item.value === formData.category,
     );
     const categoryLabel = selectedCategory ? selectedCategory.label : '기타';
 
