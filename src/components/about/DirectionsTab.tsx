@@ -20,9 +20,9 @@ const busInfo = [
 ];
 const subwayInfo = ['택시 5분', '도보 10분'];
 
-export const DirectionsTab = async () => {
+export const DirectionsTab = () => {
   const contact = companyInfo.filter((item) =>
-    ['주소', 'TEL', 'FAX'].includes(item.label)
+    ['주소', 'TEL', 'FAX'].includes(item.label),
   );
 
   return (
@@ -84,7 +84,7 @@ export const DirectionsTab = async () => {
                     <Button
                       className={cn(
                         `${bus.color} border-none hover:${bus.color}`,
-                        'h-fit w-fit px-2 py-1 text-xs font-medium flex justify-center items-center'
+                        'h-fit w-fit px-2 py-1 text-xs font-medium flex justify-center items-center',
                       )}
                     >
                       {bus.type}
