@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
 import { Product } from '@/types/sample';
-import { Loader2, Menu } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { Pagination } from '@/components/common';
@@ -13,6 +13,7 @@ import {
   ProductFormState,
   AdminProductCard,
   AddProductModal,
+  AdminCategorySidebar,
 } from '@/app/admin/components';
 
 const INITIAL_FORM: ProductFormState = {
@@ -226,17 +227,6 @@ export default function AdminProductManager() {
         'flex flex-col gap-4 md:gap-8 min-h-screen',
       )}
     >
-      {!sidebarOpen && (
-        <button
-          type='button'
-          onClick={() => setSidebarOpen((prev) => !prev)}
-          className='fixed left-4 top-10 z-40 border bg-white p-2 text-point shadow lg:hidden'
-          aria-label='카테고리 사이드바 열기'
-        >
-          <Menu className='size-5' />
-        </button>
-      )}
-
       <header className='flex flex-wrap items-center justify-between gap-3'>
         <div>
           <h1 className='text-3xl font-bold'>상품 관리</h1>
@@ -244,59 +234,16 @@ export default function AdminProductManager() {
             카테고리별 상품을 등록/수정/삭제할 수 있습니다.
           </p>
         </div>
-        <button
-          type='button'
-          onClick={onLogout}
-          className='border px-4 py-2 text-sm'
-        >
-          로그아웃
-        </button>
       </header>
 
       <section className='grid gap-4 lg:grid-cols-[180px_1fr]'>
-        {sidebarOpen && (
-          <button
-            type='button'
-            aria-label='카테고리 사이드바 닫기'
-            className='fixed inset-0 z-20 bg-black/40 lg:hidden'
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        <aside
-          className={cn(
-            'h-fit border bg-white p-3',
-            'lg:sticky lg:top-32 lg:z-10 lg:self-start',
-            'fixed left-0 top-0 z-30 h-full w-40 overflow-y-auto border-r p-4 transition-transform duration-300 lg:h-fit lg:w-auto lg:border',
-            sidebarOpen
-              ? 'translate-x-0'
-              : '-translate-x-full lg:translate-x-0',
-          )}
-        >
-          <p className='py-2 text-lg font-semibold text-point'>카테고리</p>
-          <div className='space-y-2'>
-            {ADMIN_PRODUCT_CATEGORIES.map((item) => {
-              const isActive = item.value === category;
-              return (
-                <button
-                  key={item.value}
-                  type='button'
-                  onClick={() => {
-                    setCategory(item.value);
-                    setSidebarOpen(false);
-                  }}
-                  className={`w-full whitespace-nowrap px-3 py-2 text-left text-sm ${
-                    isActive
-                      ? 'bg-point text-white'
-                      : ' text-point hover:bg-point/10'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </aside>
+        <AdminCategorySidebar
+          category={category}
+          sidebarOpen={sidebarOpen}
+          onSidebarOpenChange={setSidebarOpen}
+          onCategoryChange={setCategory}
+          onLogout={onLogout}
+        />
         <div className='space-y-3'>
           <div className='flex items-center justify-between'>
             <h2 className='text-lg font-semibold'>상품 목록</h2>
