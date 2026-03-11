@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/lib/supabase/server';
-import { isAdminEmail } from '@/lib/admin-auth';
 import AdminLoginForm from './AdminLoginForm';
 import { cn } from '@/lib/utils';
 
@@ -10,7 +9,7 @@ export default async function AdminLoginPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (isAdminEmail(user?.email)) {
+  if (user) {
     redirect('/admin');
   }
 
@@ -24,7 +23,7 @@ export default async function AdminLoginPage() {
       <div>
         <h1 className='text-2xl font-bold'>관리자 로그인</h1>
         <p className='mb-8 mt-2 text-sm text-gray-600'>
-          로그인 후 관리자 이메일 권한이 확인되면 관리자 페이지로 이동합니다.
+          로그인 후 관리자 페이지로 이동합니다.
         </p>
         <AdminLoginForm />
       </div>
