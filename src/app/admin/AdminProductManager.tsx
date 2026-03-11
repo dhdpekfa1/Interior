@@ -6,14 +6,10 @@ import { createClient } from '@/utils/supabase/client';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
 import { Product } from '@/types/sample';
 import { Loader2, Menu, X } from 'lucide-react';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
-
-type ProductFormState = {
-  name: string;
-  image: string;
-  description: string;
-};
+import AdminProductCard, {
+  ProductFormState,
+} from '@/app/admin/components/AdminProductCard';
 
 const INITIAL_FORM: ProductFormState = {
   name: '',
@@ -40,7 +36,6 @@ export default function AdminProductManager() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [form, setForm] = useState<ProductFormState>(INITIAL_FORM);
-  const [editForm, setEditForm] = useState<ProductFormState>(INITIAL_FORM);
   const [error, setError] = useState('');
 
   const fetchItems = useCallback(async () => {
@@ -64,7 +59,6 @@ export default function AdminProductManager() {
 
   useEffect(() => {
     setEditingId(null);
-    setEditForm(INITIAL_FORM);
     fetchItems();
   }, [category, fetchItems]);
 
@@ -101,23 +95,13 @@ export default function AdminProductManager() {
 
   const startEdit = (item: Product) => {
     setEditingId(item.id);
-    setEditForm({
-      name: item.name ?? '',
-      image: sanitizeImageUrl(item.image ?? ''),
-      description: item.description ?? '',
-    });
   };
 
   const resetEditForm = () => {
     setEditingId(null);
-    setEditForm(INITIAL_FORM);
   };
 
-  const onSubmitEdit = async (
-    event: FormEvent<HTMLFormElement>,
-    id: string,
-  ) => {
-    event.preventDefault();
+  const onSubmitEdit = async (id: string, values: ProductFormState) => {
     setUpdating(true);
     setError('');
 
@@ -127,8 +111,8 @@ export default function AdminProductManager() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           category,
-          ...editForm,
-          image: sanitizeImageUrl(editForm.image),
+          ...values,
+          image: sanitizeImageUrl(values.image),
         }),
       });
       const json = await response.json();
@@ -321,108 +305,18 @@ export default function AdminProductManager() {
                 const isEditing = editingId === item.id;
                 const imageSrc = sanitizeImageUrl(item.image ?? '');
                 return (
-                  <article key={item.id} className='[perspective:1000px]'>
-                    <div
-                      className={`relative h-[280px] w-ful transition-transform duration-500 [transform-style:preserve-3d] ${
-                        isEditing ? '[transform:rotateY(180deg)]' : ''
-                      }`}
-                    >
-                      <div className='absolute inset-0 overflow-hidden border bg-white [backface-visibility:hidden]'>
-                        <div className='relative h-full'>
-                          <Image
-                            src={imageSrc || '/favicon.ico'}
-                            alt={item.name}
-                            width={300}
-                            height={200}
-                            className='h-full w-full object-cover'
-                            priority
-                          />
-                          <div className='absolute bottom-0 right-0 bg-white/75 px-2 py-1 text-sm font-semibold text-black'>
-                            {item.name}
-                          </div>
-                          <div className='absolute right-2 top-2 flex gap-1'>
-                            <button
-                              type='button'
-                              onClick={() => startEdit(item)}
-                              className='bg-dd/90 px-2 py-1 text-xs text-point border border-white'
-                            >
-                              수정
-                            </button>
-                            <button
-                              type='button'
-                              disabled={deletingId === item.id}
-                              onClick={() => onDelete(item.id)}
-                              className='bg-red-500 px-2 py-1 text-xs text-ef disabled:opacity-50 border border-red-white'
-                            >
-                              삭제
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <form
-                        onSubmit={(event) => onSubmitEdit(event, item.id)}
-                        className='absolute inset-0 space-y-2 border p-3 [backface-visibility:hidden] [transform:rotateY(180deg)]'
-                      >
-                        <p className='text-sm font-semibold'>상품 수정</p>
-                        <input
-                          className='w-full  border px-2 py-1 text-sm'
-                          placeholder='상품명'
-                          value={editForm.name}
-                          onChange={(event) =>
-                            setEditForm((prev) => ({
-                              ...prev,
-                              name: event.target.value,
-                            }))
-                          }
-                          required
-                        />
-                        <input
-                          className='w-full border px-2 py-1 text-sm'
-                          placeholder='이미지 URL'
-                          value={editForm.image}
-                          onChange={(event) =>
-                            setEditForm((prev) => ({
-                              ...prev,
-                              image: event.target.value,
-                            }))
-                          }
-                          required
-                        />
-                        <textarea
-                          className='h-20 w-full border px-2 py-1 text-sm'
-                          placeholder='설명'
-                          value={editForm.description}
-                          onChange={(event) =>
-                            setEditForm((prev) => ({
-                              ...prev,
-                              description: event.target.value,
-                            }))
-                          }
-                        />
-                        <div className='flex gap-2'>
-                          <button
-                            type='submit'
-                            disabled={updating}
-                            className='bg-point/90 px-2 py-1 text-xs text-second disabled:opacity-50'
-                          >
-                            {updating ? (
-                              <Loader2 className='size-4 animate-spin text-second' />
-                            ) : (
-                              '저장'
-                            )}
-                          </button>
-                          <button
-                            type='button'
-                            onClick={resetEditForm}
-                            className='border px-2 py-1 text-xs'
-                          >
-                            취소
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </article>
+                  <AdminProductCard
+                    key={item.id}
+                    item={item}
+                    imageSrc={imageSrc}
+                    isEditing={isEditing}
+                    isDeleting={deletingId === item.id}
+                    isUpdating={updating && isEditing}
+                    onStartEdit={startEdit}
+                    onDelete={onDelete}
+                    onSubmitEdit={onSubmitEdit}
+                    onCancelEdit={resetEditForm}
+                  />
                 );
               })}
             </div>

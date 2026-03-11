@@ -17,7 +17,7 @@ export default async function AdminLoginPage() {
   return (
     <main
       className={cn(
-        'h-[16rem] md:h-[24rem] lg:h-[32rem] w-full relative pt-14 md:pt-20',
+        'min-h-screen h-[16rem] md:h-[24rem] lg:h-[32rem] w-full relative pt-14 md:pt-20',
         'flex flex-col items-center justify-center',
       )}
     >

@@ -21,6 +21,7 @@ import {
   emailDomains,
 } from '@/schema/inquirySchema';
 import { useInquiryForm } from '@/hooks/useInquiryForm';
+import { Loader2 } from 'lucide-react';
 
 export const InquiryForm = () => {
   const {
@@ -95,7 +96,7 @@ export const InquiryForm = () => {
               onChange={(e) =>
                 setValue(
                   'email',
-                  `${watch('email').split('@')[0]}@${e.target.value}`
+                  `${watch('email').split('@')[0]}@${e.target.value}`,
                 )
               }
               placeholder='직접 입력'
@@ -197,7 +198,11 @@ export const InquiryForm = () => {
         className='bg-point/90 text-ef p-2 text-sm sm:text-base hover:bg-point'
         disabled={loading || success}
       >
-        {loading ? '전송 중...' : '접수하기'}
+        {loading ? (
+          <Loader2 className='size-4 animate-spin text-second' />
+        ) : (
+          '접수하기'
+        )}
       </Button>
     </form>
   );
