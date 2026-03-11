@@ -7,6 +7,7 @@ import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
 import { Product } from '@/types/sample';
 import { Loader2, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 import AdminProductCard, {
   ProductFormState,
 } from '@/app/admin/components/AdminProductCard';
@@ -120,12 +121,14 @@ export default function AdminProductManager() {
 
       resetEditForm();
       await fetchItems();
+      toast.success('상품을 수정했습니다.');
     } catch (saveError) {
       setError(
         saveError instanceof Error
           ? saveError.message
           : '수정 중 오류가 발생했습니다.',
       );
+      toast.error('상품 수정에 실패했습니다.');
     } finally {
       setUpdating(false);
     }
@@ -147,12 +150,19 @@ export default function AdminProductManager() {
       const json = await response.json();
 
       if (!response.ok) {
-        setError(json.error ?? '삭제 실패');
-        return;
+        throw new Error(json.error ?? '삭제 실패');
       }
 
       if (editingId === id) resetEditForm();
       await fetchItems();
+      toast.success('상품을 삭제했습니다.');
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : '상품 삭제 중 오류가 발생했습니다.',
+      );
+      toast.error('상품 삭제에 실패했습니다.');
     } finally {
       setDeletingId(null);
     }

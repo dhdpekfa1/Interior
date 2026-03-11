@@ -40,6 +40,8 @@ export default function AdminProductCard({
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [selectedFileName, setSelectedFileName] = useState('');
+  const isProcessing = isDeleting || isUpdating;
+  const hasUploadError = Boolean(uploadError);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { register, handleSubmit, setValue, reset, control, formState } =
     useForm<ProductFormState>({
@@ -134,13 +136,18 @@ export default function AdminProductCard({
   };
 
   return (
-    <article className='[perspective:1000px]'>
+    <article className='relative [perspective:1000px]'>
       <div
         className={`relative h-[300px] w-full transition-transform duration-500 [transform-style:preserve-3d] ${
           isEditing ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
-        <div className='absolute inset-0 overflow-hidden border bg-white [backface-visibility:hidden]'>
+        <div
+          className={cn(
+            'absolute inset-0 overflow-hidden border bg-white [backface-visibility:hidden]',
+            hasUploadError && 'border-red-500',
+          )}
+        >
           <div className='relative h-full'>
             <Image
               src={imageSrc || '/favicon.ico'}
@@ -177,6 +184,7 @@ export default function AdminProductCard({
           className={cn(
             'absolute inset-0 space-y-2 border p-3 [backface-visibility:hidden] [transform:rotateY(180deg)]',
             'flex flex-col gap-2',
+            hasUploadError && 'border-red-500',
           )}
         >
           <p className='text-sm font-semibold'>상품 수정</p>
@@ -207,11 +215,10 @@ export default function AdminProductCard({
             onChange={handleUploadImage}
             className='hidden'
           />
-          {uploadError && <p className='text-xs text-red-600'>{uploadError}</p>}
           <button
             type='button'
             onClick={openFilePicker}
-            disabled={uploading}
+            disabled={uploading || isProcessing}
             className='h-32 w-full overflow-hidden border bg-gray-50 text-left disabled:cursor-not-allowed'
           >
             {previewImage ? (
@@ -238,10 +245,10 @@ export default function AdminProductCard({
           <div className='flex items-center justify-end gap-2'>
             <button
               type='submit'
-              disabled={isUpdating || uploading || !formState.isDirty}
+              disabled={isProcessing || uploading || !formState.isDirty}
               className='bg-point/90 px-2 py-1 text-xs text-white disabled:opacity-50'
             >
-              {isUpdating || uploading ? (
+              {isProcessing || uploading ? (
                 <Loader2 className='size-4 animate-spin text-second' />
               ) : (
                 '저장'
@@ -257,6 +264,11 @@ export default function AdminProductCard({
           </div>
         </form>
       </div>
+      {isProcessing && (
+        <div className='absolute inset-0 z-20 flex items-center justify-center bg-black/20'>
+          <Loader2 className='size-6 animate-spin text-second' />
+        </div>
+      )}
     </article>
   );
 }
