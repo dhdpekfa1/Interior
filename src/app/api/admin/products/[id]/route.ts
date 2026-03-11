@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@/app/lib/supabase/server';
 import { createAdminClient } from '@/app/lib/supabase/admin';
 import { getAdminUser } from '@/lib/admin-auth';
+import { unauthorized } from '@/lib/admin-response';
 import { getProductTableByCategory } from '@/lib/admin-product';
 import { finalizeTmpImageIfNeeded, getSafeStoragePathFromPublicUrl } from '@/lib/admin-product-image';
 import {
@@ -14,9 +15,6 @@ type UpdateBody = {
   image?: string;
   description?: string;
 };
-
-const unauthorized = () =>
-  NextResponse.json({ error: '관리자 권한이 필요합니다.' }, { status: 401 });
 
 export async function PATCH(
   req: Request,
@@ -104,9 +102,19 @@ export async function PATCH(
 
   if (beforeImagePath && beforeImagePath !== afterImagePath) {
     const adminClient = createAdminClient();
-    await adminClient.storage
+    const { error: removeError } = await adminClient.storage
       .from(PRODUCT_IMAGE_BUCKET)
       .remove([beforeImagePath]);
+
+    if (removeError) {
+      console.error('이전 이미지 삭제 실패 (PATCH 후처리)', {
+        productId: id,
+        table,
+        beforeImagePath,
+        afterImagePath,
+        message: removeError.message,
+      });
+    }
   }
 
   return NextResponse.json({ item: data });
@@ -170,6 +178,12 @@ export async function DELETE(
       .remove([imagePath]);
 
     if (storageError) {
+      console.error('상품 삭제 후 이미지 삭제 실패', {
+        productId: id,
+        table,
+        imagePath,
+        message: storageError.message,
+      });
       return NextResponse.json(
         { error: '이미지 삭제 실패', details: storageError.message },
         { status: 500 },

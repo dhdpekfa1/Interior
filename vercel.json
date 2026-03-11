@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/admin/storage/cleanup-temp?hours=24",
-      "schedule": "0 3 * * *"
-    }
-  ]
-}

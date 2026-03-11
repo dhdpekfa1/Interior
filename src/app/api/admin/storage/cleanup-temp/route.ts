@@ -3,13 +3,9 @@ import { createAdminClient } from '@/app/lib/supabase/admin';
 import { getAdminUser } from '@/lib/admin-auth';
 import { ADMIN_PRODUCT_TMP_PREFIX, PRODUCT_IMAGE_BUCKET } from '@/constants';
 
-const PRODUCT_TABLES = [
-  'product_lpm',
-  'product_mirror_lpm',
-  'product_pvc_pp',
-  'product_asa_pet',
-  'product_hpm',
-];
+const DEFAULT_CLEANUP_HOURS = 24;
+const MIN_CLEANUP_HOURS = 1;
+const MAX_CLEANUP_HOURS = 24 * 30;
 
 const isAuthorizedCronRequest = (req: Request) => {
   const cronSecret = process.env.CRON_SECRET;
@@ -17,6 +13,15 @@ const isAuthorizedCronRequest = (req: Request) => {
   const authHeader = req.headers.get('authorization');
   if (!authHeader?.startsWith('Bearer ')) return false;
   return authHeader.slice(7) === cronSecret;
+};
+
+const parseCleanupHours = (rawHours: string | null): number => {
+  const parsed = Number(rawHours);
+  if (!Number.isFinite(parsed)) return DEFAULT_CLEANUP_HOURS;
+  const normalized = Math.floor(parsed);
+  if (normalized < MIN_CLEANUP_HOURS) return MIN_CLEANUP_HOURS;
+  if (normalized > MAX_CLEANUP_HOURS) return MAX_CLEANUP_HOURS;
+  return normalized;
 };
 
 const handleCleanupTemp = async (req: Request) => {
@@ -33,22 +38,8 @@ const handleCleanupTemp = async (req: Request) => {
 
   const adminClient = createAdminClient();
   const { searchParams } = new URL(req.url);
-  const hours = Number(searchParams.get('hours') ?? '24');
+  const hours = parseCleanupHours(searchParams.get('hours'));
   const cutoff = Date.now() - hours * 60 * 60 * 1000;
-
-  const referencedTmpPaths = new Set<string>();
-  for (const table of PRODUCT_TABLES) {
-    const { data } = await adminClient.from(table).select('image');
-    (data ?? []).forEach((row: { image?: string | null }) => {
-      if (!row.image) return;
-      const marker = `/storage/v1/object/public/${PRODUCT_IMAGE_BUCKET}/${ADMIN_PRODUCT_TMP_PREFIX}`;
-      const markerIndex = row.image.indexOf(marker);
-      if (markerIndex === -1) return;
-      const path = row.image.slice(markerIndex + marker.length).split('?')[0];
-      if (!path) return;
-      referencedTmpPaths.add(`${ADMIN_PRODUCT_TMP_PREFIX}${decodeURIComponent(path)}`);
-    });
-  }
 
   const { data: listedFiles, error: listError } = await adminClient.storage
     .from(PRODUCT_IMAGE_BUCKET)
@@ -66,8 +57,6 @@ const handleCleanupTemp = async (req: Request) => {
 
   const staleTargets = (listedFiles ?? [])
     .filter((file) => {
-      const path = `${ADMIN_PRODUCT_TMP_PREFIX}${file.name}`;
-      if (referencedTmpPaths.has(path)) return false;
       const createdAt = file.created_at ? new Date(file.created_at).getTime() : 0;
       return createdAt > 0 && createdAt < cutoff;
     })

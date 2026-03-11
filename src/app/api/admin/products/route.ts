@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/app/lib/supabase/server';
 import { getAdminUser } from '@/lib/admin-auth';
+import { unauthorized } from '@/lib/admin-response';
 import { getProductTableByCategory } from '@/lib/admin-product';
 import { finalizeTmpImageIfNeeded } from '@/lib/admin-product-image';
 
@@ -10,9 +11,6 @@ type CreateProductBody = {
   image: string;
   description: string;
 };
-
-const unauthorized = () =>
-  NextResponse.json({ error: '관리자 권한이 필요합니다.' }, { status: 401 });
 
 export async function GET(req: Request) {
   const adminUser = await getAdminUser();

@@ -9,11 +9,8 @@ export const ADMIN_PRODUCT_CATEGORIES = [
 const PRODUCT_TABLE_BY_CATEGORY: Record<string, string> = {
   lpm: 'product_lpm',
   'mirror-lpm': 'product_mirror_lpm',
-  mirror_lpm: 'product_mirror_lpm',
   'pvc-pp': 'product_pvc_pp',
-  pvc_pp: 'product_pvc_pp',
   'asa-pet': 'product_asa_pet',
-  asa_pet: 'product_asa_pet',
   hpm: 'product_hpm',
 };
 
