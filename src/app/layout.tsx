@@ -52,7 +52,7 @@ export default async function RootLayout({
           content='583bee0fab250380e7beb8f97af1366ff3aa98c3'
         />
       </head>
-      <body className='antialiased font-sans'>
+      <body suppressHydrationWarning className='antialiased font-sans'>
         <RootFrame>{children}</RootFrame>
         <Toaster />
       </body>
