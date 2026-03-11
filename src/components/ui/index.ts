@@ -140,3 +140,4 @@ export {
   TooltipContent,
   TooltipProvider,
 } from './tooltip/tooltip';
+export { Toaster } from './toast/sonner';

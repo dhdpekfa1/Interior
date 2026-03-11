@@ -31,6 +31,8 @@ export const ZoomProductImage = ({
   onImageLoad,
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
+  const normalizedSrc =
+    src.trim().match(/https?:\/\/[^\s\]]+/i)?.[0] ?? src.trim();
 
   useEffect(() => {
     if (!ref.current) return;
@@ -69,7 +71,13 @@ export const ZoomProductImage = ({
       onMouseLeave={onZoomEnd}
       onMouseMove={handleMouseMove}
     >
-      <Image src={src} alt={alt} fill className='object-cover duration-300' />
+      <Image
+        src={normalizedSrc}
+        alt={alt}
+        fill
+        sizes='(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'
+        className='object-cover duration-300'
+      />
       <Check
         className={cn(
           'absolute top-2 right-2 text-point bg-white',
