@@ -184,13 +184,13 @@ export default function AdminProductManager() {
     <main
       className={cn(
         'relative p-16 md:p-20',
-        'flex flex-col gap-4 md:gap-8 min-h-[calc(100vh-200px)]',
+        'flex flex-col gap-4 md:gap-8 min-h-screen',
       )}
     >
       <button
         type='button'
         onClick={() => setSidebarOpen((prev) => !prev)}
-        className='fixed left-4 top-4 z-40 border bg-white p-2 text-point shadow lg:hidden'
+        className='fixed left-4 top-20 z-40 border bg-white p-2 text-point shadow lg:hidden'
         aria-label='카테고리 사이드바 열기/닫기'
       >
         {sidebarOpen ? <X className='size-5' /> : <Menu className='size-5' />}
@@ -198,7 +198,7 @@ export default function AdminProductManager() {
 
       <header className='flex flex-wrap items-center justify-between gap-3'>
         <div>
-          <h1 className='text-3xl font-bold'>상품 관리자</h1>
+          <h1 className='text-3xl font-bold'>상품 관리</h1>
           <p className='mt-1 text-sm text-gray-600'>
             카테고리별 상품을 등록/수정/삭제할 수 있습니다.
           </p>

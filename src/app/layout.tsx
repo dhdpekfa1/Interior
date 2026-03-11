@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import { Footer, Header } from '@/components/frame';
-import { TopButton } from '@/components/common';
-import MenuData from '@/assets/data/menuData.json';
-import companyInfo from '@/assets/data/companyInfo.json';
 import { Toaster } from '@/components/ui';
+import { RootFrame } from '@/components/frame';
 import './globals.css';
-import { CompanyInfoType } from '@/types/frame';
 
 export const metadata: Metadata = {
   title: '와이디인더스트리',
@@ -48,7 +44,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const companyInfoData = companyInfo as CompanyInfoType[];
   return (
     <html lang='ko'>
       <head>
@@ -58,10 +53,7 @@ export default async function RootLayout({
         />
       </head>
       <body className='antialiased font-sans'>
-        <Header menuData={MenuData} />
-        <div>{children}</div>
-        <TopButton />
-        <Footer companyInfo={companyInfoData} />
+        <RootFrame>{children}</RootFrame>
         <Toaster />
       </body>
     </html>
