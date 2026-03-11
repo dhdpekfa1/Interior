@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Loader2 } from 'lucide-react';
 import { useForm, useWatch } from 'react-hook-form';
 import { createClient } from '@/utils/supabase/client';
+import { ADMIN_PRODUCT_TMP_PREFIX, PRODUCT_IMAGE_BUCKET } from '@/constants';
 
 export type ProductFormState = {
   name: string;
@@ -23,9 +24,6 @@ type Props = {
   onSubmit: (values: ProductFormState) => Promise<void> | void;
   onUploadErrorChange?: (hasError: boolean) => void;
 };
-
-const BUCKET =
-  process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || 'product-images';
 
 const getUploadErrorMessage = (error: unknown): string => {
   const message = error instanceof Error ? error.message : '';
@@ -61,6 +59,8 @@ export function ProductForm({
   const [uploadError, setUploadError] = useState('');
   const [selectedFileName, setSelectedFileName] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const uploadedPathsRef = useRef<string[]>([]);
+  const submittedRef = useRef(false);
   const { register, handleSubmit, setValue, reset, control, formState } =
     useForm<ProductFormState>({
       defaultValues: initialValues,
@@ -75,11 +75,33 @@ export function ProductForm({
     reset(initialValues);
     setUploadError('');
     setSelectedFileName('');
+    uploadedPathsRef.current = [];
+    submittedRef.current = false;
   }, [initialValues, reset]);
 
   useEffect(() => {
     onUploadErrorChange?.(Boolean(uploadError));
   }, [uploadError, onUploadErrorChange]);
+
+  const removeTemporaryUploads = async () => {
+    const paths = [...uploadedPathsRef.current];
+    if (paths.length === 0) return;
+
+    try {
+      const supabase = createClient();
+      await supabase.storage.from(PRODUCT_IMAGE_BUCKET).remove(paths);
+    } finally {
+      uploadedPathsRef.current = [];
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (!submittedRef.current) {
+        void removeTemporaryUploads();
+      }
+    };
+  }, []);
 
   const handleUploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -102,10 +124,10 @@ export function ProductForm({
 
       const extension = file.name.split('.').pop() || 'png';
       const safeFileName = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}.${extension}`;
-      const filePath = `admin-products/${safeFileName}`;
+      const filePath = `${ADMIN_PRODUCT_TMP_PREFIX}${safeFileName}`;
 
       const { error } = await supabase.storage
-        .from(BUCKET)
+        .from(PRODUCT_IMAGE_BUCKET)
         .upload(filePath, file, {
           upsert: true,
           contentType: file.type,
@@ -118,8 +140,9 @@ export function ProductForm({
 
       const {
         data: { publicUrl },
-      } = supabase.storage.from(BUCKET).getPublicUrl(filePath);
+      } = supabase.storage.from(PRODUCT_IMAGE_BUCKET).getPublicUrl(filePath);
 
+      uploadedPathsRef.current.push(filePath);
       setValue('image', publicUrl, {
         shouldDirty: true,
         shouldValidate: true,
@@ -147,7 +170,11 @@ export function ProductForm({
 
   return (
     <form
-      onSubmit={handleSubmit((values) => onSubmit(values))}
+      onSubmit={handleSubmit(async (values) => {
+        await onSubmit(values);
+        submittedRef.current = true;
+        uploadedPathsRef.current = [];
+      })}
       className='flex flex-col gap-2'
     >
       <input
@@ -190,17 +217,18 @@ export function ProductForm({
         )}
       </button>
 
-      <p className='text-[10px] text-center text-gray-500'>
+      <p className='text-[10px] text-gray-500'>
         {uploading ? (
           <Loader2 className='mx-auto size-4 animate-spin text-second' />
         ) : (
-          selectedFileName || '미리보기를 클릭해 이미지 선택'
+          selectedFileName || '선택된 이미지 없음'
         )}
       </p>
 
-      <textarea
-        className='min-h-20 w-full border px-2 py-1 text-sm'
-        placeholder='필요 시 간단한 상품 설명을 입력하세요.'
+      <input
+        type='text'
+        className='w-full border px-2 py-1 text-sm'
+        placeholder='간단한 상품 설명'
         {...register('description')}
         disabled={disabled || isSubmitting}
       />
@@ -220,7 +248,10 @@ export function ProductForm({
         {showCancel && onCancel && (
           <button
             type='button'
-            onClick={onCancel}
+            onClick={async () => {
+              await removeTemporaryUploads();
+              onCancel();
+            }}
             className='border px-2 py-1 text-xs'
           >
             취소

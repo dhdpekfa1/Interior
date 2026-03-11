@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/app/lib/supabase/server';
+import { createAdminClient } from '@/app/lib/supabase/admin';
 import { getAdminUser } from '@/lib/admin-auth';
 import { getProductTableByCategory } from '@/lib/admin-product';
+import {
+  ADMIN_PRODUCT_LIVE_PREFIX,
+  ADMIN_PRODUCT_TMP_PREFIX,
+  PRODUCT_IMAGE_BUCKET,
+  SUPABASE_URL,
+} from '@/constants';
 
 type UpdateBody = {
   category: string;
@@ -9,8 +16,6 @@ type UpdateBody = {
   image?: string;
   description?: string;
 };
-
-const PRODUCT_IMAGE_BUCKET = 'product-images';
 
 const unauthorized = () =>
   NextResponse.json({ error: '관리자 권한이 필요합니다.' }, { status: 401 });
@@ -28,6 +33,34 @@ const getStoragePathFromPublicUrl = (
   const rawPath = imageUrl.slice(markerIndex + marker.length).split('?')[0];
   if (!rawPath) return null;
   return decodeURIComponent(rawPath);
+};
+
+const getPublicUrlFromPath = (path: string) => {
+  if (!SUPABASE_URL) return '';
+  return `${SUPABASE_URL}/storage/v1/object/public/${PRODUCT_IMAGE_BUCKET}/${path}`;
+};
+
+const finalizeTmpImageIfNeeded = async (imageUrl: string) => {
+  const imagePath = getStoragePathFromPublicUrl(imageUrl, PRODUCT_IMAGE_BUCKET);
+  if (!imagePath || !imagePath.startsWith(ADMIN_PRODUCT_TMP_PREFIX)) {
+    return imageUrl;
+  }
+
+  const extension = imagePath.split('.').pop() || 'png';
+  const finalPath = `${ADMIN_PRODUCT_LIVE_PREFIX}${Date.now()}-${Math.random()
+    .toString(36)
+    .slice(2, 9)}.${extension}`;
+
+  const adminClient = createAdminClient();
+  const { error } = await adminClient.storage
+    .from(PRODUCT_IMAGE_BUCKET)
+    .move(imagePath, finalPath);
+
+  if (error) {
+    throw new Error(`임시 이미지 확정 실패: ${error.message}`);
+  }
+
+  return getPublicUrlFromPath(finalPath);
 };
 
 export async function PATCH(
@@ -71,6 +104,26 @@ export async function PATCH(
   }
 
   const supabase = await createClient();
+  const { data: currentProduct } = await supabase
+    .from(table)
+    .select('image')
+    .eq('id', id)
+    .single();
+
+  if (body.image) {
+    try {
+      updatePayload.image = await finalizeTmpImageIfNeeded(body.image);
+    } catch (error) {
+      return NextResponse.json(
+        {
+          error: '이미지 확정 처리 실패',
+          details: error instanceof Error ? error.message : String(error),
+        },
+        { status: 500 },
+      );
+    }
+  }
+
   const { data, error } = await supabase
     .from(table)
     .update(updatePayload)
@@ -83,6 +136,22 @@ export async function PATCH(
       { error: '상품 수정 실패', details: error.message },
       { status: 500 },
     );
+  }
+
+  const beforeImagePath = getStoragePathFromPublicUrl(
+    currentProduct?.image,
+    PRODUCT_IMAGE_BUCKET,
+  );
+  const afterImagePath = getStoragePathFromPublicUrl(
+    data?.image,
+    PRODUCT_IMAGE_BUCKET,
+  );
+
+  if (beforeImagePath && beforeImagePath !== afterImagePath) {
+    const adminClient = createAdminClient();
+    await adminClient.storage
+      .from(PRODUCT_IMAGE_BUCKET)
+      .remove([beforeImagePath]);
   }
 
   return NextResponse.json({ item: data });
@@ -140,7 +209,8 @@ export async function DELETE(
     PRODUCT_IMAGE_BUCKET,
   );
   if (imagePath) {
-    const { error: storageError } = await supabase.storage
+    const adminClient = createAdminClient();
+    const { error: storageError } = await adminClient.storage
       .from(PRODUCT_IMAGE_BUCKET)
       .remove([imagePath]);
 

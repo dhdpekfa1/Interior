@@ -45,7 +45,7 @@ export function AdminProductCard({
   return (
     <article className='relative [perspective:1000px]'>
       <div
-        className={`relative h-[300px] w-full transition-transform duration-500 [transform-style:preserve-3d] ${
+        className={`relative h-80 w-full transition-transform duration-500 [transform-style:preserve-3d] ${
           isEditing ? '[transform:rotateY(180deg)]' : ''
         }`}
       >
