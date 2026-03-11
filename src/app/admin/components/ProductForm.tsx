@@ -27,6 +27,25 @@ type Props = {
 const BUCKET =
   process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || 'product-images';
 
+const getUploadErrorMessage = (error: unknown): string => {
+  const message = error instanceof Error ? error.message : '';
+  const statusCode = (error as { statusCode?: string | number } | null)
+    ?.statusCode;
+
+  if (
+    message.includes('Storage quota exceeded') ||
+    String(statusCode) === '413'
+  ) {
+    return '이번 달 스토리지 업로드 용량이 초과되었습니다. 개발자에게 문의하세요.';
+  }
+
+  if (message.includes('Payload too large')) {
+    return '파일 크기가 너무 큽니다. (최대 5MB)';
+  }
+
+  return '이미지 업로드 중 오류가 발생했습니다.';
+};
+
 export function ProductForm({
   initialValues,
   itemName = '상품',
@@ -92,7 +111,10 @@ export function ProductForm({
           contentType: file.type,
         });
 
-      if (error) throw new Error(error.message);
+      if (error) {
+        setUploadError(getUploadErrorMessage(error));
+        throw new Error(error.message);
+      }
 
       const {
         data: { publicUrl },
@@ -103,11 +125,7 @@ export function ProductForm({
         shouldValidate: true,
       });
     } catch (error) {
-      setUploadError(
-        error instanceof Error
-          ? error.message
-          : '이미지 업로드 중 오류가 발생했습니다.',
-      );
+      setUploadError((prev) => prev || getUploadErrorMessage(error));
     } finally {
       setUploading(false);
       event.target.value = '';

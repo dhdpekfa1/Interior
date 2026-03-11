@@ -40,13 +40,12 @@ export const getProductList = async (): Promise<ProductCategory[]> => {
 
 export const getProductLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  //   const { data, error } = await supabase.from('product_lpm').select('*');
   const { data, error } = await supabase
-    .from('sorted_product_lpm')
+    .from('product_lpm')
     .select('*')
     .order('name');
   if (error) {
-    console.error('Error fetching sorted_product_lpm:', error);
+    console.error('Error fetching product_lpm:', error);
     return [];
   }
   return data;
@@ -54,9 +53,8 @@ export const getProductLpm = async (): Promise<Product[]> => {
 
 export const getProductMirrorLpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  // const { data, error } = await supabase.from('product_mirror_lpm').select('*');
   const { data, error } = await supabase
-    .from('sorted_product_mirror_lpm')
+    .from('product_mirror_lpm')
     .select('*')
     .order('name');
   if (error) {
@@ -68,9 +66,8 @@ export const getProductMirrorLpm = async (): Promise<Product[]> => {
 
 export const getProductPvc = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  // const { data, error } = await supabase.from('product_pvc_pp').select('*');
   const { data, error } = await supabase
-    .from('sorted_product_pvc_pp')
+    .from('product_pvc_pp')
     .select('*')
     .order('name');
   if (error) {
@@ -82,9 +79,8 @@ export const getProductPvc = async (): Promise<Product[]> => {
 
 export const getProductAsa = async (): Promise<Product[]> => {
   const supabase = await createClient();
-  // const { data, error } = await supabase.from('product_asa_pet').select('*');
   const { data, error } = await supabase
-    .from('sorted_product_asa_pet')
+    .from('product_asa_pet')
     .select('*')
     .order('name');
   if (error) {
@@ -97,7 +93,7 @@ export const getProductAsa = async (): Promise<Product[]> => {
 export const getProductHpm = async (): Promise<Product[]> => {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from('sorted_product_hpm')
+    .from('product_hpm')
     .select('*')
     .order('name');
   if (error) {
