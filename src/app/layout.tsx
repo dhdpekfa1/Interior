@@ -3,6 +3,7 @@ import { Footer, Header } from '@/components/frame';
 import { TopButton } from '@/components/common';
 import MenuData from '@/assets/data/menuData.json';
 import companyInfo from '@/assets/data/companyInfo.json';
+import { Toaster } from '@/components/ui';
 import './globals.css';
 import { CompanyInfoType } from '@/types/frame';
 
@@ -61,6 +62,7 @@ export default async function RootLayout({
         <div>{children}</div>
         <TopButton />
         <Footer companyInfo={companyInfoData} />
+        <Toaster />
       </body>
     </html>
   );
