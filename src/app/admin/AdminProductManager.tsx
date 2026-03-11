@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
@@ -8,9 +8,11 @@ import { Product } from '@/types/sample';
 import { Loader2, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
-import AdminProductCard, {
+import {
   ProductFormState,
-} from '@/app/admin/components/AdminProductCard';
+  AdminProductCard,
+  AddProductModal,
+} from '@/app/admin/components';
 
 const INITIAL_FORM: ProductFormState = {
   name: '',
@@ -36,7 +38,8 @@ export default function AdminProductManager() {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [form, setForm] = useState<ProductFormState>(INITIAL_FORM);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [createFormVersion, setCreateFormVersion] = useState(0);
   const [error, setError] = useState('');
 
   const fetchItems = useCallback(async () => {
@@ -63,8 +66,7 @@ export default function AdminProductManager() {
     fetchItems();
   }, [category, fetchItems]);
 
-  const onSubmitCreate = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmitCreate = async (values: ProductFormState) => {
     setSaving(true);
     setError('');
 
@@ -74,21 +76,24 @@ export default function AdminProductManager() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           category,
-          ...form,
-          image: sanitizeImageUrl(form.image),
+          ...values,
+          image: sanitizeImageUrl(values.image),
         }),
       });
       const json = await response.json();
       if (!response.ok) throw new Error(json.error ?? '저장 실패');
 
-      setForm(INITIAL_FORM);
+      setCreateFormVersion((prev) => prev + 1);
+      setCreateModalOpen(false);
       await fetchItems();
+      toast.success('상품을 등록했습니다.');
     } catch (saveError) {
       setError(
         saveError instanceof Error
           ? saveError.message
           : '저장 중 오류가 발생했습니다.',
       );
+      toast.error('상품 등록에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -204,53 +209,16 @@ export default function AdminProductManager() {
         </button>
       </header>
 
-      <section className='border p-4'>
-        <h2 className='text-lg font-semibold'>상품 등록</h2>
-        <form
-          className='mt-4 grid gap-3 md:grid-cols-2'
+      <div className='flex justify-end'>
+        <AddProductModal
+          open={createModalOpen}
+          onOpenChange={setCreateModalOpen}
+          formVersion={createFormVersion}
+          initialValues={INITIAL_FORM}
+          isSubmitting={saving}
           onSubmit={onSubmitCreate}
-        >
-          <input
-            className='border px-3 py-2'
-            placeholder='상품명'
-            value={form.name}
-            onChange={(event) =>
-              setForm((prev) => ({ ...prev, name: event.target.value }))
-            }
-            required
-          />
-          <input
-            className='border px-3 py-2'
-            placeholder='이미지 URL'
-            value={form.image}
-            onChange={(event) =>
-              setForm((prev) => ({ ...prev, image: event.target.value }))
-            }
-            required
-          />
-          <textarea
-            className='min-h-28 border px-3 py-2 md:col-span-2'
-            placeholder='설명'
-            value={form.description}
-            onChange={(event) =>
-              setForm((prev) => ({ ...prev, description: event.target.value }))
-            }
-          />
-          <div className='flex gap-2 md:col-span-2'>
-            <button
-              type='submit'
-              disabled={saving}
-              className=' bg-black px-4 py-2 text-white disabled:opacity-50'
-            >
-              {saving ? (
-                <Loader2 className='size-4 animate-spin text-point' />
-              ) : (
-                '등록'
-              )}
-            </button>
-          </div>
-        </form>
-      </section>
+        />
+      </div>
 
       <section className='grid gap-4 lg:grid-cols-[180px_1fr]'>
         {sidebarOpen && (
