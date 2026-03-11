@@ -5,9 +5,10 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
 import { Product } from '@/types/sample';
-import { Loader2, Menu, X } from 'lucide-react';
+import { Loader2, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { Pagination } from '@/components/common';
 import {
   ProductFormState,
   AdminProductCard,
@@ -25,6 +26,7 @@ const sanitizeImageUrl = (raw: string): string => {
   const matchedUrl = trimmed.match(/https?:\/\/[^\s\]]+/i);
   return (matchedUrl?.[0] ?? trimmed).trim();
 };
+const ITEMS_PER_PAGE = 16;
 
 export default function AdminProductManager() {
   const router = useRouter();
@@ -40,6 +42,7 @@ export default function AdminProductManager() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [createFormVersion, setCreateFormVersion] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState('');
 
   const fetchItems = useCallback(async () => {
@@ -63,10 +66,21 @@ export default function AdminProductManager() {
 
   useEffect(() => {
     setEditingId(null);
+    setCurrentPage(1);
     fetchItems();
   }, [category, fetchItems]);
 
-  const onSubmitCreate = async (values: ProductFormState) => {
+  useEffect(() => {
+    const totalPages = Math.max(1, Math.ceil(items.length / ITEMS_PER_PAGE));
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [items.length, currentPage]);
+
+  const onSubmitCreate = async (
+    targetCategory: string,
+    values: ProductFormState,
+  ) => {
     setSaving(true);
     setError('');
 
@@ -75,7 +89,7 @@ export default function AdminProductManager() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          category,
+          category: targetCategory,
           ...values,
           image: sanitizeImageUrl(values.image),
         }),
@@ -85,7 +99,11 @@ export default function AdminProductManager() {
 
       setCreateFormVersion((prev) => prev + 1);
       setCreateModalOpen(false);
-      await fetchItems();
+      if (targetCategory === category) {
+        await fetchItems();
+      } else {
+        setCategory(targetCategory);
+      }
       toast.success('상품을 등록했습니다.');
     } catch (saveError) {
       setError(
@@ -180,6 +198,10 @@ export default function AdminProductManager() {
     router.refresh();
   };
 
+  const totalItems = items.length;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
   return (
     <main
       className={cn(
@@ -187,14 +209,16 @@ export default function AdminProductManager() {
         'flex flex-col gap-4 md:gap-8 min-h-screen',
       )}
     >
-      <button
-        type='button'
-        onClick={() => setSidebarOpen((prev) => !prev)}
-        className='fixed left-4 top-20 z-40 border bg-white p-2 text-point shadow lg:hidden'
-        aria-label='카테고리 사이드바 열기/닫기'
-      >
-        {sidebarOpen ? <X className='size-5' /> : <Menu className='size-5' />}
-      </button>
+      {!sidebarOpen && (
+        <button
+          type='button'
+          onClick={() => setSidebarOpen((prev) => !prev)}
+          className='fixed left-4 top-10 z-40 border bg-white p-2 text-point shadow lg:hidden'
+          aria-label='카테고리 사이드바 열기'
+        >
+          <Menu className='size-5' />
+        </button>
+      )}
 
       <header className='flex flex-wrap items-center justify-between gap-3'>
         <div>
@@ -218,6 +242,7 @@ export default function AdminProductManager() {
           onOpenChange={setCreateModalOpen}
           formVersion={createFormVersion}
           initialValues={INITIAL_FORM}
+          currentCategory={category}
           isSubmitting={saving}
           onSubmit={onSubmitCreate}
         />
@@ -243,7 +268,7 @@ export default function AdminProductManager() {
               : '-translate-x-full lg:translate-x-0',
           )}
         >
-          <p className='mb-3 px-1 text-md font-semibold text-point'>카테고리</p>
+          <p className='py-2 text-lg font-semibold text-point'>카테고리</p>
           <div className='space-y-2'>
             {ADMIN_PRODUCT_CATEGORIES.map((item) => {
               const isActive = item.value === category;
@@ -282,7 +307,7 @@ export default function AdminProductManager() {
                 </p>
               )}
 
-              {items.map((item) => {
+              {paginatedItems.map((item) => {
                 const isEditing = editingId === item.id;
                 const imageSrc = sanitizeImageUrl(item.image ?? '');
                 return (
@@ -300,6 +325,17 @@ export default function AdminProductManager() {
                   />
                 );
               })}
+            </div>
+          )}
+          {totalItems > ITEMS_PER_PAGE && (
+            <div className='mt-6'>
+              <Pagination
+                currentPage={currentPage}
+                total={totalItems}
+                limit={ITEMS_PER_PAGE}
+                showPages={5}
+                onChange={(page) => setCurrentPage(page)}
+              />
             </div>
           )}
         </div>
