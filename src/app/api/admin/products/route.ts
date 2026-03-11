@@ -1,14 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/app/lib/supabase/server';
-import { createAdminClient } from '@/app/lib/supabase/admin';
 import { getAdminUser } from '@/lib/admin-auth';
 import { getProductTableByCategory } from '@/lib/admin-product';
-import {
-  ADMIN_PRODUCT_LIVE_PREFIX,
-  ADMIN_PRODUCT_TMP_PREFIX,
-  PRODUCT_IMAGE_BUCKET,
-  SUPABASE_URL,
-} from '@/constants';
+import { finalizeTmpImageIfNeeded } from '@/lib/admin-product-image';
 
 type CreateProductBody = {
   category: string;
@@ -19,48 +13,6 @@ type CreateProductBody = {
 
 const unauthorized = () =>
   NextResponse.json({ error: '관리자 권한이 필요합니다.' }, { status: 401 });
-
-const getStoragePathFromPublicUrl = (
-  imageUrl: string | null | undefined,
-  bucket: string,
-) => {
-  if (!imageUrl) return null;
-  const marker = `/storage/v1/object/public/${bucket}/`;
-  const markerIndex = imageUrl.indexOf(marker);
-  if (markerIndex === -1) return null;
-  const rawPath = imageUrl.slice(markerIndex + marker.length).split('?')[0];
-  if (!rawPath) return null;
-  return decodeURIComponent(rawPath);
-};
-
-const getPublicUrlFromPath = (path: string) => {
-  const baseUrl = SUPABASE_URL;
-  if (!baseUrl) return '';
-  return `${baseUrl}/storage/v1/object/public/${PRODUCT_IMAGE_BUCKET}/${path}`;
-};
-
-const finalizeTmpImageIfNeeded = async (imageUrl: string) => {
-  const imagePath = getStoragePathFromPublicUrl(imageUrl, PRODUCT_IMAGE_BUCKET);
-  if (!imagePath || !imagePath.startsWith(ADMIN_PRODUCT_TMP_PREFIX)) {
-    return imageUrl;
-  }
-
-  const extension = imagePath.split('.').pop() || 'png';
-  const finalPath = `${ADMIN_PRODUCT_LIVE_PREFIX}${Date.now()}-${Math.random()
-    .toString(36)
-    .slice(2, 9)}.${extension}`;
-
-  const adminClient = createAdminClient();
-  const { error } = await adminClient.storage
-    .from(PRODUCT_IMAGE_BUCKET)
-    .move(imagePath, finalPath);
-
-  if (error) {
-    throw new Error(`임시 이미지 확정 실패: ${error.message}`);
-  }
-
-  return getPublicUrlFromPath(finalPath);
-};
 
 export async function GET(req: Request) {
   const adminUser = await getAdminUser();
