@@ -60,6 +60,7 @@ export default function AdminLoginForm() {
           className='w-full rounded-md border px-3 py-2'
           type='email'
           placeholder='admin@yourdomain.com'
+          autoComplete='email'
           {...register('email')}
         />
         {errors.email && (
@@ -72,6 +73,7 @@ export default function AdminLoginForm() {
           className='w-full rounded-md border px-3 py-2'
           type='password'
           placeholder='********'
+          autoComplete='current-password'
           {...register('password')}
         />
         {errors.password && (

@@ -182,7 +182,10 @@ export default function AdminProductManager() {
 
   return (
     <main
-      className={cn('relative p-16 md:p-20', 'flex flex-col gap-4 md:gap-8')}
+      className={cn(
+        'relative p-16 md:p-20',
+        'flex flex-col gap-4 md:gap-8 min-h-[calc(100vh-200px)]',
+      )}
     >
       <button
         type='button'

@@ -16,11 +16,11 @@ export default async function AdminLoginPage() {
   return (
     <main
       className={cn(
-        'min-h-screen h-[16rem] md:h-[24rem] lg:h-[32rem] w-full relative pt-14 md:pt-20',
+        'min-h-[calc(100vh-200px)] h-[16rem] md:h-[24rem] lg:h-[32rem] w-full relative md:pt-20',
         'flex flex-col items-center justify-center',
       )}
     >
-      <div>
+      <div className='p-10 border border-point w-5/6 md:w-1/2 lg:w-1/3'>
         <h1 className='text-2xl font-bold'>관리자 로그인</h1>
         <p className='mb-8 mt-2 text-sm text-gray-600'>
           로그인 후 관리자 페이지로 이동합니다.

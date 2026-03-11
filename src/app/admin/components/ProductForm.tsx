@@ -180,6 +180,7 @@ export function ProductForm({
       <input
         className='w-full border px-2 py-1 text-sm'
         placeholder='상품명'
+        autoComplete='off'
         {...register('name')}
         disabled={disabled || isSubmitting}
         required
@@ -190,6 +191,7 @@ export function ProductForm({
         ref={fileInputRef}
         type='file'
         accept='image/*'
+        autoComplete='off'
         multiple={false}
         disabled={uploading || disabled || isSubmitting}
         onChange={handleUploadImage}
@@ -229,6 +231,7 @@ export function ProductForm({
         type='text'
         className='w-full border px-2 py-1 text-sm'
         placeholder='간단한 상품 설명'
+        autoComplete='off'
         {...register('description')}
         disabled={disabled || isSubmitting}
       />
