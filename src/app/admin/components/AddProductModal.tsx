@@ -16,6 +16,7 @@ import {
 } from '@/components/ui';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
 import { ProductForm, ProductFormState } from './ProductForm';
+import { cn } from '@/lib/utils';
 
 type Props = {
   open: boolean;
@@ -24,7 +25,10 @@ type Props = {
   initialValues: ProductFormState;
   currentCategory: string;
   isSubmitting: boolean;
-  onSubmit: (category: string, values: ProductFormState) => Promise<void> | void;
+  onSubmit: (
+    category: string,
+    values: ProductFormState,
+  ) => Promise<void> | void;
 };
 
 export function AddProductModal({
@@ -49,7 +53,10 @@ export function AddProductModal({
       <DialogTrigger asChild>
         <button
           type='button'
-          className='flex items-center gap-1 border px-3 py-2 text-sm'
+          className={cn(
+            'flex items-center gap-1 border px-3 py-2 text-sm',
+            'bg-point text-white hover:bg-point/90',
+          )}
         >
           <Plus className='size-4' />
           상품 등록
@@ -74,11 +81,11 @@ export function AddProductModal({
               side='bottom'
               className='z-50 bg-point/90 text-ef text-xs sm:text-sm md:text-base'
             >
-            {ADMIN_PRODUCT_CATEGORIES.map((item) => (
-              <SelectItem key={item.value} value={item.value}>
-                {item.label}
-              </SelectItem>
-            ))}
+              {ADMIN_PRODUCT_CATEGORIES.map((item) => (
+                <SelectItem key={item.value} value={item.value}>
+                  {item.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

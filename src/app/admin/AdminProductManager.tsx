@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { ADMIN_PRODUCT_CATEGORIES } from '@/lib/admin-product';
@@ -43,6 +43,7 @@ export default function AdminProductManager() {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [createFormVersion, setCreateFormVersion] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState('');
 
   const fetchItems = useCallback(async () => {
@@ -70,12 +71,25 @@ export default function AdminProductManager() {
     fetchItems();
   }, [category, fetchItems]);
 
+  const filteredItems = useMemo(() => {
+    const keyword = searchQuery.trim().toLowerCase();
+    if (!keyword) return items;
+    return items.filter((item) => item.name.toLowerCase().includes(keyword));
+  }, [items, searchQuery]);
+
   useEffect(() => {
-    const totalPages = Math.max(1, Math.ceil(items.length / ITEMS_PER_PAGE));
+    const totalPages = Math.max(
+      1,
+      Math.ceil(filteredItems.length / ITEMS_PER_PAGE),
+    );
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
     }
-  }, [items.length, currentPage]);
+  }, [filteredItems.length, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
 
   const onSubmitCreate = async (
     targetCategory: string,
@@ -198,9 +212,12 @@ export default function AdminProductManager() {
     router.refresh();
   };
 
-  const totalItems = items.length;
+  const totalItems = filteredItems.length;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const paginatedItems = filteredItems.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
   return (
     <main
@@ -235,18 +252,6 @@ export default function AdminProductManager() {
           로그아웃
         </button>
       </header>
-
-      <div className='flex justify-end'>
-        <AddProductModal
-          open={createModalOpen}
-          onOpenChange={setCreateModalOpen}
-          formVersion={createFormVersion}
-          initialValues={INITIAL_FORM}
-          currentCategory={category}
-          isSubmitting={saving}
-          onSubmit={onSubmitCreate}
-        />
-      </div>
 
       <section className='grid gap-4 lg:grid-cols-[180px_1fr]'>
         {sidebarOpen && (
@@ -293,7 +298,29 @@ export default function AdminProductManager() {
           </div>
         </aside>
         <div className='space-y-3'>
-          <h2 className='text-lg font-semibold'>상품 목록</h2>
+          <div className='flex items-center justify-between'>
+            <h2 className='text-lg font-semibold'>상품 목록</h2>
+            <div className='flex items-center gap-2'>
+              <input
+                type='text'
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder='상품명 검색'
+                className='border px-3 py-2 text-sm'
+                aria-label='상품명 검색'
+              />
+              <AddProductModal
+                open={createModalOpen}
+                onOpenChange={setCreateModalOpen}
+                formVersion={createFormVersion}
+                initialValues={INITIAL_FORM}
+                currentCategory={category}
+                isSubmitting={saving}
+                onSubmit={onSubmitCreate}
+              />
+            </div>
+          </div>
+
           {error && <p className='text-sm text-red-600'>{error}</p>}
           {loading ? (
             <div className='flex items-center justify-center h-full'>
@@ -301,9 +328,9 @@ export default function AdminProductManager() {
             </div>
           ) : (
             <div className='grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4'>
-              {items.length === 0 && (
+              {totalItems === 0 && (
                 <p className='col-span-full border p-4 text-sm text-gray-600'>
-                  등록된 상품이 없습니다.
+                  검색 결과가 없습니다.
                 </p>
               )}
 
