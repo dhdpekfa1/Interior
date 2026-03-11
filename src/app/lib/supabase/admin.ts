@@ -1,4 +1,5 @@
-import { SUPABASE_SERVICE_ROLE_KEY, SUPABASE_URL } from '@/constants';
+import { SUPABASE_URL } from '@/constants/public';
+import { SUPABASE_SERVICE_ROLE_KEY } from '@/constants/server';
 import { createClient } from '@supabase/supabase-js';
 
 export const createAdminClient = () => {
